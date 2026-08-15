@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Create the public `BriarDevv/skills` repo holding the personal Agent Skills library, move `reviewing-plans` and `tracing-root-causes` into it from Context-Engineering, and repoint the workstation junction installer — without ever leaving `~/.claude/skills` junctions dangling.
+**Goal:** Create the public `bygama/skills` repo holding the personal Agent Skills library, move `reviewing-plans` and `tracing-root-causes` into it from Context-Engineering, and repoint the workstation junction installer — without ever leaving `~/.claude/skills` junctions dangling.
 
 **Architecture:** Three repos touched in a fixed order (create+publish new repo → repoint installer → delete from Context-Engineering). The installer gains a source-root list with name-level dedupe (later source wins), which makes the overlap window — when both repos contain the two skills — idempotent.
 
@@ -95,7 +95,7 @@ library for Claude Code — methodology skills usable from any repo, installed
 globally as junction links by the `workstation` repo's installer.
 
 Built on the context-engineering standard defined in
-[Context-Engineering](https://github.com/BriarDevv/Context-Engineering):
+[Context-Engineering](https://github.com/bygama/Context-Engineering):
 SKILL.md under 500 lines, references one level deep, third-person
 descriptions with triggers, and 3 evals per skill that change before the
 skill's content does.
@@ -115,7 +115,7 @@ when the library split from the standard
 ([ADR-001](docs/adrs/ADR-001-standalone-skills-repo.md)).
 ```
 
-- [ ] **Step 4: Write LICENSE** — Context-Engineering `templates/community/LICENSE-MIT.template` with `{{YEAR}}` → `2026`, `{{OWNER}}` → `Mateo García (BriarDevv)` (same owner string as Context-Engineering's LICENSE).
+- [ ] **Step 4: Write LICENSE** — Context-Engineering `templates/community/LICENSE-MIT.template` with `{{YEAR}}` → `2026`, `{{OWNER}}` → `Mateo García (bygama)` (same owner string as Context-Engineering's LICENSE).
 
 - [ ] **Step 5: Write SECURITY.md** (exactly this content):
 
@@ -124,7 +124,7 @@ when the library split from the standard
 
 ## Reporting a vulnerability
 
-Use [GitHub private vulnerability reporting](https://github.com/BriarDevv/skills/security/advisories/new).
+Use [GitHub private vulnerability reporting](https://github.com/bygama/skills/security/advisories/new).
 Do not open public issues for security problems.
 
 You can expect an acknowledgment within a week.
@@ -143,7 +143,7 @@ exactly that.
 
 This project adopts the [Contributor Covenant v2.1](https://www.contributor-covenant.org/version/2/1/code_of_conduct/).
 
-Report unacceptable behavior via a GitHub issue mentioning @BriarDevv, or
+Report unacceptable behavior via a GitHub issue mentioning @bygama, or
 privately through GitHub's report abuse tools.
 ```
 
@@ -203,7 +203,7 @@ engineering inherit its release rhythm.
 
 ## Decision
 
-Split the library from the standard. This repo (`BriarDevv/skills`, public)
+Split the library from the standard. This repo (`bygama/skills`, public)
 holds the personal Agent Skills library; Context-Engineering keeps only
 `context-init` and `context-audit`, which ARE the standard's tooling. The
 workstation installer junction-links skills from both repos. Git history of
@@ -268,24 +268,24 @@ git add skills; git commit -m "feat: adopt reviewing-plans and tracing-root-caus
 
 **Interfaces:**
 - Consumes: local `main` with Tasks 1-2 committed.
-- Produces: `https://github.com/BriarDevv/skills` (public), which `dev/repos/mine.md` (Task 4) references.
+- Produces: `https://github.com/bygama/skills` (public), which `dev/repos/mine.md` (Task 4) references.
 
 - [ ] **Step 1: Create and push**
 
 ```powershell
 cd C:\Briar\repos\mine\skills
-gh repo create BriarDevv/skills --public --source . --push --description "Personal Agent Skills library for Claude Code"
+gh repo create bygama/skills --public --source . --push --description "Personal Agent Skills library for Claude Code"
 ```
 
 - [ ] **Step 2: Apply merge conventions** (rebase-only, auto-delete branches):
 
 ```powershell
-gh api -X PATCH repos/BriarDevv/skills -F allow_merge_commit=false -F allow_squash_merge=false -F allow_rebase_merge=true -F delete_branch_on_merge=true
+gh api -X PATCH repos/bygama/skills -F allow_merge_commit=false -F allow_squash_merge=false -F allow_rebase_merge=true -F delete_branch_on_merge=true
 ```
 
 - [ ] **Step 3: Verify**
 
-Run: `gh repo view BriarDevv/skills --json visibility,deleteBranchOnMerge,rebaseMergeAllowed,mergeCommitAllowed,squashMergeAllowed`
+Run: `gh repo view bygama/skills --json visibility,deleteBranchOnMerge,rebaseMergeAllowed,mergeCommitAllowed,squashMergeAllowed`
 Expected: `"visibility": "PUBLIC"`, `deleteBranchOnMerge: true`, `rebaseMergeAllowed: true`, the other two `false`.
 
 ---
@@ -402,7 +402,7 @@ with:
 - [ ] **Step 4: Add the mine.md row** — in `dev/repos/mine.md`'s `## The list` table append (match the table's column padding):
 
 ```markdown
-| skills                   | `BriarDevv/skills`                   |
+| skills                   | `bygama/skills`                   |
 ```
 
 - [ ] **Step 5: Update the workstation CLAUDE.md gotcha.** Replace:
@@ -522,7 +522,7 @@ git commit -m "chore: move reviewing-plans and tracing-root-causes to the skills
 git switch main; git merge --ff-only chore/move-methodology-skills-out; git branch -d chore/move-methodology-skills-out
 ```
 
-(with the Co-Authored-By trailer; commit body notes the destination `BriarDevv/skills` and ADR-001 there.)
+(with the Co-Authored-By trailer; commit body notes the destination `bygama/skills` and ADR-001 there.)
 
 ---
 

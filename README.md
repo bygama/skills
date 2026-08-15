@@ -5,7 +5,7 @@ library for Claude Code — methodology skills usable from any repo, installed
 globally as junction links by the `workstation` repo's installer.
 
 Built on the context-engineering standard defined in
-[Context-Engineering](https://github.com/BriarDevv/Context-Engineering):
+[Context-Engineering](https://github.com/bygama/Context-Engineering):
 SKILL.md under 500 lines, references one level deep, third-person
 descriptions with triggers, and 3 evals per skill that change before the
 skill's content does.

@@ -5,7 +5,7 @@ Status: Approved (design validated interactively)
 
 ## Purpose
 
-A standalone public repo (`BriarDevv/skills`) holding mateo's personal Agent
+A standalone public repo (`bygama/skills`) holding mateo's personal Agent
 Skills library for Claude Code. It splits the *skill library* (opinions and
 methodologies) from the *context-engineering standard*: the
 Context-Engineering repo keeps only the skills that replicate and enforce the
@@ -28,7 +28,7 @@ else, starting with the two methodology skills salvaged from OMC.
 - workstation's `claude/install.ps1` junction-links skills from a LIST of
   source roots (`Context-Engineering/skills` + `skills/skills`) instead of a
   single one.
-- New row in workstation `dev/repos/mine.md`: `skills | BriarDevv/skills`.
+- New row in workstation `dev/repos/mine.md`: `skills | bygama/skills`.
 - GitHub settings per repo conventions: rebase-only merges, auto-delete
   branches on merge.
 

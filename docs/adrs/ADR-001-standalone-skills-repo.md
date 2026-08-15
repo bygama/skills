@@ -14,7 +14,7 @@ engineering inherit its release rhythm.
 
 ## Decision
 
-Split the library from the standard. This repo (`BriarDevv/skills`, public)
+Split the library from the standard. This repo (`bygama/skills`, public)
 holds the personal Agent Skills library; Context-Engineering keeps only
 `context-init` and `context-audit`, which ARE the standard's tooling. The
 workstation installer junction-links skills from both repos. Git history of
