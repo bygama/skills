@@ -25,8 +25,7 @@
 
 ## In progress
 
-- 2026-08-17 — Lane opened; migration plan approved by owner in chat.
-  Executing S1-S3 via relay (first production relay run).
+- 2026-08-17 — S5: handoff close + PR.
 
 ## Tried and failed
 
@@ -39,3 +38,12 @@
 
 <!-- PASS evidence only, written by work-verify (newest on top); the close
      handoff refuses to close a lane without a current PASS block here. -->
+
+### 2026-08-17 — M DoD — PASS
+- L1 static: `node ../Agent-Engineering/scripts/agent-lint.mjs .` → exit 0 (0 high, 0 medium, 0 low)
+- L2 behavioral: n/a — markdown-only repo, no runtime; agent-lint is the repo's only executable check (recorded decision)
+- L3 end-to-end: PLAN acceptance re-run independently by the fresh reviewer — dead-name grep → exit 1 (no matches); docs/tiers.md byte-identical to the template
+- Fresh-context review: PASS — move map verified line-by-line against `5545a85:CLAUDE.md`; 1 low finding (uncommitted S3 tick), fixed in the finalize commit
+- Adversarial review: n/a — M tier, not requested
+- agent-audit (agent-init final gate): 10/10, no findings, stamp AE/1.1.0 current
+- Relay run record: S1 (sonnet) d2ac209, S2 (haiku) bd933be, S3 (haiku) 19f7627 — each step per-step reviewed (SPEC PASS / QUALITY APPROVED ×3), fix loop never triggered
