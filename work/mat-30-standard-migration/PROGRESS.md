@@ -17,6 +17,11 @@
   "context-engineering|context-lint|context-init|context-audit" -- README.md
   CLAUDE.md AGENTS.md` (run from C:\Briar\repos\mine\skills) → exit 1 (no
   matches).
+- 2026-08-17 — S3 — Copied `docs/tiers.md` verbatim from
+  `../Agent-Engineering/templates/repo/docs/tiers.md` (verified: zero
+  {{PLACEHOLDER}} markers in source) — accept: file exists AND
+  `node ../Agent-Engineering/scripts/agent-lint.mjs .` (run from
+  C:\Briar\repos\mine\skills) → exit 0 (0 high, 0 medium, 0 low).
 
 ## In progress
 
