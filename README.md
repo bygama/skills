@@ -4,8 +4,8 @@ Personal [Agent Skills](https://platform.claude.com/docs/en/agents-and-tools/age
 library for Claude Code — methodology skills usable from any repo, installed
 globally as junction links by the `workstation` repo's installer.
 
-Built on the context-engineering standard defined in
-[Context-Engineering](https://github.com/bygama/Context-Engineering):
+Built on the agent-engineering standard defined in
+[Agent-Engineering](https://github.com/bygama/Agent-Engineering):
 SKILL.md under 500 lines, references one level deep, third-person
 descriptions with triggers, and 3 evals per skill that change before the
 skill's content does.
@@ -49,6 +49,6 @@ from the official marketplace by the `workstation` installer:
 ## Provenance
 
 Both initial skills were salvaged from oh-my-claudecode's agent pack (see
-Context-Engineering ADR-002) and first lived in that repo; they moved here
+Agent-Engineering ADR-002) and first lived in that repo; they moved here
 when the library split from the standard
 ([ADR-001](docs/adrs/ADR-001-standalone-skills-repo.md)).

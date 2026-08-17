@@ -9,6 +9,14 @@
   CLAUDE.md); reduced CLAUDE.md to the `@AGENTS.md` pointer — accept:
   `node ../Agent-Engineering/scripts/agent-lint.mjs .` (run from
   C:\Briar\repos\mine\skills) → exit 0 (0 high, 0 medium, 0 low).
+- 2026-08-17 — S2 — Dead-name fixes in README.md per the SPEC list
+  (context-engineering → agent-engineering, context-lint.mjs →
+  agent-lint.mjs, context-init/context-audit → agent-init/agent-audit,
+  "context-engineering standard" → "agent-engineering standard"; AGENTS.md
+  and CLAUDE.md already cleaned in S1) — accept: `git grep -iE
+  "context-engineering|context-lint|context-init|context-audit" -- README.md
+  CLAUDE.md AGENTS.md` (run from C:\Briar\repos\mine\skills) → exit 1 (no
+  matches).
 
 ## In progress
 
