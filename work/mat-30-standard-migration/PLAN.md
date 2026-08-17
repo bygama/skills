@@ -12,11 +12,11 @@
 - [x] S2: Dead-name fixes in README.md per the SPEC list — accept:
   `git grep -iE "context-engineering|context-lint|context-init|context-audit" -- README.md CLAUDE.md AGENTS.md`
   exits 1 (no matches)
-- [ ] S3: `docs/tiers.md` copied from
+- [x] S3: `docs/tiers.md` copied from
   `../Agent-Engineering/templates/repo/docs/tiers.md` — accept: file
   exists AND `node ../Agent-Engineering/scripts/agent-lint.mjs .`
   exits 0
-- [ ] S4 (controller, post-relay): agent-audit final gate + work-verify
+- [x] S4 (controller, post-relay): agent-audit final gate + work-verify
   M DoD — accept: audit reports compliant at AE/1.1.0; PASS block in
   PROGRESS
 - [ ] S5 (controller): work-handoff close + PR — accept: PR opens green
