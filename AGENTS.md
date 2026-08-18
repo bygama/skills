@@ -1,6 +1,7 @@
 # skills
 
-Standard: AE/1.3.1
+Standard: AE/1.3.2
+Tracker: Linear — workspace bygama · team MAT · project skills
 
 Personal Agent Skills library for Claude Code — methodology skills usable
 from any repo. The agent-engineering standard and its enforcement skills
