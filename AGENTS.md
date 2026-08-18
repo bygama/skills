@@ -1,6 +1,6 @@
 # skills
 
-Standard: AE/1.2.2
+Standard: AE/1.3.0
 
 Personal Agent Skills library for Claude Code — methodology skills usable
 from any repo. The agent-engineering standard and its enforcement skills
