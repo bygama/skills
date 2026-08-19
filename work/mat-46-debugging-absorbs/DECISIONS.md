@@ -169,3 +169,38 @@ identification of the gap and this lane's authorship of the closure,
 with no independent sign-off on the closure itself. The parent's
 cross-model adversarial seat is the natural place for that check, and
 this entry is the flag for it.
+
+## 2026-08-19 — D8: the re-review verdict arrived — D7 superseded
+
+**Correction.** D7 recorded that the scoped re-review returned no
+verdict after three requests. It arrived shortly after — **CONFIRMED**.
+D7's adjudication stands as an accurate account of the moment it was
+written; its conclusion ("nobody independently confirmed the closures")
+is now **wrong and superseded**. Someone did.
+
+**Verdict.** All six dispositions ADDRESSED. On the two Important fixes
+the reviewer judged the added text carries the source's machinery rather
+than gesturing at it: Important 2 a complete four-beat carry of
+superpowers' *When Process Reveals "No Root Cause"* (earned verdict,
+record what was ruled out, deliberate handling, monitoring) plus one
+beat the source lacked; Important 1 closing the eval-06 support gap with
+sharper framing than the original. It re-ran the mechanical checks at
+the actual branch tip and confirmed nothing regressed: lint unchanged at
+the single pre-existing MEDIUM, SKILL.md 214 (<500), links/anchors/
+one-level-deep clean, evals 01-03 absent from the diff, CI green.
+
+**Named omission, deliberately not fixed.** Important 1's fix carries
+every leg of superpowers Phase 3.4 except **"ask for help"** — escalating
+to a human when reading the component is not enough. The reviewer flagged
+it as not worth another round and this lane agrees, for a reason worth
+recording: adding content after a CONFIRMED verdict invalidates that
+verdict on the exact tree it was given for. It is one clause, it is
+named here, and it is the parent's call whether to land it in a
+follow-up rather than something quietly edited in after sign-off.
+
+**Also fixed here** (the reviewer's one new Minor): `PROGRESS.md`'s
+`## Verification` block asserted `191` for a tree that is 214 lines. The
+step-3 acceptance row keeps `191` — that is what the command returned at
+step 3 — but is now labelled as historical. The CI evidence line no
+longer names a single head, because every commit to PROGRESS displaces
+the head the previous line named.
