@@ -445,3 +445,48 @@ work/mat-94-attribution-skills/PROGRESS.md
    more file than the SPEC's scope paragraph enumerates by name
    (`techniques.md` is conditional there, "notice only if classified
    substantial" — D3 classified it substantial, so it takes one).
+
+### Step 3 — review verdict (fresh reviewer, opus)
+
+Verdict text, verbatim:
+
+> ### Spec compliance
+> ✅ Compliant
+>
+> ### Assessment
+> **Step quality:** Approved
+> **Reasoning:** The judgment is correctly grounded in the D2/D3
+> record, the enumeration matches those verdicts exactly (including the
+> `find-polluter.sh` exclusion and the in-part marking), the reproduced
+> MIT text is verbatim against upstream, and `LICENSE` is untouched —
+> both acceptance conditions hold. The only defects are a sentence in
+> NOTICE that step 4 must make true and one unevidenced negative claim,
+> neither of which undermines the step's output.
+
+Reviewer independently re-verified: MIT text in NOTICE line-by-line
+identical to upstream LICENSE (indent-only transform, documented); the
+four enumerated files match D2/D3 verdicts exactly; the five quoted
+section headings match the live SKILL.md character-for-character;
+repo LICENSE absent from the diff. Critical: none. Important: none.
+
+**Binding note for step 4** (from minor 1): NOTICE:13-15 claims every
+derived file carries a comment pointing at NOTICE — step 4 must land
+that pointer in all FOUR files (testing-first SKILL.md +
+writing-good-tests.md, tracing-root-causes SKILL.md + techniques.md),
+or the sentence needs softening.
+
+**Deferred minors (for work-verify's triage):**
+
+1. NOTICE:13-15 forward-looking sentence false until step 4 lands (see
+   binding note above).
+2. NOTICE:54 repo-wide negative claim ("no other file is derived")
+   rests on port-record scope, not diff evidence — reviewer grepped
+   `superpowers` across skills/ and found only the four enumerated
+   files; add "per the MAT-94 classification record" or a D4 line
+   stating the basis.
+3. PROGRESS step-3 report re-narrates D4's reasoning at length —
+   two copies of one argument can drift; future steps could keep
+   PROGRESS to outcome + evidence.
+4. ⚠️ NOTICE:21-22 marketplace repo slug (anthropics/
+   claude-plugins-official) inferred from the cache directory name,
+   not from a local source — descriptive prose, low stakes.
