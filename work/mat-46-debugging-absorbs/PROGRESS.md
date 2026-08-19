@@ -75,7 +75,7 @@ to make the content pass.
 | 2 | `head -20 …/techniques.md \| grep -q "^- \["` | exit 0 (TOC present, file is 139 lines) |
 | 2 | `grep -E "\]\((\.\./)?references/" …/techniques.md` | exit 1 — no nested reference, one level deep |
 | 3 | `grep -q "^name: tracing-root-causes$" …/SKILL.md` | exit 0 |
-| 3 | `grep -c "" …/SKILL.md` | `191` (<500) |
+| 3 | `grep -c "" …/SKILL.md` | `191` (<500) — count at step 3; now 214 after the review fixes |
 | 3 | `grep -q "work-verify" …/SKILL.md` | exit 0 |
 | 3 | `grep -q "references/techniques.md" …/SKILL.md` | exit 0 |
 | 3 | `grep "complements superpowers:systematic-debugging"` | exit 1 — delegation removed |
@@ -181,9 +181,10 @@ untouched"*, which this change makes stale.
   attributable to this lane** (D2). The authoritative gate, CI
   `standard`, is green on the final tree: `gh pr checks 9` → `standard
   pass`, [run 32222154873](https://github.com/bygama/skills/actions/runs/32222154873),
-  `"conclusion":"success"`; re-confirmed on the final head `432af57`
-  (`gh run list … --json headSha,conclusion` → `success`), so CI is green
-  on the tree being handed off, not on an earlier commit.
+  `"conclusion":"success"` — and green on **every** pushed head of this
+  branch, latest run 32222154873 onward (`gh run list --branch
+  bygama/mat-46-debugging-absorbs`). Stated that way deliberately: every
+  commit to this file displaces whatever head the previous line named.
 - **L2 behavioral:** the repo ships no test runner, so the behavioral
   layer is the artifacts loading and resolving as a skill:
   - frontmatter parses, exactly `name` + `description`, `name:
@@ -192,7 +193,7 @@ untouched"*, which this change makes stale.
   - reference depth: `techniques.md` links no further reference → clean
   - all 4 TOC anchors match real headings → exit 0
   - repo invariants intact: every skill ≥3 evals (7/3/3/4), every
-    SKILL.md <500 lines (191/67/69/87)
+    SKILL.md <500 lines (214/67/69/87)
   - identity: `name` unchanged, OMC provenance intact, both trigger
     families present, `work-verify` + `PROGRESS.md` named (A6/A7/A8)
   - `git diff main..HEAD -- evals/eval-0{1,2,3}.md` empty — the three
