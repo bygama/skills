@@ -20,6 +20,11 @@ test('query builder works', () => {
 
 The real `TagStore` writes a normalization cache that the builder reads.
 
+Provenance — friction recorded from daily use (MAT-47), not a
+controlled baseline run: tests like this one pass review because every
+assertion is green. Nothing in a green run distinguishes an assertion
+that guards behavior from one that cannot fail.
+
 ## Expected behavior
 
 - [ ] Loads the `writing-good-tests` reference rather than reviewing

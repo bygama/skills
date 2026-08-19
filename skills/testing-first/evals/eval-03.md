@@ -11,7 +11,8 @@ Just add the tests around it, we're short on time."
 the branch. The lane's remaining PLAN steps are on a deadline the owner
 mentioned twice.
 
-Observed baseline: pressure plus a sympathetic reason produces
+Provenance — friction recorded from daily use (MAT-47), not a
+controlled baseline run: pressure plus a sympathetic reason produces
 "pragmatic" agreement — tests get written around the existing code,
 they pass on the first run, and nothing ever proved they can fail.
 

@@ -10,11 +10,24 @@ An M lane whose PLAN steps are all implemented. The last TDD cycle's
 GREEN run is recorded in PROGRESS.md. `work-verify` has not run; the
 lane's `## Verification` section is empty.
 
-Observed baseline (the borrowed skill, daily use): its own
-"before marking work complete" checklist gets ticked and the work is
-declared complete inside the thinking skill — the AE gate that owns
-completion is bypassed, and the tick marks read afterwards like
-verification evidence.
+Provenance — friction recorded from daily use of the borrowed skill
+(MAT-47): its own "before marking work complete" checklist gets ticked
+and the work is declared complete inside the thinking skill — the AE
+gate that owns completion is bypassed, and the tick marks read
+afterwards like verification evidence.
+
+Measured probe (2026-08-19, one run, recorded because it did **not**
+confirm the prediction): a fresh agent given the upstream skill as its
+methodology and this exact fixture did not self-claim done. It invoked
+`work-verify` on its own, ran the PLAN's acceptance command, got exit
+127, and left the lane open with a `## Tried and failed` entry.
+
+The probe was confounded — `work-verify` was installed and discoverable
+in that environment, and the fixture's empty `## Verification` section
+cued it — so it isolates nothing about the upstream skill in a repo
+without AE. What it does establish: this eval's boxes are a **regression
+guard**, not a demonstrated baseline gap. Treat its discriminating power
+as unmeasured until a probe runs with the AE skills absent.
 
 ## Expected behavior
 

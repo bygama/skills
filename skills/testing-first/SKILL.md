@@ -1,6 +1,6 @@
 ---
 name: testing-first
-description: Enforces test-first implementation — the Iron Law (no production code without a failing test first), RED-GREEN-REFACTOR with both verification beats mandatory, and the rationalization table that catches "just this once". Cycle evidence lands in the lane's PROGRESS.md, and completion hands off to work-verify instead of being self-claimed. Use before writing implementation code for any feature, bugfix, or behavior change; when writing or reviewing a test; when tests are being added after the fact; and whenever time pressure, sunk cost, or "I already manually tested it" is arguing for skipping TDD. Covers test-driven development (TDD).
+description: Enforces test-first implementation — the Iron Law (no production code without a failing test first), RED-GREEN-REFACTOR with both verification beats mandatory, and the rationalization table that catches "just this once". Cycle evidence lands in the lane's PROGRESS.md, and completion hands off to work-verify instead of being self-claimed. Use before writing implementation code for any feature, bugfix, or behavior change; when writing or reviewing a test; when tests are being added after the fact; when authoring a skill or an eval, where the eval is the failing test; and whenever time pressure, sunk cost, or "I already manually tested it" is arguing for skipping TDD. Covers test-driven development (TDD).
 ---
 
 # Testing first
@@ -116,6 +116,37 @@ Write it when you see it. Evidence reconstructed at the end is a memory
 of the run, not the run. And write it nowhere else: this skill produces
 no artifacts of its own — no scratch test plan, no side ledger, no notes
 file. The lane is the record.
+
+### What that looks like — a bugfix, end to end
+
+Bug: an empty email is accepted. RED first, and the failure is watched:
+
+```
+$ npm test -- submitForm
+FAIL  expected 'Email required', received undefined
+```
+
+Then the least code that passes — an early return on a blank email — and
+the pass is watched:
+
+```
+$ npm test -- submitForm
+PASS  14 passing
+```
+
+Both beats go into `work/<slug>/PROGRESS.md` as they happen, one line
+each:
+
+```markdown
+- RED  `npm test -- submitForm` → exit 1 — "expected 'Email required',
+  received undefined"; fails because the guard does not exist yet
+- GREEN `npm test -- submitForm` → exit 0 — 14 passing, no warnings
+```
+
+The RED line is the one that carries the proof. It names the failure
+that was actually seen and why it was the right one — which is the only
+thing separating a test that guards the behavior from a test that was
+written afterwards and never could have failed.
 
 ## Good tests
 
