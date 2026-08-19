@@ -11,7 +11,7 @@ Branch: `bygama/mat-94-attribution-skills` (stacked on
 - [x] PLAN.md shaped (5 steps)
 - [x] Step 1 — D2: classify testing-first
 - [x] Step 2 — D3: classify tracing-root-causes
-- [ ] Step 3 — D4: NOTICE judgment
+- [x] Step 3 — D4: NOTICE judgment (yes; `NOTICE` created)
 - [ ] Step 4 — notices applied/normalized
 - [ ] Step 5 — README Provenance lines
 - [ ] work-verify (M) incl. fresh-context review
@@ -331,3 +331,117 @@ defects in the D3 evidence record, none verdict- or action-changing:
    files; local eval-04..07 are different genre (house format, no
    ported expression — reviewer checked) — one sentence in D3 excluding
    `evals/` would close the question permanently.
+
+### Step 3 — D4: NOTICE judgment
+
+**Implemented.** Read the D2 + D3 verdicts, judged the MIT question, and
+recorded the judgment in DECISIONS.md under `## D4 — NOTICE judgment`.
+**Judgment: YES** — so `NOTICE` was created at the repo root.
+
+**The reasoning, in short.** MIT conditions two artifacts on "copies or
+substantial portions", not one: the copyright notice *and* the
+permission notice. D2/D3 establish four files carrying substantial
+portions (both testing-first files whole-file, `techniques.md`
+whole-file, `tracing-root-causes/SKILL.md` in five named sections), so
+the condition is triggered. The second fact decides the rest: the
+permission notice is currently **nowhere** in this repo — `LICENSE` is
+the owner's own grant (© 2026 Mateo García) and cannot stand in for
+Jesse Vincent's, the MAT-47 per-file comments carry no license text, and
+`techniques.md`'s prose "Absorbed from…" line carries neither copyright
+nor permission notice. Something had to carry it.
+
+Three carriers were weighed in D4 and the alternatives rejected on the
+record: inlining the full text into each per-file comment (~17
+boilerplate lines × 4 into line-budgeted, agent-loaded skill files, four
+copies free to drift, no gain over one authoritative copy) and amending
+`LICENSE` to a joint notice (SPEC-fenced, and it would misstate a
+third-party component as co-authorship of the whole). One root `NOTICE`
+with the per-file comments pointing at it wins, which is also the shape
+D1 anticipated.
+
+The counterfactual is recorded too — had every verdict come back
+idea-only, the judgment would have been **no**. The answer is contingent
+on D2/D3, not automatic, and D4 says so explicitly so the reasoning is
+reusable by the sibling AE lane.
+
+**What `NOTICE` says.** Repo's own license line → `LICENSE`; an explicit
+"this file is additive, it changes nothing about that license"; upstream
+identification (superpowers, homepage, v6.3.0 as vendored in the
+official marketplace, MIT); the four derived files enumerated against
+their upstream sources — `techniques.md` naming its three sources
+individually and *not* `find-polluter.sh` (idea-only per D3), and
+`tracing-root-causes/SKILL.md` marked in-part with its five section
+headings quoted exactly as they appear in the file; a closing "no other
+file in this repository is derived from superpowers"; then the upstream
+`LICENSE` in full, indented four spaces.
+
+The reproduced license body was verified rather than eyeballed:
+
+```
+$ sed -n '/^    MIT License/,$p' NOTICE | sed 's/^    //' > /tmp/notice-mit.txt
+$ diff -u --strip-trailing-cr \
+    "C:/Users/mateo/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/LICENSE" \
+    /tmp/notice-mit.txt
+# (no output) → identical to upstream modulo line endings
+```
+
+The five section headings in NOTICE were likewise taken from the file,
+not from D3's prose (`grep -n "^#\{2,3\} " skills/tracing-root-causes/SKILL.md`
+→ lines 59, 118, 133, 170, 185 match character for character, `→`
+included).
+
+**Acceptance.**
+
+```
+$ grep -q "## D4 — NOTICE judgment" \
+    work/mat-94-attribution-skills/DECISIONS.md; echo $?
+0
+
+$ grep -q "Permission is hereby granted" NOTICE; echo $?
+0
+```
+
+Lane constraint re-checked (not a step-3 gate):
+
+```
+$ node C:/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .
+0 high, 0 medium, 1 low — PASS
+```
+
+Same pre-existing `AGENTS.md:15` cmd-drift LOW as steps 1-2; not
+attributable to this lane. `LICENSE` untouched (`git status` shows it
+unmodified).
+
+**Files changed.** `NOTICE` (new, repo root),
+`work/mat-94-attribution-skills/DECISIONS.md` (D4 entry appended),
+`work/mat-94-attribution-skills/PROGRESS.md` (state box + this report).
+No `skills/**` file edited — step 4 owns those.
+
+Post-commit file list:
+
+```
+$ git show --name-only --format= HEAD
+NOTICE
+work/mat-94-attribution-skills/DECISIONS.md
+work/mat-94-attribution-skills/PROGRESS.md
+```
+
+**Concerns.**
+
+1. NOTICE's file enumeration is a maintenance surface: a future port
+   that lands without updating it leaves NOTICE quietly incomplete.
+   Flagged in D4 as the accepted cost of the checkable form (the
+   alternative — "some files are derived" — carries the license text but
+   tells a reader nothing). If the owner wants it enforced, the natural
+   home is an agent-lint rule in the AE repo, which this lane is fenced
+   from; worth a follow-up ticket rather than a silent risk.
+2. `NOTICE` is written with LF while checked-out files in the worktree
+   show CRLF. This is cosmetic only: `core.autocrlf=true` and the index
+   stores LF for every file (`git ls-files --eol` → `i/lf` on LICENSE,
+   README.md, SKILL.md), so the committed blob is normalized like every
+   other file and a fresh checkout renders it CRLF. Prior lane steps
+   left DECISIONS.md the same way.
+3. Step 4 note: D4 asks four per-file comments to point at `NOTICE`, one
+   more file than the SPEC's scope paragraph enumerates by name
+   (`techniques.md` is conditional there, "notice only if classified
+   substantial" — D3 classified it substantial, so it takes one).

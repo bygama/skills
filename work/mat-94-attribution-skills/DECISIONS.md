@@ -705,3 +705,114 @@ three specific upstream documents, and the file exists to carry them.
    from testing-first's, because the base is the owner's and the file is
    majority original. One line, pointing at this entry.
 5. No `skills/**` file is edited in this step — classification only.
+
+## D4 — NOTICE judgment
+
+**Judgment: YES.** A root `NOTICE` is needed, and it was created in this
+step (`NOTICE`, repo root). `LICENSE` is byte-untouched.
+
+### The question
+
+MIT grants the rights "subject to the following conditions":
+
+> The above copyright notice and this permission notice shall be
+> included in all copies or substantial portions of the Software.
+
+Two artifacts are conditioned, not one — the **copyright notice**
+(`Copyright (c) 2025 Jesse Vincent`) and the **permission notice** (the
+`Permission is hereby granted…` grant plus the all-caps warranty
+disclaimer that MIT's own text treats as part of it). The grant this
+repository exercises is `modify, merge, … distribute`, so the condition
+travels into the derivative, not only into a verbatim copy. Two facts
+therefore decide the judgment: does this repo carry a *substantial
+portion*, and is the *permission notice* currently present anywhere in
+it.
+
+### Fact 1 — substantial portions are present (D2 + D3)
+
+Four files, established by diff evidence rather than assumption:
+
+| File | Verdict | Entry |
+|---|---|---|
+| `skills/testing-first/SKILL.md` | substantial, whole file | D2 |
+| `skills/testing-first/references/writing-good-tests.md` | substantial, whole file (33 identical lines, 111-word run) | D2 |
+| `skills/tracing-root-causes/references/techniques.md` | substantial, whole file | D3 |
+| `skills/tracing-root-causes/SKILL.md` | substantial in five named sections | D3 |
+
+The condition is triggered. This is contingent, not automatic: had every
+verdict come back idea-only, the answer here would be **no** — MIT
+conditions the copying of the Software, and an idea-only rewrite carries
+none of it. The counterfactual is recorded so the reasoning is reusable,
+not only the outcome.
+
+### Fact 2 — the permission notice is currently absent
+
+`LICENSE` (repo root) carries this repository's own MIT grant,
+`Copyright (c) 2026 Mateo García (bygama)` — it is not Jesse Vincent's
+notice and cannot stand in for it. The MAT-47 per-file comments name
+upstream but carry no license text at all, and
+`references/techniques.md` opens with a bare prose provenance line
+("Absorbed from superpowers' `systematic-debugging` (v6.3.0) and
+distilled") with neither copyright nor permission notice. So the
+upstream copyright notice is partially present and the permission notice
+is nowhere in the repository. Something must carry it.
+
+### Where it goes — three options weighed
+
+1. **Inline the full permission text in each per-file comment.**
+   Rejected. It satisfies the condition, but costs ~17 boilerplate lines
+   × 4 files inside skill files that are line-budgeted (<500) and read in
+   full by an agent at load time, and it creates four copies free to
+   drift apart. No gain over one authoritative copy every file points
+   at.
+2. **Amend `LICENSE` to a dual/joint notice.** Rejected, and fenced by
+   the SPEC besides. It would misstate the facts: this repository is
+   MIT © 2026 Mateo García, and upstream material is a *third-party
+   component* inside it, not a co-author of the whole.
+3. **One root `NOTICE` with the full upstream license text, enumerating
+   the derived files; per-file comments stay short and point there.**
+   Chosen. It is the conventional carrier for third-party notices, keeps
+   exactly one authoritative copy of the text, and puts the enumeration
+   where a distributor or a reader looks for it. D1 already ruled this
+   is where the full permission text lives *if* a NOTICE turned out to
+   be needed; this step's job was to decide whether it is, and it is.
+
+### What NOTICE contains
+
+This repository's own license line pointing at `LICENSE`; a statement
+that the file is additive and changes nothing about that license;
+upstream identification (project, homepage, v6.3.0 as vendored in the
+official plugin marketplace, MIT); the enumeration of the four derived
+files against their upstream sources — with `techniques.md`'s three
+sources named individually (`root-cause-tracing.md`,
+`defense-in-depth.md`, `condition-based-waiting.md`;
+`find-polluter.sh` is **not** cited, its section being idea-only per D3)
+and `tracing-root-causes/SKILL.md` marked in-part, its five section
+headings quoted exactly as they appear in the file so the claim is
+checkable; a closing "no other file in this repository is derived from
+superpowers"; and finally the upstream `LICENSE` reproduced in full,
+indented four spaces and otherwise byte-identical.
+
+Verified rather than asserted:
+
+```
+$ sed -n '/^    MIT License/,$p' NOTICE | sed 's/^    //' > /tmp/notice-mit.txt
+$ diff -u --strip-trailing-cr \
+    ".../superpowers/6.3.0/LICENSE" /tmp/notice-mit.txt
+# (no output) → identical modulo line endings
+```
+
+The enumeration is the part that will rot if a later port lands without
+updating it. That is the accepted cost of the honest form — a NOTICE
+that only said "some files are derived" would carry the license text but
+tell a reader nothing checkable.
+
+### Consequences for the remaining steps
+
+- **Step 4**: each per-file comment stays short and points at `NOTICE`
+  for the full permission text (D1). Four files carry that pointer — the
+  two testing-first files, `tracing-root-causes/SKILL.md`, and
+  `references/techniques.md`.
+- **Step 5**: README `## Provenance` may point at `NOTICE` alongside
+  this DECISIONS.md, since the file now exists.
+- `LICENSE` remains untouched — no step in this lane edits it.
