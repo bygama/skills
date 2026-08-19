@@ -65,6 +65,9 @@ Narrow the failure to one component before explaining it.
 - **Compare against something that works.** Find the nearest working
   case and list every difference, however small. "That can't matter" is
   a hypothesis, not an observation.
+- **Check what it depends on** — the services, config, environment, and
+  assumptions the broken path needs to work at all. A missing or changed
+  dependency looks exactly like broken logic from the inside.
 - **Trace backward to the origin** — see
   [references/techniques.md](references/techniques.md) for backward
   tracing, instrumenting a dangerous operation, and bisecting a test
@@ -83,6 +86,11 @@ Narrow the failure to one component before explaining it.
   circumstantial (naming, temporal proximity, stack position, "this same
   fix worked on another service") → intuition, seniority, confidence.
   When tiers conflict the higher tier wins; never treat support as flat.
+- **Name what you don't understand.** "I don't know how X works yet" is a
+  finding, not a confession — say it, then go read X completely. A
+  hypothesis resting on an unread component is a guess about that
+  component, and a confident verdict about code nobody has read is the
+  most expensive kind of wrong.
 
 ### 4. Disconfirm
 
@@ -132,6 +140,21 @@ hypothesis:
 Stop. Say plainly that this looks structural, name the pattern you think
 is wrong, and get a decision before attempt four. This is not a failed
 hypothesis — it is a wrong architecture, and more fixes make it worse.
+
+## When the cause really is environmental
+
+Sometimes the honest verdict is timing, an external dependency, or a
+platform difference, with no defect to fix. That verdict is *earned*,
+not reached by running out of patience — most "no root cause" is
+incomplete investigation. When the trace genuinely lands there:
+
+1. **Record what was ruled out**, and how. The next person starts from
+   your shortlist instead of from zero.
+2. **Handle it deliberately** — a bounded retry, a timeout, a clear
+   error message. Deliberate handling is a design decision with a
+   rationale; a swallowed error is not.
+3. **Add the monitoring** that would make the next occurrence legible,
+   because there will be a next occurrence.
 
 ## Rationalizations
 
