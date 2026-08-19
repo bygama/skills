@@ -219,6 +219,28 @@ before skill content). Minor 5 skipped by that same ruling.
   `DECISIONS.md` (the ruling that authorized this round). Not mine to
   commit — it stays staged-out for the controller.
 
+#### Step 2 — review and re-review verdicts (controller record)
+
+- Review (fresh subagent, opus — the eval is step 3's acceptance
+  target): **Spec compliance ✅ Compliant · Step quality: Needs
+  fixes.** Reasoning verbatim: *"The eval is structurally right —
+  genuinely failing against the observed baseline, staged in the seat
+  step 1 could not reach, format- and depth-calibrated to eval-07, and
+  free of the AE syntax the SPEC forbids — but its negative guard and
+  its ask items are not sequenced against each other, leaving the
+  checklist literally unpassable under a strict reading of the one
+  item that keeps the leg narrow."* 1 Important + 5 Minors; Minors
+  2/3/4/6 ruled into the round by D4, Minor 5 skipped by the same
+  ruling.
+- Re-review, round 1 (fresh subagent, sonnet, scoped to the fix diff):
+  **all five findings ADDRESSED** with file:line evidence; *"New
+  breakage in the fix diff: None"*; round verdict verbatim: *"All
+  findings addressed, no new Critical/Important breakage."* It
+  independently re-counted the eval (`wc -l` → 67) against the
+  corrected record.
+- Step 2 closes: commits `f61b8d7` + `cd842c5` (+ `0a0d056` D4),
+  review Approved-after-round-1.
+
 ## Status
 
 - [x] Lane opened: SPEC.md + DECISIONS.md (D1 verdict, D2 lint gate) +
@@ -227,6 +249,6 @@ before skill content). Minor 5 skipped by that same ruling.
       — ruling verbatim in DECISIONS.md D3)
 - [x] PLAN.md shaped after approval (commit `6b0c2a5`)
 - [~] Execution (work-run ceremony): step 1 DONE reviewed Approved;
-      step 2 DONE (eval-08, pending review); step 3 pending
+      step 2 DONE, reviewed, fix round 1 all-ADDRESSED; step 3 pending
 - [ ] work-verify (M: static + behavioral + fresh-context review)
 - [ ] work-handoff: PR open (`Closes MAT-93`), worker_done
