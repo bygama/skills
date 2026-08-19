@@ -1,0 +1,23 @@
+name: standard
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  standard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+      - uses: actions/checkout@v4
+        with:
+          repository: bygama/Agent-Engineering
+          path: standard
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Agent-lint against the standard
+        run: node standard/scripts/agent-lint.mjs repo
