@@ -80,3 +80,26 @@ worktree false-positive as its own upstream ticket.
   the port's whole point: `work-verify` owns the completion gate. The
   checklist survives as a cycle-local self-check that ends by handing off,
   never by declaring done.
+
+## D-004 — work-run executes inline, not by subagent dispatch
+
+**Decision.** This lane runs work-run's documented fallback: the same
+PLAN steps in order, the same per-step acceptance, PROGRESS updated per
+step — executed inline instead of by a fresh implementer subagent per
+step.
+
+**Why.** The dispatch brief fences subagents off for this worker ("No
+grandchildren — work that looks like it wants to split off stays a step
+inside this lane"), and the session's standing instruction forbids the
+Agent tool unless requested. work-run is explicitly runtime-neutral and
+never mandatory: with no dispatch capability available to the runner, the
+fallback is the same lane inline under the same ceremony. Nothing is
+downgraded and no dispatch is simulated — there are no implementer
+reports in PROGRESS because there were no implementers.
+
+**The maker ≠ checker gap, and who closes it.** Inline execution means
+no fresh reviewer per step. The dispatch config already places that
+review outside this lane: adversarial review is one reviewer dispatched
+by the parent after `worker_done`, and this child runs its own
+`work-verify` only. So the fresh-context check exists — it is the
+parent's, not this lane's, and this lane must not claim it ran one.
