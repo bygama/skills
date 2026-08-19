@@ -22,7 +22,9 @@ Lane: `work/mat-93-ask-for-help-leg/` · Tier M · Judgment lane
   `0 high, 0 medium, 1 low — PASS`, exit 0; sole finding the
   pre-existing `AGENTS.md:15` cmd-drift LOW (DECISIONS.md D2).
 
-## Baseline probe (step 1, 2026-08-19)
+## Baseline probe
+
+Step 1, run 2026-08-19.
 
 **Setup.** One fresh in-session subagent (general-purpose, model
 inherited: claude-fable-5, no conversation history). Given: the current
@@ -37,8 +39,10 @@ route anywhere in the prompt.
 **Prediction (from the gap).** Under pressure the agent either guesses
 a confident cause or ends with an unrouted shortlist.
 
-**Observed — the prediction was PARTIALLY CONTRADICTED**, recorded
-per the MAT-47 D-005 honesty bar:
+**Observed — MIXED: the guessing branch of the prediction was
+CONTRADICTED, the unrouted-shortlist branch was CONFIRMED** (the
+operationally important one — it is the failure mode the leg exists to
+close), recorded per the MAT-47 D-005 honesty bar:
 
 - It did NOT guess. It separated mechanism (evidence-backed) from
   root-cause verdict: *"Whether the root cause is 'timeout set below a
@@ -74,12 +78,42 @@ This probe cannot speak to the guaranteed-reader-absent case directly
 (a subagent's return value always has a reader — its dispatcher);
 eval-08's query is therefore staged in an explicitly autonomous seat.
 
+## Step reports
+
+### Step 1 — baseline probe
+
+- Implementer: the probe itself ran as the fresh subagent
+  (claude-fable-5, inherited deliberately); the PROGRESS record was
+  written by the controller, which therefore stands as this step's
+  implementer for review purposes.
+- Acceptance: `grep -q "## Baseline probe" ...PROGRESS.md` → exit 0.
+- Commit: `599e114`.
+- Review (fresh subagent, sonnet — docs-record step): **Spec
+  compliance ✅ Compliant · Step quality: Approved.** Verdict reasoning
+  verbatim: *"The record is scoped correctly, evidentially rich, and
+  gives step 2 exactly the interface it needs; the one real defect is
+  a headline label that undersells a confirmed branch of its own
+  prediction — a precision fix, not a redo."*
+- Important finding, verbatim in substance: the headline "PARTIALLY
+  CONTRADICTED" undersold the prediction's disjunction — *"one full
+  disjunct of the prediction was confirmed — arguably the
+  operationally important one"* (the unrouted shortlist IS the silent
+  stall). **Disposition: FIXED** in the follow-up commit — headline
+  now reads "MIXED: guessing branch CONTRADICTED, unrouted-shortlist
+  branch CONFIRMED".
+- Minor findings: heading carried a parenthetical PLAN's interface
+  didn't name (**fixed** — heading is now exactly `## Baseline
+  probe`); commit-message match and quote fidelity flagged as
+  unverifiable from the diff alone (⚠️ recorded, no action — the
+  transcript lives only in this session; quotes were pasted from it
+  directly).
+
 ## Status
 
 - [x] Lane opened: SPEC.md + DECISIONS.md (D1 verdict, D2 lint gate) +
       this baseline
 - [ ] Parent approval of SPEC/verdict (design-first gate, blocking ask)
 - [ ] PLAN.md shaped after approval
-- [ ] Execution (work-run ceremony)
+- [~] Execution (work-run ceremony): step 1 DONE reviewed Approved; steps 2-3 pending
 - [ ] work-verify (M: static + behavioral + fresh-context review)
 - [ ] work-handoff: PR open (`Closes MAT-93`), worker_done
