@@ -179,7 +179,9 @@ untouched"*, which this change makes stale.
   pre-existing `AGENTS.md:15 [cmd-drift]`, reproduced identically on
   clean `main` (`0e6faad`) extracted in isolation — **zero findings
   attributable to this lane** (D2). The authoritative gate, CI
-  `standard`, is green: `gh pr checks 9` → `standard  pass  9s`.
+  `standard`, is green on the final tree: `gh pr checks 9` → `standard
+  pass  6s`, [run 32221469910](https://github.com/bygama/skills/actions/runs/32221469910),
+  head `5fff9d0`.
 - **L2 behavioral:** the repo ships no test runner, so the behavioral
   layer is the artifacts loading and resolving as a skill:
   - frontmatter parses, exactly `name` + `description`, `name:
@@ -210,3 +212,41 @@ Every command above was run in this session against this tree.
 https://github.com/bygama/skills/pull/9 — body carries `Closes MAT-46`.
 Not merged by this lane; merging is the parent's action after its
 reviewers pass and after any requested rebase onto fresh main.
+
+## Handoff — PAUSED, not closed
+
+`work-handoff` ran in **pause** mode on 2026-08-19. The lane folder
+survives deliberately: a close would remove it, and the parent's review
+wave may return findings that need this lane's SPEC, PLAN, and rulings
+intact to act on.
+
+**Why pause rather than close.** Close needs a current PASS covering the
+whole DoD. Two things are outstanding, and neither is mine to complete:
+
+1. The fresh-context / adversarial review is the parent's (1 ballena,
+   dispatched after `worker_done`); this session is fenced from spawning
+   it (D5), and the maker does not certify its own work.
+2. The PR is open, not merged. Merging is the parent's action, after its
+   reviewers pass and after any requested rebase onto fresh main.
+
+**Nothing is red.** Every command in `## Verification` exited as
+recorded, the worktree is clean (`git status --porcelain` empty), and CI
+`standard` is green on the final tree. This is a pause on *authority*,
+not on a blocker.
+
+**Next, for whoever resumes:**
+
+- Await the parent's review verdict; fix findings on this branch and
+  re-run the L1/L2 commands in `## Verification` before re-reporting.
+- Rebase onto fresh `main` when the parent asks (rebase-only house
+  rule). Do not merge from this seat.
+- The README index row in *Reported, not applied* is the sibling lane's
+  to apply — do not apply it here.
+- On merge, `Closes MAT-46` in the PR body moves the Linear issue via
+  the GitHub integration; no manual status move was made from this lane.
+
+**Debris sweep:** worktree clean, no stray logs/scratch/`.orig` files,
+no placeholders. The two `TODO` matches in `eval-05.md` are quoted
+scenario text (the eval grades *refusing* to ship a TODO'd stopgap), not
+debris. The `git archive` extraction used for the clean-main lint proof
+lived in the session scratchpad, outside the repo, and was removed.
