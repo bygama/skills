@@ -365,9 +365,14 @@ before skill content). Minor 5 skipped by that same ruling.
 - Adversarial review: n/a: M tier — the parent's cross-model seat runs
   after `worker_done` by dispatch design, and this lane's record is
   its input.
-- Pending, outside this session's layers: CI `standard` green on the
-  PR (DoD 4) and the PR itself with `Closes MAT-93` (DoD 6) — both
-  work-handoff's steps, recorded there.
+- CI `standard` (DoD 4): **pass** on PR #12 —
+  `gh pr checks 12 --watch` → `standard  pass  14s`
+  (run 32304980183). Note: every later commit to the lane record
+  displaces the head this line was observed on; the check re-runs per
+  push and the PR page is authoritative (MAT-46 D8 precedent).
+- PR (DoD 6): https://github.com/bygama/skills/pull/12 — body carries
+  `Closes MAT-93`; opened by this lane, never merged by it (the
+  parent's action, after its review wave).
 
 ### Layer evidence (2026-08-19, controller session, tree at `3b26eaa`+`f330637`)
 
@@ -418,4 +423,5 @@ before skill content). Minor 5 skipped by that same ruling.
       deferred)
 - [x] work-verify (M: static + behavioral + fresh-context review) —
       PASS, evidence in `## Verification`
-- [ ] work-handoff: PR open (`Closes MAT-93`), worker_done
+- [x] work-handoff: PR #12 open (`Closes MAT-93`), CI standard pass,
+      lane kept for the review wave (D5); worker_done reported
