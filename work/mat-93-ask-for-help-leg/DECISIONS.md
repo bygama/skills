@@ -93,3 +93,21 @@ LOW    AGENTS.md:15  ../Agent-Engineering/scripts/agent-lint.mjs escapes the rep
 a green baseline): lint PASS (exit 0) with no findings attributable to
 this lane — the pre-existing LOW stays reported, not fixed here — plus
 the CI `standard` check green on the PR.
+
+## 2026-08-19 — D3: SPEC approved — the design-first gate ruling
+
+**Ruling (parent, blocking ask), verbatim in substance:**
+
+> APPROVED as written. CARRY-narrow is the right verdict and the
+> differentiation from MAT-47 D-003 is the load-bearing part: that lane
+> killed a universal "ask your human" escape hatch; yours is a bounded
+> stall-escalation that fires only on exhausted reachable evidence,
+> with the evidence package (hypotheses tried + disconfirming evidence
+> + exact stall point + the probe you'd run given the answer) as the
+> price of asking — AE's channels say HOW to ask, your leg says WHEN,
+> which nothing else covers. Baseline probe before eval-08 before
+> content is the skill-authoring method applied correctly. Shape
+> PLAN.md and proceed. Record this ruling in your DECISIONS.md.
+
+PLAN.md proceeds under this ruling; the WHEN-not-HOW framing is the
+acceptance bar for the leg's wording in step 3.
