@@ -24,10 +24,10 @@ command actually run.
 
 ## What shipped
 
-`skills/tracing-root-causes/` grew from a 55-line causal-analysis skill
-into the house debugging skill:
+`skills/tracing-root-causes/` grew from a 57-line causal-analysis
+skill into the house debugging skill:
 
-- **SKILL.md** (188 → 191 lines): the iron law; the phased spine
+- **SKILL.md** (57 → 214 lines): the iron law; the phased spine
   `reproduce → isolate → hypothesize → disconfirm → fix`, with the
   original six-step discipline surviving intact as phases 3 and 4; the
   three-strikes architecture stop; one merged 14-row rationalization
@@ -197,13 +197,36 @@ untouched"*, which this change makes stale.
     original evals are byte-identical to main (A4)
 - **L3 end-to-end:** n/a — single component. The change is one skill
   directory; there is no cross-component flow to execute.
-- **Fresh-context review: NOT RUN BY THIS LANE.** The dispatch config
-  assigns adversarial review to the parent (1 ballena, dispatched after
-  `worker_done`); the child runs its own work-verify only, and this
-  session is fenced from spawning workers (D5). The maker does not
-  certify its own work, so this rung is **outstanding**, not waived —
-  the PASS above covers the mechanically verifiable DoD only.
-- **Adversarial review:** deferred to the parent, same reason.
+- **Fresh-context review: PASS** — in-session subagent, no shared
+  conversation, ran the DoD itself (D6). It independently extracted
+  clean `main` and reproduced the `cmd-drift` MEDIUM byte-identically,
+  confirming rather than accepting D2's claim, and confirmed CI green on
+  the exact reviewed head via `gh run view 32221538508` →
+  `"conclusion":"success"`. On substance it judged the absorption to
+  keep the source's machinery rather than summarize it, and the causal
+  core preserved with additions only. Findings: 0 Critical, 2 Important
+  (both fixed in `b331654`), 4 Minor (triaged below).
+- **Adversarial review:** deferred to the parent — 1 ballena,
+  cross-model, dispatched after `worker_done` per the dispatch config.
+  It is an additional seat, not a replacement for the rung above.
+
+#### Review findings and disposition
+
+| # | Sev | Finding | Disposition |
+|---|---|---|---|
+| 1 | Important | the "I don't know" machinery (superpowers Phase 3.4) did not survive | **fixed** `b331654` — phase 3 bullet |
+| 2 | Important | the honest-environmental terminal state kept the disbelief, lost the procedure | **fixed** `b331654` — new section |
+| 3 | Minor | dependency sweep dropped from Isolate | **fixed** `b331654` |
+| 4 | Minor | no eval ever executed against a model | **accepted, standing gap** — see below |
+| 5 | Minor | PROGRESS quoted three different baselines for one line count | **fixed** — true baseline is 57 (`git show main:…SKILL.md \| grep -c ""`), not 55/188 |
+| 6 | Minor | README and AE `reference/skills.md` go stale on merge | **not a lane defect** — both fenced and reported; merge-order dependency, see below |
+
+**Standing gap (finding 4), stated plainly:** no eval in this repo has
+been executed against a model, here or before this lane. The repo ships
+no eval runner, so "L2 pass" means *the skill text prescribes the graded
+behavior*, verified by reading — not *a fresh session was graded and
+passed*. That is a property of the repo's eval method, not of this
+change, and it is the honest ceiling on what this PASS claims.
 
 Every command above was run in this session against this tree.
 
@@ -223,11 +246,19 @@ intact to act on.
 **Why pause rather than close.** Close needs a current PASS covering the
 whole DoD. Two things are outstanding, and neither is mine to complete:
 
-1. The fresh-context / adversarial review is the parent's (1 ballena,
-   dispatched after `worker_done`); this session is fenced from spawning
-   it (D5), and the maker does not certify its own work.
+1. The cross-model adversarial review is the parent's (1 ballena,
+   dispatched after `worker_done`). This lane's own fresh-context rung
+   DID run and returned PASS (D6) — the outstanding seat is the
+   additional cross-model one, not step 4.
 2. The PR is open, not merged. Merging is the parent's action, after its
    reviewers pass and after any requested rebase onto fresh main.
+
+**Merge-order dependency the parent now owns** (review finding 6): if
+this lane merges and the sibling lanes do not, `main` carries a
+`README.md` index row describing half the skill, and Agent-Engineering's
+`reference/skills.md:126` still asserts *"TDD and systematic-debugging
+are untouched"*. Both files are fenced from this lane by ruling; both
+strings were confirmed to still exist at review time.
 
 **Nothing is red.** Every command in `## Verification` exited as
 recorded, the worktree is clean (`git status --porcelain` empty), and CI
