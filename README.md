@@ -18,7 +18,7 @@ lists, per the Claude 5-era shift the standard is built on.
 | Skill | What it does |
 |---|---|
 | [`reviewing-plans/`](skills/reviewing-plans/) | Adversarial review of plans, specs, and proposals before execution |
-| [`tracing-root-causes/`](skills/tracing-root-causes/) | Disciplined causal analysis: competing hypotheses, evidence ranked by strength, active disconfirmation |
+| [`tracing-root-causes/`](skills/tracing-root-causes/) | Owns debugging end to end: reproduce, isolate, competing hypotheses, evidence ranked by strength, active disconfirmation, fix at the source |
 | [`designing-consistently/`](skills/designing-consistently/) | Keeps UI work consistent with an app's DESIGN.md: read before building, consume tokens, record decisions as a gated step |
 | [`extracting-design-md/`](skills/extracting-design-md/) | Reverse-engineers a DESIGN.md from an existing project: evidenced drift report, collapsed tokens, backfilled decisions, migration plan with a convergence metric |
 | [`testing-first/`](skills/testing-first/) | Test-first implementation: the Iron Law, RED-GREEN-REFACTOR with both verification beats mandatory, cycle evidence into the lane, completion handed to `work-verify` |
@@ -44,7 +44,7 @@ from the official marketplace by the `workstation` installer:
 - [`frontend-design`](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/frontend-design)
   (Anthropic) — UI/UX implementation guidance.
 - [`superpowers`](https://github.com/obra/superpowers) by Jesse Vincent —
-  debugging and collaboration workflows (vendored in the
+  collaboration workflows (vendored in the
   [official marketplace](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/superpowers)).
 
 ## Provenance
