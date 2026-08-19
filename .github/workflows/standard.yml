@@ -15,9 +15,11 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: bygama/Agent-Engineering
-          path: standard
+          path: Agent-Engineering
       - uses: actions/setup-node@v4
         with:
           node-version: 22
       - name: Agent-lint against the standard
-        run: node standard/scripts/agent-lint.mjs repo
+        # The sibling position matches the layout AGENTS.md documents,
+        # so its cited ../Agent-Engineering/ command resolves in CI too.
+        run: node Agent-Engineering/scripts/agent-lint.mjs repo
