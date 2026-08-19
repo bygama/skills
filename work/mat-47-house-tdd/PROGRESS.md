@@ -124,3 +124,17 @@ narrowed to exclude quoted spans.
   so expect one rebase conflict there.
 - A properly isolated baseline run for the evals — AE skills absent — is
   the honest follow-up this lane did not do (D-005).
+- **Open for the owner, deliberately not decided here:** the repo's root
+  `LICENSE` is MIT © 2026 Mateo García with no mention of the upstream
+  copyright. This lane added the MIT notice (© 2025 Jesse Vincent) to the
+  header of both derived files and a Provenance line to README, which is
+  the file-level convention. Whether the root LICENSE should also carry
+  the upstream notice is a repo-wide call, not a lane's.
+
+### Fix round 1 — re-review
+
+Scoped re-review of the fix diff: all four Important findings
+**ADDRESSED**, round verdict **PASS**. It raised one wording
+inconsistency (eval-02's Provenance lacked the "not a controlled baseline
+run" qualifier its siblings carry) — fixed — and the LICENSE observation
+above, logged rather than acted on.

@@ -11,7 +11,7 @@ GREEN run is recorded in PROGRESS.md. `work-verify` has not run; the
 lane's `## Verification` section is empty.
 
 Provenance — friction recorded from daily use of the borrowed skill
-(MAT-47): its own "before marking work complete" checklist gets ticked
+(MAT-47), not a controlled baseline run: its own "before marking work complete" checklist gets ticked
 and the work is declared complete inside the thinking skill — the AE
 gate that owns completion is bypassed, and the tick marks read
 afterwards like verification evidence.
