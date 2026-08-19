@@ -93,3 +93,49 @@ notices as `SKILL.md:8-9` and `writing-good-tests.md:6-7`; the actual
 blocks are five lines each (8-12 and 6-10) and carry a stale
 `work/mat-47-house-tdd/DECISIONS.md` pointer that this lane's
 normalization supersedes.
+
+### Step 1 — review verdict (fresh reviewer, opus)
+
+Verdict text, verbatim:
+
+> ### Spec compliance
+> ✅ Compliant
+>
+> ### Assessment
+> **Step quality:** Approved
+> **Reasoning:** The step does exactly what was asked and nothing else —
+> two evidence-backed verdicts, zero skill edits, correct heading and
+> commit — and every quantitative claim I independently recomputed
+> matched to the digit, with line-number spot-checks accurate
+> throughout. The five minors are precision slips in "differs only in"
+> style sub-claims, all in the direction of slightly overstating
+> similarity on a file whose SUBSTANTIAL verdict is already established
+> by a 111-token verbatim run and 33 identical lines; worth tightening
+> for quotability, but they change no verdict and block no downstream
+> step.
+
+The reviewer independently recomputed every mechanical number in D2
+(line counts 249/320 and 220/198; 9 and 33 normalized identical lines;
+40- and 111-token longest runs) and all reproduced exactly; every
+line-number spot-check held. Critical: none. Important: none.
+
+**Deferred minors (for work-verify's triage)** — all five are
+precision slips in subordinate evidence claims inside D2/PROGRESS, none
+verdict-affecting:
+
+1. DECISIONS.md Gate-1 paragraph: "differs only in …" list misses a
+   fifth edit (`and`→`,` at local writing-good-tests.md:91 vs upstream
+   :72) — enumerate completely or soften.
+2. DECISIONS.md "Every code example is verbatim" caveat understates two
+   comment-line rewrites (local 111 vs upstream 92; local 128 vs
+   upstream 110); executable lines verbatim claim itself confirmed.
+3. DECISIONS.md quick-reference paragraph: local 194 / upstream 177
+   carries two edits in one row (`or document`→`or a document` AND
+   `Run it /`→`Run it, or`), not one per row.
+4. PROGRESS.md step-1 acceptance capture is pre-commit (post-commit
+   `git diff --name-only HEAD` is empty); note it or use
+   `git show --name-only HEAD`.
+5. DECISIONS.md "What is genuinely local": upstream's Bad RED example
+   survives in prose at local SKILL.md:68 (uncounted match in the
+   verdict's favour); red-flags bullet names 12-of-13 without naming
+   the dropped item.
