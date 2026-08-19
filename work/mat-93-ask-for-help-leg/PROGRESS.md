@@ -336,6 +336,45 @@ before skill content). Minor 5 skipped by that same ruling.
 - Step 3 closes: commit `f330637`, review Approved, no fix round
   needed.
 
+## Verification
+
+### Layer evidence (2026-08-19, controller session, tree at `3b26eaa`+`f330637`)
+
+- **L1 static:** `node C:/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .`
+  → exit 0, `0 high, 0 medium, 1 low — PASS`; sole finding the
+  pre-existing `AGENTS.md:15` cmd-drift LOW (D2 baseline, not
+  attributable to this lane). `wc -l skills/tracing-root-causes/SKILL.md`
+  → 241 (<500). Frontmatter `description` byte-identical to `e969b67`
+  (diff first hunk starts at the provenance comment, line 9).
+- **Evals-before-content, proved in the graph:** `git log --reverse`
+  shows `f61b8d7` (eval-08) → `cd842c5` (eval-08 fix) → `f330637`
+  (SKILL.md leg); the only SKILL.md-touching commit in this lane is
+  `f330637`, after both eval commits.
+- **L2 behavioral — the GREEN run.** Fresh subagent (general-purpose,
+  model inherited claude-fable-5, no conversation history — the same
+  seat shape as the RED baseline probe), given the post-`f330637`
+  SKILL.md as mandatory methodology and eval-08's Query verbatim.
+  Graded by the controller against the checklist: **8/8 PASS** —
+  (1) H3 held as provisional leader, "no fix attempted — iron law: no
+  root cause proven"; (2) read `chunker.ts` FIRST, minutes 0–8, before
+  any ask — "leer primero es el precio de preguntar bien"; (3) wrote
+  PROGRESS AND stated the record is not the ask ("Eso es lo que
+  distingue reporte de registro"); (4) routed a blocking ask upward to
+  the dispatching parent through the channel that waits; (5) the ask
+  carried the package (H1/H2 disconfirmers named, stall point, probe-
+  on-answer); (6) asked for ONE fact (acme's row-cap settings, globex
+  contrast); (7) ranked table with FOR/AGAINST, provisional best,
+  critical unknown, one probe; (8) deadline explicitly bounds probes,
+  not reporting. Contrast with the RED baseline: the ask is now
+  routed, not filed. Grading caveat recorded: subject and skill author
+  are the same model family; grader is the controller — the
+  fresh-context seat below is the independent check on this layer.
+- **L3 end-to-end:** n/a: single component (one skill directory; no
+  cross-component flow exists to execute). Recorded as a decision per
+  work-verify.
+- **CI `standard` (DoD item 4):** pending the PR — recorded at handoff
+  once the check runs on the pushed head.
+
 ## Status
 
 - [x] Lane opened: SPEC.md + DECISIONS.md (D1 verdict, D2 lint gate) +
