@@ -274,3 +274,60 @@ entry appended), `work/mat-94-attribution-skills/PROGRESS.md` (state box
    step 4 to name all three; that is a faithful extension of the
    format, not a redesign, but it is a judgment step 4 will have to
    execute rather than copy.
+
+### Step 2 — review verdict (fresh reviewer, opus)
+
+Verdict text, verbatim:
+
+> ### Spec compliance
+> ✅ Compliant
+>
+> ### Assessment
+> **Step quality:** Approved
+> **Reasoning:** The classification is right where it matters — every
+> byte-identical claim I sampled is true, the candidate/base split
+> matches the actual git history exactly, and the five named sections
+> are the correct notice scope; I uphold the `### 1. Reproduce`
+> idea-only call on its merits, though its "decisive" second reason
+> should be demoted. The remaining findings are precision defects in an
+> evidence record (one overstated structural parallel, two off-by-one
+> cites, four uncovered-candidate bookkeeping leaks) that change no
+> verdict and no downstream action.
+
+The reviewer verified the candidate/base split against git history
+itself (no candidate commit missed; `5c7d82f` is techniques.md's only
+commit), spot-checked eight byte-identical claims (all true, right
+lines), and confirmed the techniques.md structural claims — "SUBSTANTIAL
+is the right call and is not close". Implementer concern 1 (Reproduce
+idea-only): **UPHELD on the merits**; concern 2 confirmed as a real
+catch; concern 3 ruled no-fix-needed (naming all three upstream sources
+is the faithful reading of the SPEC template). Critical: none.
+Important: none.
+
+**Deferred minors (for work-verify's triage)** — all six are precision
+defects in the D3 evidence record, none verdict- or action-changing:
+
+1. Reproduce idea-only reasoning inverted: the BASE-bullet argument
+   (presented as "decisive") should be demoted to a supporting note —
+   the merits argument (no distinctive selection) carries the call; a
+   section with one base bullet is still nameable under the SPEC's
+   parts-only format.
+2. One techniques.md structural claim wrong on inspection (DECISIONS.md
+   ≈628-632): the fourth instrumentation clause maps to
+   root-cause-tracing.md 92-95, not the 156-161 tips block, and the
+   order doesn't match — restate as "tips (156-161) plus
+   analyze-traces guidance (92-95), reordered".
+3. Two off-by-one upstream cites (upstream 196 cited as 197; 241 as
+   240) and "Common Mistakes (85-93)" where heading is 84, first item
+   86.
+4. Four bookkeeping leaks under `#### Not candidates`: three MAT-46/93
+   additions parked under an "excluded" heading, and `## The phases`
+   (local 42-44) gets no verdict anywhere — all four plainly idea-only
+   (checked by reviewer); relabel the block and add `## The phases`.
+5. The phased-spine arrangement question deserves one explicit
+   paragraph (generic scientific-method loop + base items 3-6 already
+   supplied hypothesize/disconfirm) instead of a parenthetical.
+6. `evals/` never mentioned: upstream ships pressure-test scenario
+   files; local eval-04..07 are different genre (house format, no
+   ported expression — reviewer checked) — one sentence in D3 excluding
+   `evals/` would close the question permanently.
