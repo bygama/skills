@@ -11,7 +11,15 @@ description: Owns debugging end to end — reproduce, isolate, hypothesize, disc
      phased spine, the iron law, the rationalization tables, and four
      techniques (references/techniques.md). MAT-46.
      Phase 3.4's "ask for help" beat, held back by MAT-46 D8, carried
-     2026-08-19 as bounded stall-escalation. MAT-93. -->
+     2026-08-19 as bounded stall-escalation. MAT-93.
+     Sections `### 2. Isolate`, `### 5. Fix`,
+     `## Three strikes → question the architecture`,
+     `## When the cause really is environmental`, and `## Rationalizations`
+     are derived from superpowers' systematic-debugging/SKILL.md (v6.3.0),
+     MIT License, Copyright (c) 2025 Jesse Vincent; base and remaining
+     sections are original. Classified substantial-in-part (MAT-94);
+     evidence: work/mat-94-attribution-skills/DECISIONS.md. Full upstream
+     permission notice: NOTICE (repo root). -->
 
 Explain outcomes through evidence, not narrative, and fix causes rather
 than symptoms. The failure mode this prevents: jumping from symptom to

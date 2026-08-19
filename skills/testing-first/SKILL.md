@@ -5,11 +5,11 @@ description: Enforces test-first implementation — the Iron Law (no production 
 
 # Testing first
 
-<!-- Derived from superpowers' test-driven-development (v6.3.0), MIT License,
-     Copyright (c) 2025 Jesse Vincent. Adapted 2026-08-19.
-     Kept: the Iron Law, the cycle, the rationalizations, the red flags.
-     Adapted to AE surfaces; dropped what only worked inside that suite's
-     chain. Provenance: work/mat-47-house-tdd/DECISIONS.md. -->
+<!-- Derived from superpowers' test-driven-development/SKILL.md (v6.3.0),
+     MIT License, Copyright (c) 2025 Jesse Vincent. Adapted 2026-08-19.
+     Classified substantial (MAT-94); evidence:
+     work/mat-94-attribution-skills/DECISIONS.md. Full upstream permission
+     notice: NOTICE (repo root). -->
 
 Write the test first. Watch it fail. Write the least code that passes.
 
