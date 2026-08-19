@@ -133,8 +133,9 @@ narrowed to exclude quoted spans.
 
 - The `~/.claude/skills/testing-first` junction does not exist yet: one
   workstation-installer run is needed before this skill loads anywhere.
-- README's "used alongside" line is also MAT-46's target (for debugging),
-  so expect one rebase conflict there.
+- ~~README's "used alongside" line is also MAT-46's target (for
+  debugging), so expect one rebase conflict there.~~ **Prediction was
+  wrong** — see the rebase note below.
 - A properly isolated baseline run for the evals — AE skills absent — is
   the honest follow-up this lane did not do (D-005).
 - **Open for the owner, deliberately not decided here:** the repo's root
@@ -151,3 +152,31 @@ Scoped re-review of the fix diff: all four Important findings
 inconsistency (eval-02's Provenance lacked the "not a controlled baseline
 run" qualifier its siblings carry) — fixed — and the LICENSE observation
 above, logged rather than acted on.
+
+## 2026-08-19 — rebase onto merged main (cf47cc3)
+
+MAT-46 merged and main advanced. Rebased; **zero conflicts**, because the
+predicted collision never existed: `git diff --name-only 0e6faad..origin/main`
+shows MAT-46 touched only `skills/tracing-root-causes/**` and its own lane
+folder. It never edited README.md.
+
+That left a semantic problem git could not have flagged, and it is what
+the rebase actually had to fix — both README lines were wrong on the
+merged tree:
+
+- **The superpowers credit.** It read "debugging and collaboration
+  workflows" after this lane removed TDD. But MAT-46's skill now declares
+  it "Supersedes superpowers:systematic-debugging as the house debugging
+  skill", so crediting superpowers with debugging clobbers exactly what
+  the sibling lane shipped. Now reads "collaboration workflows".
+- **The tracing-root-causes row.** Still "Disciplined causal analysis:
+  competing hypotheses, evidence ranked by strength, active
+  disconfirmation" — the pre-absorption description, understating a skill
+  that grew by 245 lines, four evals and a references file. Now reads
+  "Owns debugging end to end: reproduce, isolate, competing hypotheses,
+  evidence ranked by strength, active disconfirmation, fix at the source",
+  mirroring its own frontmatter.
+
+The second edit touches a row for a sibling's skill. It is index-surface
+work — README, this lane's surface this wave — not a change under
+`skills/tracing-root-causes/**`, which stays untouched.
