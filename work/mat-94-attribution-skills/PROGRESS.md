@@ -10,7 +10,7 @@ Branch: `bygama/mat-94-attribution-skills` (stacked on
 - [x] SPEC approved by parent at the design-first gate (D1)
 - [x] PLAN.md shaped (5 steps)
 - [x] Step 1 — D2: classify testing-first
-- [ ] Step 2 — D3: classify tracing-root-causes
+- [x] Step 2 — D3: classify tracing-root-causes
 - [ ] Step 3 — D4: NOTICE judgment
 - [ ] Step 4 — notices applied/normalized
 - [ ] Step 5 — README Provenance lines
@@ -139,3 +139,138 @@ verdict-affecting:
    survives in prose at local SKILL.md:68 (uncounted match in the
    verdict's favour); red-flags bullet names 12-of-13 without naming
    the dropped item.
+
+### Step 2 — D3: classify tracing-root-causes vs upstream v6.3.0
+
+**Implemented.** Section-by-section classification of the MAT-46
+absorption plus the MAT-93 ask-for-help leg against upstream
+`systematic-debugging/` v6.3.0 and its four technique references,
+recorded in DECISIONS.md under `## D3 — classification:
+tracing-root-causes`. Version and license re-confirmed from the upstream
+tree itself (`.claude-plugin/plugin.json` → `"version": "6.3.0"`,
+`"license": "MIT"`; `LICENSE` → `Copyright (c) 2025 Jesse Vincent`).
+
+Method: whole-file read of all six files; two mechanical passes
+(whitespace-normalized identical lines ≥20 chars, and longest common
+word runs) run **twice** — strict, then loose (lowercased, markdown
+emphasis and punctuation stripped) so re-voicing that only changes case
+or `**bold**` markers still surfaces; then `grep -c -F` on both sides
+for every fragment quoted as identical. Candidate/base separation came
+from the diffs themselves (`git show` on 9d1b574, c147b56, 0e11081,
+f330637, and `9d1b574~1` for the 57-line base), not from commit prose.
+
+**Headline mechanical result** — this pair is verbatim-poor, unlike
+testing-first: **zero** normalized identical lines between local
+SKILL.md (241) and upstream SKILL.md (283), longest common run 8 words;
+**zero** identical lines between `references/techniques.md` (139) and
+any of the four upstream technique files, longest run 7 words. So the
+case, where it exists, is structural — which is why the file splits by
+section rather than taking one verdict.
+
+**Verdicts.**
+
+- `skills/tracing-root-causes/SKILL.md` → **PARTIAL (substantial in
+  parts).** Five sections substantial, and the notice must name exactly
+  these: `### 2. Isolate`, `### 5. Fix`, `## Three strikes → question
+  the architecture`, `## When the cause really is environmental`,
+  `## Rationalizations`. Idea-only (no notice): `## The iron law`,
+  `### 1. Reproduce`, `### 3. Hypothesize`, `### 4. Disconfirm`,
+  `## When the investigation stalls`, the frontmatter description.
+  Strongest evidence: three byte-identical cells in the
+  Rationalizations table (`Multiple fixes at once saves time`,
+  `Partial understanding guarantees bugs. Read it completely.`,
+  `It's probably X, let me fix that`), 6 of upstream's 8 table rows in
+  1:1 correspondence, upstream's three redirection signals plus
+  `Return to Phase 1` carried case-only, Three-strikes' three-item
+  pattern list item-for-item with a near-verbatim closing sentence, and
+  defense-in-depth's four layers by upstream's names in upstream's
+  order inside phase 5.
+- `skills/tracing-root-causes/references/techniques.md` →
+  **SUBSTANTIAL, whole-file form** (no owner-original base; created
+  whole by 5c7d82f). Three of four techniques are close structural
+  derivations of three specific upstream documents — step headings,
+  the four-layer taxonomy with near-verbatim purposes, the four-step
+  application procedure, the five-row predicate table with three
+  byte-identical predicates, three-for-three "common mistakes" and
+  three-for-three justified-delay requirements. The fourth
+  (test-pollution bisection) is idea-only and recorded as such.
+
+**Notable negative findings**, recorded because they cut against a
+blanket verdict: the iron law is *not* copied (`NO FIX WITHOUT A ROOT
+CAUSE FIRST` vs `NO FIXES WITHOUT ROOT CAUSE INVESTIGATION FIRST`; the
+only ≥3-word hit in that whole section is the heading plus one token);
+the MAT-93 stall section has **zero** common runs at a 3-word floor
+against upstream's entire SKILL.md; and phases 3-4 instruct the
+*opposite* of upstream's "Form Single Hypothesis" because that text is
+the owner's base.
+
+Actions implied (consumed by steps 3-5): parts-only notice **extending**
+the existing provenance comment at SKILL.md:8-14 (never a second block),
+naming the five sections and keeping base + unnamed sections marked
+original; whole-file notice at the top of techniques.md citing all three
+upstream sources and superseding, not stacking on, its existing
+"Absorbed from…" prose line; D4 gains a second skill to enumerate;
+README records tracing-root-causes as derived-with-notice **in part**.
+
+**Acceptance.**
+
+```
+$ grep -q "## D3 — classification: tracing-root-causes" \
+    work/mat-94-attribution-skills/DECISIONS.md; echo $?
+0
+
+$ git diff --name-only HEAD
+work/mat-94-attribution-skills/DECISIONS.md
+work/mat-94-attribution-skills/PROGRESS.md
+
+$ git diff --name-only HEAD | grep '^skills/'
+# (no output) → no skills/** file touched
+```
+
+Post-commit equivalent, since `git diff --name-only HEAD` is empty once
+committed (step-1 review minor 4):
+
+```
+$ git show --name-only --format= HEAD
+work/mat-94-attribution-skills/DECISIONS.md
+work/mat-94-attribution-skills/PROGRESS.md
+```
+
+Lane constraint re-checked (not a step-2 gate):
+
+```
+$ node C:/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .
+0 high, 0 medium, 1 low — PASS
+```
+
+The single LOW is the same pre-existing `AGENTS.md:15` cmd-drift note;
+not attributable to this lane.
+
+**Files changed.** `work/mat-94-attribution-skills/DECISIONS.md` (D3
+entry appended), `work/mat-94-attribution-skills/PROGRESS.md` (state box
++ this report). No skill file edited, per the step.
+
+**Concerns.**
+
+1. `### 1. Reproduce` is the least comfortable call in the entry — its
+   three candidate bullets do map 1:1 onto upstream's Phase 1 items in
+   order, and one carries a 5-word verbatim (`What are the exact
+   steps?`). It is called idea-only because the sequence is textbook
+   debugging rather than distinctive selection, and decisively because
+   the section's second bullet is owner-base text carried verbatim from
+   the 57-line original — naming the section would attribute the
+   owner's own prose upstream. The reasoning is in D3 so a reviewer can
+   overturn it cheaply; adding the section to the notice is a one-word
+   change to step 4 if they disagree.
+2. Scope note for the record: `references/techniques.md` was added by
+   **5c7d82f**, not by the three commits the PLAN's step-2 text names
+   (9d1b574, c147b56, 0e11081). It is in scope regardless — the step
+   scopes it by name — and `git log --diff-filter=A` confirms 5c7d82f
+   is its only creating commit with no later edits, so nothing about
+   the candidate set changes. Flagged so the discrepancy is not
+   rediscovered as a defect downstream.
+3. The SPEC's normalized notice format has a single `<upstream-path>`
+   slot, but techniques.md derives from three upstream files. D3 asks
+   step 4 to name all three; that is a faithful extension of the
+   format, not a redesign, but it is a judgment step 4 will have to
+   execute rather than copy.
