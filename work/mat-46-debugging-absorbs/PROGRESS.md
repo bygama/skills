@@ -172,10 +172,41 @@ untouched"*, which this change makes stale.
 
 ## Verification
 
-Filled by `work-verify` — see the section below.
+### 2026-08-19 — M DoD — PASS (review rung outstanding, owned by the parent)
+
+- **L1 static:** `node C:/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .`
+  → exit 1, `0 high, 1 medium, 0 low`. The single MEDIUM is the
+  pre-existing `AGENTS.md:15 [cmd-drift]`, reproduced identically on
+  clean `main` (`0e6faad`) extracted in isolation — **zero findings
+  attributable to this lane** (D2). The authoritative gate, CI
+  `standard`, is green: `gh pr checks 9` → `standard  pass  9s`.
+- **L2 behavioral:** the repo ships no test runner, so the behavioral
+  layer is the artifacts loading and resolving as a skill:
+  - frontmatter parses, exactly `name` + `description`, `name:
+    tracing-root-causes`, description 719 chars ≤1024 → exit 0
+  - every internal link resolves: 2 checked, 0 broken → exit 0
+  - reference depth: `techniques.md` links no further reference → clean
+  - all 4 TOC anchors match real headings → exit 0
+  - repo invariants intact: every skill ≥3 evals (7/3/3/4), every
+    SKILL.md <500 lines (191/67/69/87)
+  - identity: `name` unchanged, OMC provenance intact, both trigger
+    families present, `work-verify` + `PROGRESS.md` named (A6/A7/A8)
+  - `git diff main..HEAD -- evals/eval-0{1,2,3}.md` empty — the three
+    original evals are byte-identical to main (A4)
+- **L3 end-to-end:** n/a — single component. The change is one skill
+  directory; there is no cross-component flow to execute.
+- **Fresh-context review: NOT RUN BY THIS LANE.** The dispatch config
+  assigns adversarial review to the parent (1 ballena, dispatched after
+  `worker_done`); the child runs its own work-verify only, and this
+  session is fenced from spawning workers (D5). The maker does not
+  certify its own work, so this rung is **outstanding**, not waived —
+  the PASS above covers the mechanically verifiable DoD only.
+- **Adversarial review:** deferred to the parent, same reason.
+
+Every command above was run in this session against this tree.
 
 ## PR
 
-_URL recorded below once `gh pr create` returns it._ Body carries
-`Closes MAT-46`. Not merged by this lane; merging is the parent's action
-after its reviewers pass.
+https://github.com/bygama/skills/pull/9 — body carries `Closes MAT-46`.
+Not merged by this lane; merging is the parent's action after its
+reviewers pass and after any requested rebase onto fresh main.
