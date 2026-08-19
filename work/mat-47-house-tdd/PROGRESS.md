@@ -74,6 +74,19 @@ CI the sibling checkout exists, so it lints clean.
 - **Adversarial review:** n/a at M from this lane — the cross-model seat
   is the parent's, dispatched after `worker_done` (D-004).
 
+### CI — the authoritative gate
+
+`gh pr checks 10` → `standard  pass  5s`
+(https://github.com/bygama/skills/actions/runs/32222589054). In CI the
+Agent-Engineering sibling checkout exists, so agent-lint resolves
+AGENTS.md's cited command and the repo lints clean — which is the direct
+confirmation that the local finding is a worktree artifact and not a
+defect in the tree (D-002).
+
+PR: https://github.com/bygama/skills/pull/10 — carries `Closes MAT-47`.
+Not merged by this lane, by design: the parent merges after its own
+adversarial review.
+
 ### Reviewer findings — triage
 
 | # | Finding | Disposition |
