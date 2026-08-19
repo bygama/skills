@@ -100,7 +100,10 @@ Narrow the failure to one component before explaining it.
 - **Name the critical unknown** — the single missing fact behind most of
   the remaining uncertainty — and the ONE probe that best separates the
   top hypotheses. Prefer probes that discriminate over probes that
-  gather more of the same support.
+  gather more of the same support, and pick the cheapest one that still
+  discriminates — under time pressure that is often minutes of reading
+  the actual implementation, not the full investigation someone is
+  refusing to fund.
 
 ### 5. Fix
 
