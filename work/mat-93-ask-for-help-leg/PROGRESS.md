@@ -298,7 +298,9 @@ before skill content). Minor 5 skipped by that same ruling.
   - `grep -qi "stall" skills/tracing-root-causes/SKILL.md` → exit 0.
   - `git status --porcelain` before commit → `M
     skills/tracing-root-causes/SKILL.md` only.
-- Files changed: `skills/tracing-root-causes/SKILL.md` (+27/-2); this
+- Files changed: `skills/tracing-root-causes/SKILL.md` (+29/-2 per
+  `git diff --numstat` — the fresh-context review corrected this line,
+  originally written as +27/-2); this
   PROGRESS.md (this report). Frontmatter `description` byte-identical;
   evals 01-08 and `references/techniques.md` untouched.
 - Concern (minor, for review): the section is prose-and-bullets with no
@@ -337,6 +339,35 @@ before skill content). Minor 5 skipped by that same ruling.
   needed.
 
 ## Verification
+
+### 2026-08-19 — M DoD — PASS
+
+- L1 static: `node C:/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .`
+  → exit 0 (`0 high, 0 medium, 1 low — PASS`, sole finding the
+  pre-existing AGENTS.md:15 LOW, proved pre-existing by the reviewer:
+  `git log e969b67..HEAD -- AGENTS.md` empty, line 15 byte-identical);
+  `wc -l` → 241 (<500); ordering `f61b8d7 → cd842c5 → f330637` with
+  `f330637` the only SKILL.md-touching commit.
+- L2 behavioral: eval-08 GREEN run 8/8 (controller-graded, layer
+  evidence below) — independently corroborated 8/8 by the
+  fresh-context reviewer's own item-by-item read.
+- L3 end-to-end: n/a: single component.
+- Fresh-context review (fresh subagent, opus, no shared history):
+  **PASS** — verdict verbatim: *"every DoD layer verified from my own
+  runs ... My independent item-by-item read of eval-08 against the
+  skill corroborates the recorded 8/8 on all eight items, with no
+  Critical or Important findings and only one bookkeeping Minor."*
+  The one Minor (+27/-2 vs the real +29/-2 in the step-3 record) is
+  fixed in this commit. Deferred-minors triage: m1 leave for a
+  follow-up (a three-strikes closer cross-ref would be a third
+  coherence touch beyond step 3's authorization); m2-m5
+  record-and-close with the reviewer's own command evidence.
+- Adversarial review: n/a: M tier — the parent's cross-model seat runs
+  after `worker_done` by dispatch design, and this lane's record is
+  its input.
+- Pending, outside this session's layers: CI `standard` green on the
+  PR (DoD 4) and the PR itself with `Closes MAT-93` (DoD 6) — both
+  work-handoff's steps, recorded there.
 
 ### Layer evidence (2026-08-19, controller session, tree at `3b26eaa`+`f330637`)
 
@@ -385,5 +416,6 @@ before skill content). Minor 5 skipped by that same ruling.
 - [x] Execution (work-run ceremony): step 1 Approved; step 2 Approved
       after fix round 1 (all-ADDRESSED); step 3 Approved (0C/0I/5m
       deferred)
-- [ ] work-verify (M: static + behavioral + fresh-context review)
+- [x] work-verify (M: static + behavioral + fresh-context review) —
+      PASS, evidence in `## Verification`
 - [ ] work-handoff: PR open (`Closes MAT-93`), worker_done
