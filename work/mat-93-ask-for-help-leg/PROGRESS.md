@@ -110,8 +110,8 @@ eval-08's query is therefore staged in an explicitly autonomous seat.
 
 ### Step 2 — eval-08, the failing test before content
 
-- Implemented: `skills/tracing-root-causes/evals/eval-08.md` (NEW, 65
-  lines), house format — `## Query` verbatim + `## Expected behavior`
+- Implemented: `skills/tracing-root-causes/evals/eval-08.md` (NEW, 61
+  lines as first committed; 67 after fix round 1), house format — `## Query` verbatim + `## Expected behavior`
   objective checklist (8 items, matching eval-07's depth).
 - Built from `## Baseline probe`: the query stages an **explicitly
   autonomous seat** (dispatched child, nobody watching, lane files read
@@ -160,6 +160,64 @@ eval-08's query is therefore staged in an explicitly autonomous seat.
   *stated* probe order ("read `chunker.ts` before asking"), not an
   actual file read. That is the house calibration, but a grader
   expecting a real tool trace would read it differently.
+
+#### Step 2 — fix round 1 (reviewer: Needs fixes → applied)
+
+Reviewer verdict: Spec compliance ✅ Compliant · Step quality: Needs
+fixes. Applied the Important plus Minors 2, 3, 4 and 6 per controller
+ruling D4 (eval edits cannot be deferred past step 3 — evals change
+before skill content). Minor 5 skipped by that same ruling.
+
+- **Important 1 — the eval was unpassable read literally.** Item 2's
+  closing sentence ("An ask fired with that file still unread fails
+  this item") could never be satisfied in a prompt-only fixture where
+  `exporter/chunker.ts` does not exist, while items 4-6 unconditionally
+  demanded an ask. Fixed on both sides, and the eval now stands alone
+  without the PROGRESS.md qualifier:
+  - item 2 now grades the *stated* sequence — *"An ask presented as the
+    immediate next action, without `chunker.ts` named as a probe that
+    runs first, fails this item"* (house precedent: eval-07 grades
+    proposed plans, not executed reads);
+  - item 4 now opens with the condition item 3 establishes — *"Once
+    that probe is spent and the remaining unknown is still the
+    configured value, routes the ask…"* — so items 5 and 6 inherit it
+    by position.
+- **Minor 2 — the fixture left it open whether an ask was needed.**
+  Added one clause to the query: *"— `globex` exports ~900k rows
+  nightly and does not truncate"*. That rules out a global writer-side
+  16-bit cap (which would otherwise let a strong response resolve the
+  bug from `chunker.ts` alone and fail items 4-6 through no fault of
+  its own), leaves the per-tenant setting as the surviving hypothesis,
+  and keeps `chunker.ts` discriminating — it still tells you whether
+  the writer consults a per-tenant cap and under which key, while the
+  value itself stays unobtainable from the seat.
+- **Minor 3 — item 2 hard-coded one probe name.** Softened to "names at
+  least the unread `exporter/chunker.ts` … among the probes it runs
+  before asking", so a response that first compares row volumes across
+  tenants no longer fails by letter.
+- **Minor 4 — item 4 offered a channel this seat lacks.** The query
+  stipulates nobody is watching, so an interactive question reaches no
+  one. The general rule is kept but the available channel is now
+  required: *"In a live session that is an interactive question; this
+  seat has no live session, so it is a blocking ask upward to the
+  parent that dispatched the lane."* Channel named, never spelled — no
+  AE flag or verb syntax enters the eval (SPEC non-goal).
+- **Minor 6 — record correction.** The step-2 entry said the eval was
+  "65 lines"; the committed file was 61. Corrected, and the post-fix
+  count (67) recorded alongside it.
+- Also reflowed two query lines after the `globex` insert; no wording
+  change beyond the clause itself.
+- Not touched, as constrained: SKILL.md, `references/`, evals 01–07.
+- Acceptance re-run from the repo root after the fixes:
+  - `test -f skills/tracing-root-causes/evals/eval-08.md` → exit 0.
+  - `node C:/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .`
+    → `0 high, 0 medium, 1 low — PASS`, exit 0; sole finding the
+    pre-existing `AGENTS.md:15` cmd-drift LOW (D2 baseline).
+  - `git show --name-only` on the fix commit → only the eval and this
+    PROGRESS.md; **no SKILL.md path**.
+- Left alone deliberately: the controller's uncommitted D4 in
+  `DECISIONS.md` (the ruling that authorized this round). Not mine to
+  commit — it stays staged-out for the controller.
 
 ## Status
 
