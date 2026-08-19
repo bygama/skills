@@ -89,3 +89,19 @@ strength, active disconfirmation"* — accurate before the absorption,
 incomplete after it (no mention of the fix loop the skill now owns). A
 sibling lane owns the index this wave, so the needed wording is
 **reported in PROGRESS.md** and left unapplied here.
+
+## 2026-08-19 — D5: work-run executes inline, not by subagent
+
+**Call (runtime constraint).** The dispatch brief fences this lane from
+spawning workers of its own ("No grandchildren"), and this runner is
+configured not to call the Agent tool unless requested. work-run's own
+qualify step covers exactly this case: *"No subagent capability on this
+runner: work-run is never mandatory (the standard is runtime-neutral).
+Fall back to executing the SAME lane inline under the SAME ceremony:
+PLAN steps in order, acceptance per step, PROGRESS updated. Never
+simulate a dispatch."*
+
+So: inline execution, ceremony unchanged — each step's acceptance
+command is actually run and its output recorded in PROGRESS. No
+dispatch is simulated, and no step is marked done without its command
+having exited.
