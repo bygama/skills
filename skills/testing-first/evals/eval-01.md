@@ -11,7 +11,8 @@ An M lane is open at `work/uploader-retry/`, with PROGRESS.md carrying
 the step log. The repo's `## Commands` block in AGENTS.md gives
 `npm test` as the suite command. No test exists for the uploader yet.
 
-Observed baseline (the borrowed skill, daily use): the RED and GREEN
+Provenance — friction recorded from daily use of the borrowed skill
+(MAT-47), not a controlled baseline run: the RED and GREEN
 runs happen and are described in the reply, then the reply ends. The
 lane's PROGRESS.md never receives them, so the later completion gate has
 prose to read and no command evidence.

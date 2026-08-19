@@ -53,3 +53,9 @@ Both initial skills were salvaged from oh-my-claudecode's agent pack (see
 Agent-Engineering ADR-002) and first lived in that repo; they moved here
 when the library split from the standard
 ([ADR-001](docs/adrs/ADR-001-standalone-skills-repo.md)).
+
+[`testing-first/`](skills/testing-first/) is a derivative of
+`test-driven-development` and its `writing-good-tests` reference from
+[superpowers](https://github.com/obra/superpowers) v6.3.0, MIT ©
+2025 Jesse Vincent — kept in substance, adapted to this standard's
+surfaces (evidence into the lane, completion handed to `work-verify`).

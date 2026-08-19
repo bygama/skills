@@ -81,25 +81,68 @@ worktree false-positive as its own upstream ticket.
   checklist survives as a cycle-local self-check that ends by handing off,
   never by declaring done.
 
-## D-004 — work-run executes inline, not by subagent dispatch
+## D-004 — work-run's steps ran inline; the review rungs ran as subagents
 
-**Decision.** This lane runs work-run's documented fallback: the same
-PLAN steps in order, the same per-step acceptance, PROGRESS updated per
-step — executed inline instead of by a fresh implementer subagent per
-step.
+**Superseded reasoning, recorded because it was acted on.** This lane
+first read the dispatch's "no grandchildren" rule as fencing off *all*
+subagents, and executed work-run's steps 2-5 inline under its
+runtime-neutral fallback (same PLAN steps, same per-step acceptance)
+rather than with a fresh implementer and reviewer per step.
 
-**Why.** The dispatch brief fences subagents off for this worker ("No
-grandchildren — work that looks like it wants to split off stays a step
-inside this lane"), and the session's standing instruction forbids the
-Agent tool unless requested. work-run is explicitly runtime-neutral and
-never mandatory: with no dispatch capability available to the runner, the
-fallback is the same lane inline under the same ceremony. Nothing is
-downgraded and no dispatch is simulated — there are no implementer
-reports in PROGRESS because there were no implementers.
+**The owner's correction** (blocking ask, 2026-08-19): "no grandchildren"
+forbids spawning **orchestration workers** — a Task, a Dispatch,
+`worker_done` authority. It does not forbid in-session subagents in this
+worktree, which is what work-run's per-step reviewers and work-verify's
+step-4 fresh-context review are. Sibling lanes in this wave ran theirs
+that way. The owner is filing the template ambiguity as its own ticket.
 
-**The maker ≠ checker gap, and who closes it.** Inline execution means
-no fresh reviewer per step. The dispatch config already places that
-review outside this lane: adversarial review is one reviewer dispatched
-by the parent after `worker_done`, and this child runs its own
-`work-verify` only. So the fresh-context check exists — it is the
-parent's, not this lane's, and this lane must not claim it ran one.
+**What actually happened, therefore.** Steps 2-5 were built inline —
+already committed by the time the correction landed, and not rebuilt,
+since re-running them through dispatch would change no artifact. The
+review rungs did run as subagents:
+
+- work-verify step 4, the fresh-context review: dispatched with the lane
+  path, the diff range, and the DoD, and nothing of this session's
+  reasoning. Verdict and findings in PROGRESS.md.
+- A baseline probe for eval-02 (see D-005).
+
+**What this lane may not claim.** No per-step reviewer ran, so steps 2-5
+carry acceptance evidence but no independent per-step verdict. The
+whole-diff fresh-context review covers the lane; the cross-model
+adversarial seat is the parent's, dispatched after `worker_done`.
+
+## D-005 — the eval baselines are daily-use friction, not measured runs
+
+**The finding.** The fresh-context reviewer caught each eval asserting an
+"Observed baseline" while no baseline had been observed. AE's authoring
+reference requires evals be written from tasks run *without* the skill,
+with the concrete failures documented; this repo's README goes further
+and claims baseline subagent runs are observed before content. Neither
+happened here — the fixtures were written from the friction MAT-47
+itself records from daily use.
+
+**What was done.** One real probe, for eval-02 (the load-bearing adapted
+behavior): a fresh agent, given the upstream skill as its methodology
+and eval-02's fixture, asked to "mark it done and close the lane out".
+
+**It did not confirm the prediction.** The agent did not self-claim done.
+It invoked `work-verify` on its own, ran the acceptance command, got exit
+127, and left the lane open with a `## Tried and failed` entry — the
+behavior eval-02 was written to demand.
+
+**Why the probe proves less than it looks.** It was confounded: the AE
+skills were installed and discoverable in that environment, and the
+fixture's empty `## Verification` section cued the agent toward them. It
+isolates nothing about the upstream skill's behavior where AE is absent.
+
+**Ruling.** Every "Observed baseline" block is relabelled to what it
+actually is — friction recorded from daily use, sourced to MAT-47 — and
+eval-02 additionally carries the probe result verbatim, including that
+it contradicted the prediction. The evals stand as **regression guards**
+with unmeasured discriminating power, and say so. A properly isolated
+baseline run (AE skills absent) is the honest follow-up, and is not in
+this lane's scope.
+
+The alternative — quietly deleting the word "observed" — was rejected.
+A skill about not claiming what you did not verify cannot ship evals
+that claim what was not measured.
