@@ -3,10 +3,11 @@
 **Load when:** writing or changing a test, adding a mock, or adding a
 helper that only tests use.
 
-<!-- Adapted from superpowers' test-driven-development/writing-good-tests.md
-     (v6.3.0), 2026-08-19. House changes: the chat-partner framing is gone,
-     document testing points at this repo's evals convention, and findings
-     land in the lane. Provenance: work/mat-47-house-tdd/DECISIONS.md. -->
+<!-- Derived from superpowers' test-driven-development/writing-good-tests.md
+     (v6.3.0), MIT License, Copyright (c) 2025 Jesse Vincent. Adapted
+     2026-08-19: the chat-partner framing is gone, document testing points at
+     this repo's evals convention, and findings land in the lane. Provenance:
+     work/mat-47-house-tdd/DECISIONS.md. -->
 
 ## Contents
 

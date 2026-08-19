@@ -5,7 +5,8 @@ description: Enforces test-first implementation — the Iron Law (no production 
 
 # Testing first
 
-<!-- Adapted from superpowers' test-driven-development (v6.3.0), 2026-08-19.
+<!-- Derived from superpowers' test-driven-development (v6.3.0), MIT License,
+     Copyright (c) 2025 Jesse Vincent. Adapted 2026-08-19.
      Kept: the Iron Law, the cycle, the rationalizations, the red flags.
      Adapted to AE surfaces; dropped what only worked inside that suite's
      chain. Provenance: work/mat-47-house-tdd/DECISIONS.md. -->
