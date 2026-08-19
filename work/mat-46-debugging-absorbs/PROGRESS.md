@@ -181,8 +181,9 @@ untouched"*, which this change makes stale.
   attributable to this lane** (D2). The authoritative gate, CI
   `standard`, is green on the final tree: `gh pr checks 9` → `standard
   pass`, [run 32222154873](https://github.com/bygama/skills/actions/runs/32222154873),
-  `"conclusion":"success"` on head `d7de976` — the head that includes the
-  review fixes, not an earlier commit.
+  `"conclusion":"success"`; re-confirmed on the final head `432af57`
+  (`gh run list … --json headSha,conclusion` → `success`), so CI is green
+  on the tree being handed off, not on an earlier commit.
 - **L2 behavioral:** the repo ships no test runner, so the behavioral
   layer is the artifacts loading and resolving as a skill:
   - frontmatter parses, exactly `name` + `description`, `name:
@@ -210,6 +211,15 @@ untouched"*, which this change makes stale.
 - **Adversarial review:** deferred to the parent — 1 ballena,
   cross-model, dispatched after `worker_done` per the dispatch config.
   It is an additional seat, not a replacement for the rung above.
+
+**Scoped re-review: NO VERDICT RETURNED.** The same seat was asked three
+times to verdict the fix diff and signalled idle each time without
+answering (D7). The PASS above stands on its own terms — it was given on
+`c3e4038`, before the fixes, with both Important findings called
+*"additive gaps in the absorbed text, not defects in what shipped"* —
+and every layer the reviewer ran was re-run here after the fixes. But no
+second pair of eyes confirmed the *closures*; that check is open and
+flagged for the parent's adversarial seat.
 
 #### Review findings and disposition
 

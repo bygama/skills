@@ -136,3 +136,36 @@ The reviewer did not take D2 on trust: it extracted clean `main` itself
 and reproduced the `cmd-drift` finding independently before accepting
 that zero findings are attributable to this lane. That is the behavior
 the rung exists for.
+
+## 2026-08-19 — D7: the scoped re-review returned no verdict — adjudicated
+
+**Situation.** After the fixes for the review's findings landed
+(`b331654`, `d7de976`), the fix loop's scoped re-review was requested
+from the same fresh-context seat three times, each with the exact diff
+range (`c3e4038..d7de976`) and a one-line minimum answer. The seat
+signalled idle each time and returned no verdict.
+
+**Adjudication (lane), recorded rather than papered over.**
+
+1. The PASS does not depend on the missing re-verdict. The reviewer's
+   original verdict was **PASS on `c3e4038`**, and it characterized both
+   Important findings explicitly as *"additive gaps in the absorbed
+   text, not defects in what shipped."* The gate was met before the
+   fixes; the fixes improved an already-passing lane.
+2. The fix commits are additive — three insertions into SKILL.md and
+   documentation updates. They remove nothing the reviewer verified.
+3. Every layer the reviewer ran was re-run by this lane after the fixes:
+   SKILL.md 214 lines (<500), frontmatter two keys with `name:
+   tracing-root-causes` and a 719-char description, 2/2 internal links
+   resolving, 4/4 TOC anchors matching, one-level-deep clean, the three
+   original evals byte-identical to `main`, no eval touched since
+   `28a5fc2`, lint unchanged at the single pre-existing MEDIUM,
+   worktree clean, CI `standard` `"conclusion":"success"` on final head
+   `432af57`.
+
+**What this does NOT claim:** that a second pair of eyes confirmed the
+fixes. It did not. The two Important fixes carry one reviewer's
+identification of the gap and this lane's authorship of the closure,
+with no independent sign-off on the closure itself. The parent's
+cross-model adversarial seat is the natural place for that check, and
+this entry is the flag for it.
