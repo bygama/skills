@@ -111,3 +111,24 @@ the CI `standard` check green on the PR.
 
 PLAN.md proceeds under this ruling; the WHEN-not-HOW framing is the
 acceptance bar for the leg's wording in step 3.
+
+## 2026-08-19 — D4: step-2 minors enter the fix loop, against the default
+
+**Context.** work-run's default: Minor findings never enter the fix
+loop — they are recorded and deferred to work-verify's triage. The
+step-2 review returned 1 Important (negative guard vs ask items not
+sequenced; item 2's last sentence literally unsatisfiable in a
+prompt-only fixture) and 5 Minors, four of which are edits to
+eval-08's text (fixture completeness, hard-coded probe name,
+unavailable channel listed, a line-count record error).
+
+**Ruling (controller).** Minors 2, 3, 4 and 6 join the round-1 fix
+dispatch; Minor 5 (optional consolidation of item 8) is skipped and
+recorded here. Reason: the repo's hard constraint is that evals change
+BEFORE skill content. Step 3 writes SKILL.md against eval-08's
+checklist; a Minor deferred to work-verify would land as an eval edit
+AFTER the skill content it gates — the exact inversion the constraint
+forbids. Deferring is the norm; here the ordering constraint outranks
+the norm. Minor 5 is skipped because consolidation is style, changes
+no grading outcome, and eval-06 sets the house precedent for
+pressure-restating items.
