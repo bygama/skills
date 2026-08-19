@@ -9,7 +9,9 @@ description: Owns debugging end to end — reproduce, isolate, hypothesize, disc
      Provenance: Context-Engineering repo, docs/adrs/ADR-002-omc-salvage.md.
      Absorbed superpowers' systematic-debugging (v6.3.0), 2026-08-19: the
      phased spine, the iron law, the rationalization tables, and four
-     techniques (references/techniques.md). MAT-46. -->
+     techniques (references/techniques.md). MAT-46.
+     Phase 3.4's "ask for help" beat, held back by MAT-46 D8, carried
+     2026-08-19 as bounded stall-escalation. MAT-93. -->
 
 Explain outcomes through evidence, not narrative, and fix causes rather
 than symptoms. The failure mode this prevents: jumping from symptom to
@@ -141,6 +143,30 @@ Stop. Say plainly that this looks structural, name the pattern you think
 is wrong, and get a decision before attempt four. This is not a failed
 hypothesis — it is a wrong architecture, and more fixes make it worse.
 
+## When the investigation stalls
+
+Reachable evidence is spent and the phase-4 critical unknown is a fact
+this seat cannot produce — access it lacks, knowledge a human holds, a
+decision that is the owner's. That is a stall, and its one honest exit
+is to ask. Never a silent guess, never a silent stop: a deadline bounds
+which probes you can afford, not whether you report.
+
+- **Earn the ask.** An affordable discriminating probe still on the
+  table means run it, not ask — minutes of reading the implementation
+  outrun waiting for an answer. Escalate when the next probe is one
+  you cannot run.
+- **Name the recipient** — the owner, or the parent that dispatched
+  you. "Owner: someone else", written inside a document you then
+  submit, is an assignment, not a question.
+- **Use a channel that waits** — a blocking ask upward, an interactive
+  question in a live session. A file read after the lane closes is a
+  record, not a channel.
+- **Carry the evidence; it is the price of asking.** Hypotheses tried
+  and the observation that disconfirmed each, the exact point of the
+  stall, the ONE fact you need, and the probe that runs the moment it
+  comes back. A bare "I'm stuck" hands the answerer your investigation
+  to redo.
+
 ## When the cause really is environmental
 
 Sometimes the honest verdict is timing, an external dependency, or a
@@ -187,7 +213,8 @@ discriminating probe. When a fix follows, the reproduction, the change,
 and what it means if the change didn't help.
 
 Blocked by missing evidence? The ranked shortlist plus the probe IS the
-deliverable, not a failure.
+deliverable, not a failure — and it is delivered to someone, not filed;
+see *When the investigation stalls*.
 
 ## Where this ends
 

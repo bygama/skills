@@ -241,6 +241,73 @@ before skill content). Minor 5 skipped by that same ruling.
 - Step 2 closes: commits `f61b8d7` + `cd842c5` (+ `0a0d056` D4),
   review Approved-after-round-1.
 
+### Step 3 — the leg lands in SKILL.md
+
+- Implemented: one new section, `## When the investigation stalls`,
+  placed immediately after `## Three strikes → question the
+  architecture` and before `## When the cause really is environmental`.
+  Rationale for the placement: three strikes ends on "get a decision
+  before attempt four" without naming a route; the next section now
+  supplies it by adjacency, and the pair reads as the two escalation
+  moments before the honest-verdict section that follows. 24 lines
+  including the section's own blank lines.
+- The four beats, mapped to their carriers:
+  - **WHEN** — the opening paragraph: "Reachable evidence is spent and
+    the phase-4 critical unknown is a fact this seat cannot produce —
+    access it lacks, knowledge a human holds, a decision that is the
+    owner's." The negative guard is its own bullet (**Earn the ask**):
+    an affordable discriminating probe still on the table means run it,
+    not ask.
+  - **WHO** — **Name the recipient**: "the owner, or the parent that
+    dispatched you", with the baseline probe's residual gap written in
+    as the discriminator: *"Owner: someone else", written inside a
+    document you then submit, is an assignment, not a question.*
+  - **CHANNEL** — **Use a channel that waits**: "a blocking ask upward,
+    an interactive question in a live session. A file read after the
+    lane closes is a record, not a channel." Named, never spelled — no
+    `orca` command, flag, verb or tool name enters the skill.
+  - **WHAT** — **Carry the evidence; it is the price of asking**:
+    hypotheses tried, the observation that disconfirmed each, the exact
+    stall point, the ONE fact needed, the probe that runs on the answer.
+  - Both silent branches are refused in the paragraph ("Never a silent
+    guess, never a silent stop"), with the deadline clause closing
+    eval-08 item 8: "a deadline bounds which probes you can afford, not
+    whether you report."
+- Coherence touches, exactly the two authorized: the Output-shape line
+  now reads "…not a failure — and it is delivered to someone, not
+  filed; see *When the investigation stalls*" (house cross-reference
+  style, matching phase 5's "see *Where this ends*"); the provenance
+  HTML comment gains two lines naming MAT-93 and the carried Phase 3.4
+  beat — the surface MAT-34's upstream-watch reads. Three strikes'
+  "get a decision before attempt four" was deliberately NOT edited
+  (completed by adjacency, not duplicated).
+- eval-08 checklist → new text: item 1 iron law + "never a silent
+  guess" + unchanged Output shape (provisional); item 2 **Earn the
+  ask**; item 3 **Name the recipient** + "a record, not a channel", with
+  *Where this ends* still putting the record in `PROGRESS.md`; item 4
+  **Use a channel that waits** + **Name the recipient**; items 5-6
+  **Carry the evidence** ("the ONE fact you need"); item 7 Output shape,
+  untouched; item 8 the deadline clause.
+- Acceptance, run from the repo root:
+  - `wc -l skills/tracing-root-causes/SKILL.md` → **241** (was 214;
+    <500 ✓).
+  - `node C:/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .`
+    → `0 high, 0 medium, 1 low — PASS`, exit 0; sole finding the
+    pre-existing `AGENTS.md:15` cmd-drift LOW (D2 baseline, not
+    attributable to this lane).
+  - `grep -qi "stall" skills/tracing-root-causes/SKILL.md` → exit 0.
+  - `git status --porcelain` before commit → `M
+    skills/tracing-root-causes/SKILL.md` only.
+- Files changed: `skills/tracing-root-causes/SKILL.md` (+27/-2); this
+  PROGRESS.md (this report). Frontmatter `description` byte-identical;
+  evals 01-08 and `references/techniques.md` untouched.
+- Concern (minor, for review): the section is prose-and-bullets with no
+  row added to the Rationalizations table, even though "no time to ask,
+  just close it out" is exactly a table-shaped pressure. Left out
+  deliberately — the step authorized two coherence touches and a table
+  row is a third; eval-08 item 8 is satisfied by the deadline clause
+  inside the section.
+
 ## Status
 
 - [x] Lane opened: SPEC.md + DECISIONS.md (D1 verdict, D2 lint gate) +
@@ -249,6 +316,7 @@ before skill content). Minor 5 skipped by that same ruling.
       — ruling verbatim in DECISIONS.md D3)
 - [x] PLAN.md shaped after approval (commit `6b0c2a5`)
 - [~] Execution (work-run ceremony): step 1 DONE reviewed Approved;
-      step 2 DONE, reviewed, fix round 1 all-ADDRESSED; step 3 pending
+      step 2 DONE, reviewed, fix round 1 all-ADDRESSED; step 3 DONE,
+      review pending
 - [ ] work-verify (M: static + behavioral + fresh-context review)
 - [ ] work-handoff: PR open (`Closes MAT-93`), worker_done
