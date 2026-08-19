@@ -132,3 +132,22 @@ forbids. Deferring is the norm; here the ordering constraint outranks
 the norm. Minor 5 is skipped because consolidation is style, changes
 no grading outcome, and eval-06 sets the house precedent for
 pressure-restating items.
+
+## 2026-08-19 — D5: handoff keeps the lane folder — the house convention
+
+**Call (handoff mode).** work-handoff's close default removes the lane
+folder in the closing commit. This lane keeps it, under the skill's own
+escape hatch ("a repo convention may prefer archiving over deletion"),
+because the repo's convention is established in history: MAT-46 paused
+with *"lane stays open for the parent's review wave"* (`733f231`), and
+both wave lanes' records were removed later by the OWNER's terminal
+close (`e969b67`) after merge and the parent's cross-model PASS — the
+records living in history at their merge commits.
+
+The dispatch design requires the same here: the parent's adversarial
+reviewer runs AFTER `worker_done` and reads this lane's record as its
+input; the parent deliberately leaves the PR open. Deleting the lane
+now would destroy the reviewer's input and pre-empt the owner's
+terminal close. Worker-side state is complete (verify PASS on record);
+the lane folder survives for the review wave, and its removal is the
+owner's closing action, not this worker's.
