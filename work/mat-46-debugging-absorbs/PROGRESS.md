@@ -180,8 +180,9 @@ untouched"*, which this change makes stale.
   clean `main` (`0e6faad`) extracted in isolation — **zero findings
   attributable to this lane** (D2). The authoritative gate, CI
   `standard`, is green on the final tree: `gh pr checks 9` → `standard
-  pass  6s`, [run 32221469910](https://github.com/bygama/skills/actions/runs/32221469910),
-  head `5fff9d0`.
+  pass`, [run 32222154873](https://github.com/bygama/skills/actions/runs/32222154873),
+  `"conclusion":"success"` on head `d7de976` — the head that includes the
+  review fixes, not an earlier commit.
 - **L2 behavioral:** the repo ships no test runner, so the behavioral
   layer is the artifacts loading and resolving as a skill:
   - frontmatter parses, exactly `name` + `description`, `name:
