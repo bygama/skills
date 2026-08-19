@@ -105,3 +105,34 @@ So: inline execution, ceremony unchanged — each step's acceptance
 command is actually run and its output recorded in PROGRESS. No
 dispatch is simulated, and no step is marked done without its command
 having exited.
+
+## 2026-08-19 — D6: D5 was too broad — the in-session review is required
+
+**Ruling (parent), superseding D5's scope.** The parent sent an
+unprompted clarification before this lane's verify gate:
+
+> 'No grandchildren' in your dispatch spec forbids spawning
+> ORCHESTRATION WORKERS (worker-start / Tasks / Dispatches). It does NOT
+> forbid work-run's per-step reviewers or work-verify's step-4
+> fresh-context review — those are in-session subagents inside your own
+> worktree, and running them is REQUIRED at M tier: no reviewer verdict,
+> no PASS. The adversarial ballena the parent dispatches after your
+> worker_done is an additional cross-model seat, never a replacement for
+> your step 4.
+
+D5 read the fence too broadly and treated in-session subagents as
+grandchildren. That was wrong. D5 stands only for what it correctly
+covered — no orchestration workers spawned from this lane — and is
+superseded on the review rung.
+
+**Applied:** work-verify step 4 ran with a fresh-context in-session
+subagent sharing no conversation history. Verdict PASS, 0 Critical, 2
+Important, 4 Minor. The two Important findings were absorption gaps
+(machinery from the source that did not survive the first pass) and were
+fixed in `b331654`; the disposition of all six is recorded in
+PROGRESS.md's `## Verification`.
+
+The reviewer did not take D2 on trust: it extracted clean `main` itself
+and reproduced the `cmd-drift` finding independently before accepting
+that zero findings are attributable to this lane. That is the behavior
+the rung exists for.
