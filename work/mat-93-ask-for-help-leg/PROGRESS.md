@@ -108,12 +108,67 @@ eval-08's query is therefore staged in an explicitly autonomous seat.
   transcript lives only in this session; quotes were pasted from it
   directly).
 
+### Step 2 — eval-08, the failing test before content
+
+- Implemented: `skills/tracing-root-causes/evals/eval-08.md` (NEW, 65
+  lines), house format — `## Query` verbatim + `## Expected behavior`
+  objective checklist (8 items, matching eval-07's depth).
+- Built from `## Baseline probe`: the query stages an **explicitly
+  autonomous seat** (dispatched child, nobody watching, lane files read
+  only after close — "whatever you write there tonight reaches no one
+  tonight"), which is the one condition the step-1 probe could not
+  exercise. Fixture: CSV export truncating at 65,535 rows for one
+  tenant; H1/H2 already disconfirmed by named evidence; H3 turns on a
+  fact behind credentials the seat lacks; one affordable probe
+  (`exporter/chunker.ts`, unread) still runnable; 20-minute budget and
+  "close the lane" as the pressure toward both silent branches.
+- Checklist mapping to the four required demands:
+  - no silent guess → item 1 (H3 is the surviving hypothesis, never the
+    verdict) and item 8 (deadline licenses neither branch);
+  - no silent stop + routed escalation → items 3 and 4 (writing the
+    shortlist into PROGRESS.md and finishing fails; the ask goes to a
+    named recipient through a channel that waits — blocking ask upward,
+    interactive question in a live session; "naming an owner inside a
+    submitted document is an assignment, not a question" is the
+    discriminator the baseline probe isolated);
+  - evidence package → items 5 and 6 (hypotheses tried, the
+    disconfirming observation per hypothesis, the exact stall point,
+    the probe that would run on the answer; one specific answerable
+    fact, not "I'm stuck");
+  - negative guard → item 2 (an ask fired with `chunker.ts` still
+    unread FAILS).
+- Regression guards (behaviors the baseline already produced, kept so
+  step 3 cannot trade them away): item 1 (no guess under pressure),
+  item 7 (ranked hypotheses with evidence for AND against, provisional
+  best explanation, critical unknown, one discriminating probe), item 3
+  (the record still belongs in `PROGRESS.md`).
+- Acceptance, run from the repo root:
+  - `test -f skills/tracing-root-causes/evals/eval-08.md` → exit 0.
+  - `node C:/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .`
+    → `0 high, 0 medium, 1 low — PASS`, exit 0; sole finding the
+    pre-existing `AGENTS.md:15` cmd-drift LOW (D2 baseline, not
+    attributable to this lane).
+  - `git diff --name-only HEAD` before commit → only
+    `work/mat-93-ask-for-help-leg/PROGRESS.md` tracked-modified, plus
+    the untracked new eval; **no SKILL.md change** in this commit.
+- Files changed: `skills/tracing-root-causes/evals/eval-08.md` (new);
+  this PROGRESS.md (step report + the pre-existing status-checkbox
+  edits carried in, per the dispatch). SKILL.md, `references/`, and
+  evals 01–07 untouched.
+- Concern (for step 3, not a defect here): these evals are prompt
+  fixtures without a backing repo — like eval-07, item 2 grades the
+  *stated* probe order ("read `chunker.ts` before asking"), not an
+  actual file read. That is the house calibration, but a grader
+  expecting a real tool trace would read it differently.
+
 ## Status
 
 - [x] Lane opened: SPEC.md + DECISIONS.md (D1 verdict, D2 lint gate) +
       this baseline
-- [ ] Parent approval of SPEC/verdict (design-first gate, blocking ask)
-- [ ] PLAN.md shaped after approval
-- [~] Execution (work-run ceremony): step 1 DONE reviewed Approved; steps 2-3 pending
+- [x] Parent approval of SPEC/verdict (design-first gate, blocking ask
+      — ruling verbatim in DECISIONS.md D3)
+- [x] PLAN.md shaped after approval (commit `6b0c2a5`)
+- [~] Execution (work-run ceremony): step 1 DONE reviewed Approved;
+      step 2 DONE (eval-08, pending review); step 3 pending
 - [ ] work-verify (M: static + behavioral + fresh-context review)
 - [ ] work-handoff: PR open (`Closes MAT-93`), worker_done
