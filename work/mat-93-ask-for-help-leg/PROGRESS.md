@@ -308,6 +308,34 @@ before skill content). Minor 5 skipped by that same ruling.
   row is a third; eval-08 item 8 is satisfied by the deadline clause
   inside the section.
 
+#### Step 3 — review verdict (controller record)
+
+- Review (fresh subagent, opus — risky-diff tier): **Spec compliance
+  ✅ Compliant · Step quality: Approved. 0 Critical, 0 Important, 5
+  Minor.** Reasoning verbatim: *"All four beats, both authorized
+  coherence touches, and every eval-08 item are carried by text that
+  reads as house voice rather than as an appended policy note; the
+  negative guard is structural rather than rhetorical, so the leg
+  stays the bounded stall-escalation D1/D3 approved instead of the
+  universal hatch MAT-47 D-003 killed."*
+- The reviewer walked eval-08 item by item: all 8 items PASS against
+  the skill including the new section (items 1, 3-second-half and 7
+  satisfied jointly with unchanged text — the correct outcome of the
+  non-duplication constraint, flagged as bookkeeping, not defect). It
+  independently re-verified acceptance: 241 lines, lint PASS exit 0,
+  sole finding the D2 baseline LOW.
+- **Minors deferred to work-verify's triage** (work-run: minors never
+  enter the fix loop), condensed: (m1) the section's WHEN gate, read
+  literally, scopes the three-strikes arrival out of the route — works
+  by adjacency; possible one-line coherence touch on three strikes'
+  closer; (m2) "this seat" is register vocabulary the skill doesn't
+  otherwise use; (m3) Output-shape touch says "someone", not "a named
+  recipient"; (m4) four `X, not Y` closers concentrated in twenty
+  lines; (m5) bookkeeping note that eval-08 is satisfied by the skill
+  as a whole, not the section alone.
+- Step 3 closes: commit `f330637`, review Approved, no fix round
+  needed.
+
 ## Status
 
 - [x] Lane opened: SPEC.md + DECISIONS.md (D1 verdict, D2 lint gate) +
@@ -315,8 +343,8 @@ before skill content). Minor 5 skipped by that same ruling.
 - [x] Parent approval of SPEC/verdict (design-first gate, blocking ask
       — ruling verbatim in DECISIONS.md D3)
 - [x] PLAN.md shaped after approval (commit `6b0c2a5`)
-- [~] Execution (work-run ceremony): step 1 DONE reviewed Approved;
-      step 2 DONE, reviewed, fix round 1 all-ADDRESSED; step 3 DONE,
-      review pending
+- [x] Execution (work-run ceremony): step 1 Approved; step 2 Approved
+      after fix round 1 (all-ADDRESSED); step 3 Approved (0C/0I/5m
+      deferred)
 - [ ] work-verify (M: static + behavioral + fresh-context review)
 - [ ] work-handoff: PR open (`Closes MAT-93`), worker_done
