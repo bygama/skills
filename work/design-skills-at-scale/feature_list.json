@@ -1,0 +1,79 @@
+[
+  {
+    "id": "F01",
+    "behavior": "designing-consistently step 1 discovers the standing system from code, owner context files and prose docs, and does not propose instantiating a DESIGN.md while a system is discoverable (SPEC §4.1, §3.5 step 1).",
+    "verification": "test -f skills/designing-consistently/evals/eval-04.md (discovery-without-DESIGN.md, PLAN step 5) plus: grep -q 'Discover the standing system' skills/designing-consistently/SKILL.md && ! grep -qE '^\\*\\*1\\. .*[Ii]nstantiat' skills/designing-consistently/SKILL.md",
+    "state": "not_started",
+    "evidence": null
+  },
+  {
+    "id": "F02",
+    "behavior": "Both skills apply the source-trust hierarchy of SPEC §3.2 (code at reference surfaces confirms; owner context files and prose docs are [provisional]; frequency is tie-break only) — nothing discovered is emitted confirmed (SPEC §4.2).",
+    "verification": "grep -l 'provisional' skills/designing-consistently/SKILL.md skills/extracting-design-md/SKILL.md | wc -l -> 2, cross-checked against the evals from PLAN steps 5-6 that encode the hierarchy (designing-consistently eval-04.md/eval-05.md; extracting-design-md eval-05.md/eval-06.md).",
+    "state": "not_started",
+    "evidence": null
+  },
+  {
+    "id": "F03",
+    "behavior": "designing-consistently reads a bounded slice (### Global + touched module + siblings), never the whole Decisions section (SPEC §4.3, §3.5 step 2).",
+    "verification": "test -f skills/designing-consistently/evals/eval-05.md (bounded-slice-at-157-surfaces, PLAN step 5) plus: grep -qE 'Global.*module|module.*Global' skills/designing-consistently/SKILL.md && grep -q 'sibling' skills/designing-consistently/SKILL.md",
+    "state": "not_started",
+    "evidence": null
+  },
+  {
+    "id": "F04",
+    "behavior": "designing-consistently step 4 gate promotes or demotes every provisional entry the work touched, and escalates to ### Global on the two-or-more-module trigger (SPEC §4.4, §3.5 step 4).",
+    "verification": "diff skills/designing-consistently/evals/eval-01.md against its pre-step-7 baseline confirms the repair-gate rewrite (PLAN step 5), plus: grep -qi 'promote' skills/designing-consistently/SKILL.md && grep -qi 'demote' skills/designing-consistently/SKILL.md && grep -qi 'escalat' skills/designing-consistently/SKILL.md",
+    "state": "not_started",
+    "evidence": null
+  },
+  {
+    "id": "F05",
+    "behavior": "extracting-design-md elects tokens from reference surfaces; frequency appears only as a tie-break; every unconfirmed token ships [provisional] (SPEC §4.5, §3.6).",
+    "verification": "test $(ls skills/extracting-design-md/evals/*.md | wc -l) -eq 6 (PLAN step 6: eval-01.md rewritten + 2 new) plus: grep -qi 'reference surface' skills/extracting-design-md/SKILL.md && grep -qi 'tie-break' skills/extracting-design-md/SKILL.md && grep -q '\\[provisional\\]' skills/extracting-design-md/SKILL.md",
+    "state": "not_started",
+    "evidence": null
+  },
+  {
+    "id": "F06",
+    "behavior": "Both skills emit and read the ### <module> / #### <route> — <page> architecture with ### Global first (SPEC §4.6, §3.3-3.4).",
+    "verification": "grep -q '### Global' skills/designing-consistently/SKILL.md skills/extracting-design-md/SKILL.md && grep -qE '#### .* — ' skills/designing-consistently/SKILL.md skills/extracting-design-md/SKILL.md, cross-checked against the heading shape actually written in work/design-skills-at-scale/proving-run/DESIGN.md (PLAN step 10).",
+    "state": "not_started",
+    "evidence": null
+  },
+  {
+    "id": "F07",
+    "behavior": "A module entry contradicting a global is treated as drift unless it declares 'exception to Global/<block>' (SPEC §4.7, §3.4 precedence rule).",
+    "verification": "grep -q 'exception to Global' skills/designing-consistently/SKILL.md, and skills/designing-consistently/evals/eval-01.md (repair gate, PLAN step 5) exercises the undeclared-contradiction-is-drift case.",
+    "state": "not_started",
+    "evidence": null
+  },
+  {
+    "id": "F08",
+    "behavior": "Zero stale Context-Engineering / context-lint references remain in either skill (SPEC §4.8, §1 defect 4).",
+    "verification": "! git grep -n 'Context-Engineering\\|context-lint' -- skills/designing-consistently skills/extracting-design-md README.md (PLAN step 9 acceptance, verbatim)",
+    "state": "not_started",
+    "evidence": null
+  },
+  {
+    "id": "F09",
+    "behavior": "node ../Agent-Engineering/scripts/agent-lint.mjs . exits 0 (SPEC §4.9).",
+    "verification": "node /c/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs . exits 0 (path resolved per DECISIONS.md 2026-08-20 ruling 1: ../Agent-Engineering does not resolve from this worktree)",
+    "state": "not_started",
+    "evidence": null
+  },
+  {
+    "id": "F10",
+    "behavior": "Each skill ships at least 3 evals, and the evals change before the skill content, per the repo hard constraint (SPEC §4.10).",
+    "verification": "test $(ls skills/designing-consistently/evals/*.md | wc -l) -eq 5 && test $(ls skills/extracting-design-md/evals/*.md | wc -l) -eq 6 (PLAN steps 5-6 acceptance), plus git log --oneline confirming the eval-authoring commits (steps 5-6) precede the SKILL.md content commits (steps 7-8)",
+    "state": "not_started",
+    "evidence": null
+  },
+  {
+    "id": "F11",
+    "behavior": "A DESIGN.md written to this design passes the agent-lint design checks unchanged — no Agent-Engineering modification of any kind (SPEC §4.11, §6, §7).",
+    "verification": "node /c/Briar/repos/mine/Agent-Engineering/scripts/design-md-gen.mjs work/design-skills-at-scale/proving-run/DESIGN.md --target cssvars exits 0 && node /c/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs . exits 0 (PLAN step 10 acceptance, path resolved per DECISIONS.md ruling 1), plus git -C /c/Briar/repos/mine/Agent-Engineering status --porcelain is empty",
+    "state": "not_started",
+    "evidence": null
+  }
+]
