@@ -804,3 +804,12 @@ Deferred-minor ledger for the parent: step-1 (5), step-2 (6), step-3
 (4), step-4 (4), step-5 (3), fresh-review (1 new) — all recorded
 verbatim in their verdict sections above; none verdict- or
 action-changing per their reviewers.
+
+## PR and CI
+
+- PR: https://github.com/bygama/skills/pull/13 — base
+  `bygama/mat-93-ask-for-help-leg` (stacked on #12), body carries
+  `Closes MAT-94`. Left OPEN deliberately: merging is the parent's
+  action after its review wave.
+- CI `standard` check on the PR: **pass** (run 32316831923). DoD item 6
+  discharged.
