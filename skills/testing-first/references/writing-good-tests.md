@@ -6,7 +6,7 @@ helper that only tests use.
 <!-- Derived from superpowers' test-driven-development/writing-good-tests.md
      (v6.3.0), MIT License, Copyright (c) 2025 Jesse Vincent. Adapted
      2026-08-19. Classified substantial (MAT-94); evidence:
-     work/mat-94-attribution-skills/DECISIONS.md. Full upstream permission
+     https://github.com/bygama/skills/blob/002ef05fd8b9aceab6f7ed9f14cb8b8fa076441b/work/mat-94-attribution-skills/DECISIONS.md. Full upstream permission
      notice: NOTICE (repo root). -->
 
 ## Contents

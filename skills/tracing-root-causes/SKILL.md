@@ -18,7 +18,7 @@ description: Owns debugging end to end — reproduce, isolate, hypothesize, disc
      are derived from superpowers' systematic-debugging/SKILL.md (v6.3.0),
      MIT License, Copyright (c) 2025 Jesse Vincent; base and remaining
      sections are original. Classified substantial-in-part (MAT-94);
-     evidence: work/mat-94-attribution-skills/DECISIONS.md. Full upstream
+     evidence: https://github.com/bygama/skills/blob/002ef05fd8b9aceab6f7ed9f14cb8b8fa076441b/work/mat-94-attribution-skills/DECISIONS.md. Full upstream
      permission notice: NOTICE (repo root). -->
 
 Explain outcomes through evidence, not narrative, and fix causes rather
