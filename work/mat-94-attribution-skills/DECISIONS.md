@@ -823,3 +823,19 @@ tell a reader nothing checkable.
 - **Step 5**: README `## Provenance` may point at `NOTICE` alongside
   this DECISIONS.md, since the file now exists.
 - `LICENSE` remains untouched — no step in this lane edits it.
+
+## D5 — the lane survives the handoff (2026-08-19)
+
+Close-mode handoff, but the lane folder is NOT removed, for two reasons
+stacked on each other:
+
+1. **The evidence pointers depend on it.** README's `## Provenance`
+   lines, all four per-file notices, and NOTICE's enumeration point at
+   `work/mat-94-attribution-skills/DECISIONS.md` as the checkable
+   classification record. Deleting the lane would orphan every pointer
+   this lane just shipped.
+2. **House precedent.** The sibling MAT-93 lane recorded the same call
+   (its D5: "lane survives the handoff for the parent's review wave")
+   and `work/mat-93-ask-for-help-leg/` is still present on this
+   branch's base. The parent's review wave and fix loop read the lane;
+   removal, if ever, is the parent's merge-time call.
