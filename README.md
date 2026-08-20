@@ -54,8 +54,20 @@ Agent-Engineering ADR-002) and first lived in that repo; they moved here
 when the library split from the standard
 ([ADR-001](docs/adrs/ADR-001-standalone-skills-repo.md)).
 
-[`testing-first/`](skills/testing-first/) is a derivative of
-`test-driven-development` and its `writing-good-tests` reference from
+[`testing-first/`](skills/testing-first/) is derived-with-notice from
+`test-driven-development` and its `writing-good-tests` reference in
 [superpowers](https://github.com/obra/superpowers) v6.3.0, MIT ©
-2025 Jesse Vincent — kept in substance, adapted to this standard's
-surfaces (evidence into the lane, completion handed to `work-verify`).
+2025 Jesse Vincent — first ported under MAT-47, classified substantial
+(MAT-94); evidence:
+[DECISIONS.md](work/mat-94-attribution-skills/DECISIONS.md), full
+permission text in [`NOTICE`](NOTICE).
+
+[`tracing-root-causes/`](skills/tracing-root-causes/) is
+derived-with-notice, in part, from `systematic-debugging` and its
+technique references in
+[superpowers](https://github.com/obra/superpowers) v6.3.0, MIT ©
+2025 Jesse Vincent — the base is owner-original (Context-Engineering
+salvage); classified substantial in five named `SKILL.md` sections plus
+`references/techniques.md` in full (MAT-94); evidence:
+[DECISIONS.md](work/mat-94-attribution-skills/DECISIONS.md), full
+permission text in [`NOTICE`](NOTICE).

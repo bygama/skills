@@ -13,7 +13,7 @@ Branch: `bygama/mat-94-attribution-skills` (stacked on
 - [x] Step 2 — D3: classify tracing-root-causes
 - [x] Step 3 — D4: NOTICE judgment (yes; `NOTICE` created)
 - [x] Step 4 — notices applied/normalized
-- [ ] Step 5 — README Provenance lines
+- [x] Step 5 — README Provenance lines
 - [ ] work-verify (M) incl. fresh-context review
 - [ ] work-handoff: PR open (base mat-93 branch), Linear attach,
       worker_done
@@ -649,3 +649,76 @@ now true, nothing graded changed. Critical: none. Important: none.
    NOTICE, DECISIONS) — heading rename falsifies all three; D4
    accepted that rot cost knowingly. `### 5. Fix` attribution to
    SKILL.md-only is a D3 ruling, not a step-4 error.
+
+### Step 5 — README Provenance lines
+
+**Implemented.** Rewrote the existing testing-first paragraph in
+`README.md`'s `## Provenance` section and added a new tracing-root-causes
+paragraph immediately after it, per D2/D3/D4. Left the first
+paragraph (oh-my-claudecode salvage / ADR-002 / ADR-001) untouched — it
+is not affected by this lane's classification.
+
+1. **testing-first** — was "is a derivative of … kept in substance,
+   adapted to this standard's surfaces"; now "is derived-with-notice
+   from … first ported under MAT-47, classified substantial (MAT-94);
+   evidence: [DECISIONS.md](work/mat-94-attribution-skills/DECISIONS.md),
+   full permission text in [`NOTICE`](NOTICE)." Verdict wording matches
+   D2's action item 3 (`derived-with-notice`, covering both files);
+   `MAT-47` recovers the trail step-4's review flagged as unreachable
+   (minor 3): the per-file comment's `work/mat-47-house-tdd/DECISIONS.md`
+   pointer was superseded in step 4 and that lane's files no longer exist
+   in the working tree (`git show --stat e969b67` confirms `work/mat-47-house-tdd/**`
+   was deleted at terminal close, "records live in history at their
+   merge commits") — naming the ticket in README is the cheapest
+   surviving pointer, searchable in git log / the tracker, since no
+   in-file back-link is possible without re-opening step 4's scope.
+2. **tracing-root-causes** (new paragraph, this skill had no Provenance
+   line before) — "is derived-with-notice, in part, from
+   `systematic-debugging` and its technique references … the base is
+   owner-original (Context-Engineering salvage); classified substantial
+   in five named `SKILL.md` sections plus `references/techniques.md` in
+   full (MAT-94); evidence: …, full permission text in `NOTICE`."
+   Wording matches D3's action item 4 verbatim ("derived-with-notice, in
+   part") and is honest about the asymmetry with testing-first: the base
+   is the owner's, not upstream's.
+
+Both entries point at `work/mat-94-attribution-skills/DECISIONS.md` (this
+lane, not the superseded MAT-47 lane) and at `NOTICE` (D4: yes, file
+exists at repo root), per the step's evidence-pointer requirement.
+
+**Acceptance.**
+
+```
+$ grep -q "testing-first" README.md && echo "testing-first: OK"
+testing-first: OK
+$ grep -q "tracing-root-causes" README.md && echo "tracing-root-causes: OK"
+tracing-root-causes: OK
+```
+
+Both within `## Provenance`, verified by reading — confirmed with
+`grep -n "testing-first\|tracing-root-causes\|^## " README.md`: the only
+hits after `## Provenance` (line 50) are lines 57 and 65, and no later
+`## ` heading interrupts the section (`## Provenance` is the file's last
+section).
+
+```
+$ node C:/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .
+0 high, 0 medium, 1 low — PASS
+```
+
+Same pre-existing `AGENTS.md:15` cmd-drift LOW as steps 1-4; not
+attributable to this lane.
+
+**Files changed.** `README.md` only (`## Provenance` section) —
+confirmed with `git diff -- README.md`: no other file touched.
+`work/mat-94-attribution-skills/PROGRESS.md` (state box + this report).
+
+**Concerns.** None on the mechanics. One judgment call worth a
+reviewer's eye: I read "cheapest place to recover the MAT-47 trail" as
+naming the ticket ID (searchable via git log / Linear) rather than
+reconstructing a direct file link, since `work/mat-47-house-tdd/**` no
+longer exists in the working tree and linking to a specific historical
+commit SHA felt like a heavier, more brittle solution than the step's
+"mechanical," "honest and small" framing calls for. If a reviewer wants
+a harder pointer (e.g., the MAT-47 merge commit SHA), that is a
+one-clause addition.
