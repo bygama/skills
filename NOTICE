@@ -12,7 +12,8 @@ and LICENSE is unmodified.
 Each derived file also carries a short provenance comment that points
 here. The classification evidence — what was diffed against what, and why
 each file or section was judged substantial or idea-only — is recorded in
-work/mat-94-attribution-skills/DECISIONS.md (MAT-94).
+https://github.com/bygama/skills/blob/002ef05fd8b9aceab6f7ed9f14cb8b8fa076441b/work/mat-94-attribution-skills/DECISIONS.md (MAT-94;
+the lane was removed at terminal close, the pinned commit is the record).
 
 ===============================================================================
 superpowers — Copyright (c) 2025 Jesse Vincent
