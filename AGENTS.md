@@ -1,6 +1,6 @@
 # skills
 
-Standard: AE/1.4.0
+Standard: AE/1.4.2
 Tracker: Linear — workspace bygama · team MAT · project skills
 
 Personal Agent Skills library for Claude Code — methodology skills usable
