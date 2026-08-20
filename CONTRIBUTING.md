@@ -10,7 +10,7 @@
 
 Walk the changed skill's 3 evals (`skills/<name>/evals/`) — expected behavior
 must still hold; if behavior changes, update the evals FIRST, then the skill.
-Run `node ../Context-Engineering/scripts/context-lint.mjs .` — must pass.
+Run `node ../Agent-Engineering/scripts/agent-lint.mjs .` — must pass.
 
 ## Merging
 
