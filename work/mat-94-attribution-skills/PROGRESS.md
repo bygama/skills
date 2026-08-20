@@ -12,7 +12,7 @@ Branch: `bygama/mat-94-attribution-skills` (stacked on
 - [x] Step 1 — D2: classify testing-first
 - [x] Step 2 — D3: classify tracing-root-causes
 - [x] Step 3 — D4: NOTICE judgment (yes; `NOTICE` created)
-- [ ] Step 4 — notices applied/normalized
+- [x] Step 4 — notices applied/normalized
 - [ ] Step 5 — README Provenance lines
 - [ ] work-verify (M) incl. fresh-context review
 - [ ] work-handoff: PR open (base mat-93 branch), Linear attach,
@@ -490,3 +490,117 @@ or the sentence needs softening.
 4. ⚠️ NOTICE:21-22 marketplace repo slug (anthropics/
    claude-plugins-official) inferred from the cache directory name,
    not from a local source — descriptive prose, low stakes.
+
+### Step 4 — apply/normalize the per-file notices
+
+**Implemented.** Exactly per D2 + D3 verdicts and the SPEC's normalized
+format, with the step-3 binding note honored (all four files now point
+at `NOTICE` for the full permission text, making its NOTICE:13-15
+forward-looking sentence true):
+
+1. `skills/testing-first/SKILL.md:8-12` — the MAT-47 five-line block
+   replaced in place (not stacked) with the whole-file substantial form:
+   upstream path now includes the file (`test-driven-development/SKILL.md`,
+   was bare `test-driven-development`), MIT + Copyright (c) 2025 Jesse
+   Vincent, adaptation date, `Classified substantial (MAT-94)` pointing at
+   this lane's DECISIONS.md (superseding the stale
+   `work/mat-47-house-tdd/DECISIONS.md` pointer per D2 action item 1), plus
+   a `NOTICE` pointer for the full permission text.
+2. `skills/testing-first/references/writing-good-tests.md:6-10` — same
+   treatment; the MAT-47 editorial content ("chat-partner framing is
+   gone...") dropped in favor of the normalized four-fact block plus the
+   `NOTICE` pointer.
+3. `skills/tracing-root-causes/SKILL.md:8-14` — the existing OMC/MAT-46/
+   MAT-93 provenance comment kept verbatim and **extended** (not a second
+   block) with the parts-only form: the five section headings quoted
+   exactly as they appear live in the file (verified with `grep -n
+   "^#\{2,3\} "` — all five match character-for-character, `→` included),
+   "base and remaining sections are original" stated explicitly per D3's
+   instruction not to let the notice read as if the whole file were
+   derived, `Classified substantial-in-part (MAT-94)`, DECISIONS.md
+   pointer, `NOTICE` pointer.
+4. `skills/tracing-root-causes/references/techniques.md:1-13` — no
+   frontmatter, so the HTML comment block was placed right after the H1,
+   before the body prose. The old "Absorbed from superpowers'
+   `systematic-debugging` (v6.3.0) and distilled" clause (a bare prose
+   provenance claim with no license or copyright) was removed from the
+   body sentence rather than left standing beside the new comment, per D3
+   action item 2 ("should not be left standing as a second, weaker
+   provenance claim"); the sentence now reads "Four techniques the phased
+   process reaches for by name, distilled — ...". The new comment names
+   all three upstream sources individually (`root-cause-tracing.md`,
+   `defense-in-depth.md`, `condition-based-waiting.md`) and omits
+   `find-polluter.sh`, whose section D3 classified idea-only.
+
+No `skills/**` file other than these four was touched. No skill content,
+frontmatter, or graded behavior changed — comment blocks and one body
+sentence only.
+
+**Acceptance.**
+
+```
+$ node C:/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .
+0 high, 0 medium, 1 low — PASS
+```
+
+The single LOW is the same pre-existing `AGENTS.md:15` cmd-drift note as
+steps 1-3; not attributable to this lane.
+
+```
+$ wc -l skills/testing-first/SKILL.md skills/tracing-root-causes/SKILL.md
+  249 skills/testing-first/SKILL.md
+  249 skills/tracing-root-causes/SKILL.md
+  498 total
+```
+
+Both < 500.
+
+```
+$ for f in skills/testing-first/SKILL.md \
+           skills/testing-first/references/writing-good-tests.md \
+           skills/tracing-root-causes/SKILL.md \
+           skills/tracing-root-causes/references/techniques.md; do
+    echo "$f: $(grep -c 'Copyright (c) 2025 Jesse Vincent' "$f")"
+  done
+skills/testing-first/SKILL.md: 1
+skills/testing-first/references/writing-good-tests.md: 1
+skills/tracing-root-causes/SKILL.md: 1
+skills/tracing-root-causes/references/techniques.md: 1
+```
+
+Each touched file carries exactly one occurrence — one verdict, one
+block, per file, matching D2 (one verdict each for the two testing-first
+files) and D3 (one verdict for SKILL.md as a whole, naming five sections
+within that single block; one verdict for techniques.md as a whole). No
+stacked duplicates.
+
+```
+$ grep -n "^#\{2,3\} " skills/tracing-root-causes/SKILL.md
+## The iron law / ## The phases / ### 1. Reproduce / ### 2. Isolate /
+### 3. Hypothesize / ### 4. Disconfirm / ### 5. Fix /
+## Three strikes → question the architecture /
+## When the investigation stalls /
+## When the cause really is environmental / ## Rationalizations /
+## Output shape / ## Where this ends / ## Judgment notes
+```
+
+Confirms the five headings quoted in the extended notice match the live
+file exactly.
+
+**Files changed.** `skills/testing-first/SKILL.md`,
+`skills/testing-first/references/writing-good-tests.md`,
+`skills/tracing-root-causes/SKILL.md`,
+`skills/tracing-root-causes/references/techniques.md` — comment blocks
+(and, in techniques.md, one body sentence) only.
+
+**Concerns.** None on the mechanics — every acceptance number was
+recomputed after the edit, not assumed. One judgment call worth a
+reviewer's eye: for techniques.md I read D3 action item 2 as license to
+edit the body prose (not only add a comment), since the SPEC's own
+concern is "never a second block stacked" and the old sentence was an
+unlicensed provenance claim in prose, not a second HTML-comment block.
+If a reviewer prefers the prose left untouched with only the comment
+added, that is a one-sentence revert.
+
+Commit: `docs(attribution): normalize per-file upstream notices per
+MAT-94 classification` (5e1484b).
