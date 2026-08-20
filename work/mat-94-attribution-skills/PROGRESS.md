@@ -722,3 +722,38 @@ commit SHA felt like a heavier, more brittle solution than the step's
 "mechanical," "honest and small" framing calls for. If a reviewer wants
 a harder pointer (e.g., the MAT-47 merge commit SHA), that is a
 one-clause addition.
+
+### Step 5 — review verdict (fresh reviewer, opus)
+
+Verdict text, verbatim:
+
+> ### Spec compliance
+> ✅ Compliant — both classified skills carry exactly one Provenance
+> entry with verdict + evidence pointers, wording traceable to the
+> lane's D2/D3/D4 record, and nothing outside the section changed.
+>
+> ### Assessment
+> **Step quality:** Approved
+> **Reasoning:** The two Provenance entries are accurate against
+> D2/D3/D4, both evidence pointers resolve to files that exist and say
+> what the README claims they say, the section carries no stale or
+> duplicated provenance text, and lint PASS was reproduced
+> independently. The three minors are wording precision, not
+> correctness of the attribution.
+
+Reviewer read the whole `## Provenance` section (no duplicates, no
+stale claims), confirmed NOTICE says what README claims, re-ran lint
+independently (PASS, pre-existing LOW only). Critical: none.
+Important: none.
+
+**Deferred minors (for work-verify's triage):**
+
+1. README.md:66-67 "and its technique references" one notch broader
+   than the classification (find-polluter.sh is excluded) — one-word
+   fix: "three of its technique references".
+2. README.md:52-55 vs :69-70 — same origin named two ways
+   ("oh-my-claudecode's agent pack" / "Context-Engineering salvage");
+   unify the referent.
+3. README.md:60 "first ported under MAT-47" resolvable only via
+   tracker/git — right trade at "honest and small", noted for the
+   parent; no action recommended.
