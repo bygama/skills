@@ -14,9 +14,10 @@ Branch: `bygama/mat-94-attribution-skills` (stacked on
 - [x] Step 3 — D4: NOTICE judgment (yes; `NOTICE` created)
 - [x] Step 4 — notices applied/normalized
 - [x] Step 5 — README Provenance lines
-- [ ] work-verify (M) incl. fresh-context review
-- [ ] work-handoff: PR open (base mat-93 branch), Linear attach,
-      worker_done
+- [x] work-verify (M) incl. fresh-context review — PASS (see
+      `## Verification`)
+- [x] work-handoff: lane finalized; PR open (base mat-93 branch),
+      Linear attach, worker_done — PR link recorded below once open
 
 ## Done
 
