@@ -604,3 +604,48 @@ added, that is a one-sentence revert.
 
 Commit: `docs(attribution): normalize per-file upstream notices per
 MAT-94 classification` (5e1484b).
+
+### Step 4 — review verdict (fresh reviewer, opus)
+
+Verdict text, verbatim:
+
+> ### Spec compliance
+> ✅ Compliant — including the flagged judgment call, which I rule
+> **within the step's authority**.
+>
+> ### Assessment
+> **Step quality:** Approved
+> **Reasoning:** The notices match D2/D3/D4 fact-for-fact and I
+> verified the three claims that could have been quietly wrong — one
+> block per file (4 files, 1 occurrence each), the five quoted headings
+> against the live text, and NOTICE's now-discharged "points here"
+> sentence. The flagged techniques.md prose removal is authorized by
+> D3's own action item and changes no graded behavior; its only cost is
+> a dangling antecedent in the rendered body, which is a one-clause
+> fix, not a revert.
+
+Ruling on the flagged call (techniques.md body edit): within authority —
+D3's action item is explicit ("merged with the existing 'Absorbed
+from…' line, which should not be left standing as a second, weaker
+provenance claim"); the clause carried zero graded behavior; leaving it
+would reproduce the defect the lane closes. Reviewer independently
+verified: exactly 4 copyright occurrences in exactly 4 files, five
+quoted headings character-for-character, NOTICE "points here" sentence
+now true, nothing graded changed. Critical: none. Important: none.
+
+**Deferred minors (for work-verify's triage):**
+
+1. techniques.md:10-12 dangling antecedent in rendered body ("the
+   language-bound example file…" lost its named owner when the clause
+   was removed) — one-clause fix: "distilled from the upstream skill —
+   … its language-bound example file…".
+2. tracing SKILL.md:10-12 vs :15-20 — MAT-46 work-history line and
+   MAT-94 classification lines read as contradicting (both true under
+   different lenses); optional half-clause would close it.
+3. testing-first SKILL.md — MAT-47 trail now unreachable from the file
+   (stale pointer superseded, no back-link anywhere); cheapest recovery
+   is step 5's README Provenance line. **Input for step 5.**
+4. Observation only: five headings now live in three places (comment,
+   NOTICE, DECISIONS) — heading rename falsifies all three; D4
+   accepted that rot cost knowingly. `### 5. Fix` attribution to
+   SKILL.md-only is a D3 ruling, not a step-4 error.
