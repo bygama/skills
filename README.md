@@ -59,7 +59,7 @@ when the library split from the standard
 [superpowers](https://github.com/obra/superpowers) v6.3.0, MIT ©
 2025 Jesse Vincent — first ported under MAT-47, classified substantial
 (MAT-94); evidence:
-[DECISIONS.md](work/mat-94-attribution-skills/DECISIONS.md), full
+[DECISIONS.md](https://github.com/bygama/skills/blob/002ef05fd8b9aceab6f7ed9f14cb8b8fa076441b/work/mat-94-attribution-skills/DECISIONS.md), full
 permission text in [`NOTICE`](NOTICE).
 
 [`tracing-root-causes/`](skills/tracing-root-causes/) is
@@ -69,5 +69,5 @@ technique references in
 2025 Jesse Vincent — the base is owner-original (Context-Engineering
 salvage); classified substantial in five named `SKILL.md` sections plus
 `references/techniques.md` in full (MAT-94); evidence:
-[DECISIONS.md](work/mat-94-attribution-skills/DECISIONS.md), full
+[DECISIONS.md](https://github.com/bygama/skills/blob/002ef05fd8b9aceab6f7ed9f14cb8b8fa076441b/work/mat-94-attribution-skills/DECISIONS.md), full
 permission text in [`NOTICE`](NOTICE).
