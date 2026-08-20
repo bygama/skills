@@ -233,6 +233,13 @@ folded into the mutation check. Editorial, not transformative.
 
 ## D3 — classification: tracing-root-causes
 
+> Line-number note (added at work-verify, per the fresh-context
+> review's Important finding): the LOCAL line numbers below are as of
+> the pre-step-4 files. Step 4 added 8 comment lines to
+> `skills/tracing-root-causes/SKILL.md` and 6 to
+> `references/techniques.md` — add those offsets to resolve a local
+> cite against the live tree. Upstream cites are unaffected.
+
 ### What was diffed
 
 Same upstream tree as D2, re-verified this step:

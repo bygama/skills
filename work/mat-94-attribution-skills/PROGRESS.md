@@ -757,3 +757,49 @@ Important: none.
 3. README.md:60 "first ported under MAT-47" resolvable only via
    tracker/git — right trade at "honest and small", noted for the
    parent; no action recommended.
+
+## Verification
+
+### 2026-08-19 — M DoD — PASS
+
+- L1 static: `node C:/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .`
+  → exit 0, `0 high, 0 medium, 1 low — PASS` (the LOW is the
+  pre-existing `AGENTS.md:15` cmd-drift, not attributable to this lane).
+- L2 behavioral: all nine PLAN acceptance commands re-run on the current
+  tree → D2/D3/D4 greps exit 0; `Permission is hereby granted` in NOTICE
+  exit 0; both SKILL.md files 249 lines (<500); exactly 1
+  `Copyright (c) 2025 Jesse Vincent` occurrence in each of the four
+  derived files; README greps exit 0 inside `## Provenance`; fenced
+  files (LICENSE, CODE_OF_CONDUCT.md) absent from the diff range.
+- L3 end-to-end: n/a — docs-only change; `git diff 4456c13..bd2945d
+  --name-only | grep -E 'evals/|\.(js|mjs|sh|ts|json|yml|yaml)$'` →
+  no matches (nothing executable or graded changed).
+- Fresh-context review (opus, no shared context): **PASS** — "L1 exits
+  0 with only the declared pre-existing AGENTS.md:15 LOW, all nine L2
+  acceptance commands hold on the current tree […] and every substance
+  gate I spot-checked against the upstream tree and the live files
+  reproduced exactly — including the NOTICE MIT body diffing clean
+  (exit 0) against upstream's LICENSE. The single Important finding is
+  a stale-line-number annotation inside the evidence record, not a
+  defect in the attribution it records." Full verdict text in the
+  reviewer's report; its spot-checks included D2's Iron Law/RED
+  example/two-principles (IDENTICAL), eight D3 byte-identical fragments
+  (all 1:1), the `9d1b574~1` base claim at source, and the five quoted
+  headings character-for-character.
+  - Important finding (D3 stale local line numbers, constant offset
+    +8/+6 after step 4): FIXED in-lane at work-verify by the
+    reviewer-prescribed note at the top of D3 (this commit). Upstream
+    cites unaffected; every quoted fragment was confirmed greppable.
+  - Fresh-review minors 1-3 restate step-4 minor 1, step-4 minor 2, and
+    step-5 minor 1 (already deferred above); minor 4 (Reproduce
+    idea-only vs environmental-substantial asymmetry could be argued
+    explicitly) joins the deferred list for the parent's review wave.
+- Adversarial review (cross-model): n/a — tier M, not requested; the
+  parent runs its own cross-model adversarial seat after worker_done
+  (dispatch brief), which is an additional seat, not this rung's
+  substitute.
+
+Deferred-minor ledger for the parent: step-1 (5), step-2 (6), step-3
+(4), step-4 (4), step-5 (3), fresh-review (1 new) — all recorded
+verbatim in their verdict sections above; none verdict- or
+action-changing per their reviewers.
