@@ -796,6 +796,69 @@ changed lines.
 - `baseline-extracting-design-md.md` addendum 1 — "the first two of those files" vs "two more
   pointers" is accurate but dense; a reader unfamiliar with step 2 parses it slowly.
 
+### Parent ruling — where a provisional frontmatter token lives (blocking ask, 2026-08-20)
+
+Asked because PLAN step 4's reconciliation surfaced an architectural gap the SPEC did not
+resolve and which changes what steps 6 and 8 build: SPEC §3.1 defines the `[provisional]`
+marker only inside `## Decisions` entry text, while SPEC §4.5 requires every unconfirmed token
+to ship `[provisional]` — and a frontmatter token has no defined way to carry it. Three options
+were put, with A recommended. The parent's reply, verbatim:
+
+> A — confirmed, with one binding addition your own evidence forces.
+>
+> WHY A. It is already the shape the owner approved. The worked DESIGN.md
+> example reviewed and accepted before this dispatch carried exactly this:
+> "#### Sistema" holding "- 2026-08-20 - [provisional] radius scale is
+> 10/14/999px; 8/9/11/12/13px are migration targets". SPEC 3.4 already
+> names "#### Sistema" as the home for "values and scales: tokens, radii,
+> type, modes, reference-surface declaration". No new syntax, no new
+> location, lint and generator untouched.
+>
+> WHY NOT B. A YAML comment creates a SECOND place to look for provisional
+> status, and nothing reads it. Two marker locations is drift in the very
+> convention these skills exist to prevent.
+>
+> WHY NOT C. Frontmatter is the compile source. A near-empty frontmatter
+> compiles to a near-empty design.tokens.css, which forces every build back
+> to raw values — the exact failure designing-consistently step 3 exists to
+> stop. Honesty that breaks the compile is not honesty, it is a broken file.
+>
+> THE ADDITION — binding. You reported "sheet: 20px" emitted for a role
+> where your own step 4 says verbatim "I did NOT elect a token for this
+> role". That is NOT a marker-location problem, and option A must not be
+> read as licensing it. Marking something provisional does not license
+> inventing it. Two distinct rules:
+>
+> 1. Role WITH a genuine election that is merely unconfirmed → the token
+>    goes in frontmatter (it must, to compile) AND gets a [provisional]
+>    entry under "### Global" / "#### Sistema" naming the token and WHAT IT
+>    BEAT, with the counts. Your near-tie is the model: card 14px at 984 vs
+>    ~751 gets an entry carrying BOTH numbers, because the numbers are what
+>    make a later promote-or-demote decidable. An entry that says only
+>    "[provisional] card is 14px" is not enough.
+>
+> 2. Role with NO election → NO token in frontmatter at all, plus an open
+>    question entry recording the role, the competing candidates and their
+>    file locations. extracting-design-md step 5 already defines the
+>    open-question form for exactly this: a thing the owner decides, not
+>    you. Emitting "sheet: 20px" for a role you explicitly declined to
+>    elect is the contamination this lane exists to fix, arriving through
+>    the back door.
+>
+> Also note for your step 4 record: this baseline result CONFIRMS SPEC
+> section 5's second prediction (that election runs on frequency and lands
+> unconfirmed values as law). Record it as confirmed with this evidence
+> rather than leaving it open.
+>
+> Record this ruling in your own DECISIONS.md before continuing. SPEC
+> section 4 is unchanged — requirement 5 stands exactly as approved; this
+> decides only where the marker lives and what may be emitted without one.
+
+Recorded as two entries in `DECISIONS.md`. The second of those entries notes that the parent's
+instruction to record SPEC §5 prediction 2 as CONFIRMED supersedes step 4's own
+CONTRADICTED-on-the-literal-wording verdict, and that both facts stay in the record — they differ
+only in what they take prediction 2 to assert, and the parent's verdict governs.
+
 ## In progress
 
 ## Tried and failed
