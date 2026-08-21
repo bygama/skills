@@ -232,6 +232,54 @@
 
   Files changed: `work/design-skills-at-scale/baseline-designing-consistently.md` (new).
 
+- 2026-08-20 — Step 2 fix round 1 (review findings). Framing-only fixes, no transcript edits —
+  not one character touched, CJK note included.
+  - **Important:** the preamble's "one constraint" bullet over-generalized past its own scoping —
+    it named only the three absence facts (no DESIGN.md, no `## Decisions`, no
+    tokens/generator/lint script) as fence-independent, then closed with an unqualified "Do not
+    read those three steps' failures as artifacts of the fence," silently sweeping in a second,
+    distinct Step 1 failure the bullet never named: the runner's own words attribute part of the
+    blocked "offer to instantiate" fallback to the read-only constraint itself ("even if it
+    weren't [out of scope-fence reach], the repo is read-only so I could not create the file
+    regardless"). Since SPEC §5's first recorded prediction is exactly "step 1 offers to
+    instantiate a DESIGN.md," and PLAN step 4 reconciles that prediction against this file, the
+    blanket claim risked step 4 treating Step 1's failure-to-offer as a clean fence-independent
+    signal when it isn't entirely. Fixed by narrowing the "does not affect" sentence to the
+    absence facts only, and adding one clause naming the entanglement in Step 1 explicitly,
+    leaving the reconciliation itself to PLAN step 4 rather than resolving it here.
+  - **Minor (pulled in by controller ruling):** the "which copy" bullet claimed the global/
+    worktree `SKILL.md` byte-identity was "verified... before the run," which doesn't match this
+    implementer's own described sequence (`diff` run at transcription time, after the run had
+    already happened). Reworded to attribute the before-the-run check to the controller (per the
+    controller's own account, given directly) and the implementer's own re-check to
+    transcription time — stating only the timing actually known to each party, not a sequence I
+    didn't observe.
+  - **New controller-verified fact added as addendum 4** (not drawn by me as a conclusion): the
+    skill's cited template source, "Context-Engineering `templates/repo/DESIGN.md.template`",
+    does not exist anywhere on this machine — a depth-2 search of the work-repos folder for any
+    `Context-Engineering` directory returned nothing; the equivalent asset exists under a
+    different repo and name, `Agent-Engineering/templates/repo/DESIGN.md.template` (789 bytes).
+    Recorded as fact only, no interpretation — PLAN step 4 owns what it means for Step 1's
+    reconciliation.
+
+  Acceptance: `test $(grep -c '^## Step ' work/design-skills-at-scale/baseline-designing-consistently.md) -eq 5`
+
+  ```
+  ACCEPT PASS
+  ```
+
+  Re-ran the gate: `node /c/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .` still
+  exits 0:
+
+  ```
+  agent-lint C:\Users\mateo\orca\workspaces\skills\design-skills-at-scale
+    LOW    AGENTS.md:15  ../Agent-Engineering/scripts/agent-lint.mjs escapes the repo — context-dependent, true only where that path exists outside it (a sibling checkout, CI)  [cmd-drift]
+  0 high, 0 medium, 1 low — PASS
+  ```
+
+  Files changed: `work/design-skills-at-scale/baseline-designing-consistently.md`,
+  `work/design-skills-at-scale/PROGRESS.md`.
+
 ## Reviews
 
 <!-- Verbatim verdict text from every in-session review seat: the
