@@ -1339,6 +1339,88 @@ lane has consistently been report DELIVERY, never the work itself — worth stat
 "the seat is dead" and "the seat's message did not arrive" call for different responses, and the
 controller acted on the wrong one.
 
+### Step 5 — step review (fresh reviewer, opus)
+
+**Spec compliance:** ✅ Compliant.
+
+**Assessment — Step quality: Approved.** Reasoning, verbatim: "All three files deliver exactly what
+step 5 asked for, and every RED claim I checked — eleven zero-occurrence counts, three SKILL.md
+quotes, five baseline citations — is true as stated, with the thin-baseline cases labeled honestly
+inside the evals rather than laundered. Nothing in the three files a correct step-7 rewrite would
+fail; the one contradiction in the directory is the pre-existing `eval-03.md` box 2, correctly
+flagged and out of this step's charter, though it now needs a controller routing decision since no
+remaining PLAN step owns that file."
+
+**RED verification — the part that mattered.** The reviewer read today's `SKILL.md` in full and
+counted every term the RED sections assert is absent:
+
+> ```
+> provisional 0 · "reference surface" 0 · rank 0 · trust 0 · Global 0 · global 0
+> sibling 0 · promote 0 · demote 0 · escalat 0 · exception 0        (Decisions: 9)
+> ```
+> Every zero-occurrence claim in all three files is **true as stated**. No overclaim found.
+
+Per-eval, verbatim:
+
+> **`eval-01.md` — named RED: boxes 1 and 2 (promote / demote).** ✅ Confirmed failing. Today's step 4 (`SKILL.md:45-52`) is additive by construction … With `promote`/`demote`/`provisional` all at zero occurrences there is no status to change. The eval's second, sharper argument also checks out: `SKILL.md:41-43` reads "A standing decision the work conflicts with is renegotiated with the user — never silently overridden", with no exemption for a candidate entry, so a faithful run *halts* on the below-the-table entry rather than demoting it — box 2 fails in both directions. … The file's closing paragraph states honestly that the cold run found no DESIGN.md at all, so no provisional entry existed to repair — the RED rests on the skill text, and it says so. That is the right way to write a partly-textual RED.
+>
+> **`eval-04.md` — named RED: box 1 (ranked inventory at step 1).** ✅ Confirmed failing. `SKILL.md:26-29` is locate-or-instantiate only; nothing discovers, ranks or inventories. … **The controller's ruling is honored correctly**: box 5 is marked *inside the file* as a regression guard that passes trivially against the unfixed skill, and the RED is explicitly taken from the positive clause — "discovery happens, and it is ranked". This is exactly what the ruling required, and it is stated in the eval, not only in PROGRESS.
+>
+> **`eval-05.md` — named RED: box 1 (`### Global` read first), box 2 behind it.** ✅ Confirmed failing. … The honesty here is the best in the set: it states that the cold run could **not** exercise slicing, cites the step-4 ruling recording it **unobserved**, and reaches for the sibling baseline as the nearest direct observation rather than pretending the dc baseline proved it. Verified against both source documents.
+
+**Evals a correct step-7 rewrite would fail**, verbatim:
+
+> **1. `eval-03.md:15-16` — the flagged one. Confirmed.** … A step-7 rewrite emitting `### catalogo` / `#### /catalogo/inventario — Inventario` fails this box as literally worded. The implementer's analysis is correct and it was right not to rewrite another requirement's contract unasked.
+>
+> *Routing point for the controller, beyond what the implementer could see:* no remaining PLAN step is chartered to touch this file. Step 9's `[batch]` sweep lists `skills/extracting-design-md/evals/eval-03.md`, **not** `skills/designing-consistently/evals/eval-03.md`, and step 7 is scoped to `SKILL.md`. Unless the controller opens it, step 7 will be built against a five-eval contract one of whose evals contradicts SPEC §3.3.
+>
+> **2. `eval-02.md` — no, the implementer is right.** I read it. It exercises step 3 only … Nothing in it a correct rewrite fails.
+>
+> **3. In the three files this step wrote — none.** I checked every box in eval-01, eval-04 and eval-05 against SPEC §3.1-§3.5 … Every fixture heading in both files is in §3.3/§3.4 shape, and both global entries are written as rules naming no route, respecting §3.4's guard rail.
+
+Constraints were verified by the reviewer with its own greps: no SKILL.md touched, no
+`SPEC.md`/`PLAN.md`/`feature_list.json` edit, no machine-anchored path in `skills/` (explicit grep
+for drive-rooted, WSL and POSIX-home forms returned no hits), fixtures runtime-neutral (grep for
+framework/product/filename identities returned no hits) while every baseline number is preserved,
+and no `## Validation log` invented.
+
+Findings, verbatim:
+
+> #### Critical (Must Fix)
+> None.
+>
+> #### Important (Should Fix)
+> None attributable to this step. The one Important-class item in the directory is `eval-03.md:15-16`: it is pre-existing, was correctly flagged rather than silently rewritten, and needs a controller routing decision because no remaining PLAN step owns that file.
+>
+> #### Minor (Nice to Have)
+> 1. **`eval-01.md:10` — forward reference in the fixture.** It opens "The same multi-module admin", but eval-01 is read first in the directory and the admin is introduced in eval-04.
+> 2. **`eval-01.md:27` — the work's link to the promoted entry is implicit.** "builds the panel on the existing card radius" requires the reader to connect "existing card radius" to the 14px provisional in the Sistema entry.
+> 3. **`eval-01.md:32-34` — box 1 promotes a `### Global` provisional off one module's work.** Defensible and I believe correct: SPEC §3.1 rule 3 is mandatory ("must promote it") and §3.2's "only the owner or a reference surface confirms" sits under the *discovery* heading, so promotion-by-work is a separate channel. But a step-7 author reading §3.2 as governing all confirmation could write "promotion needs a reference surface or the owner" and fail this box.
+> 4. **`eval-01.md:35-43` — boxes 2 and 3 prescribe two dispositions for the same entry.** §3.1 rule 2 exempts provisional entries from never-silently-drop, so a rewrite could legitimately *delete* the entry as redundant with the global and record why — which fails box 2 as literally worded.
+> 5. **`eval-01.md:48-50` — box 5 largely collapses into boxes 1-2.**
+> 6. **`eval-04.md:45-49` — box 3 says "the owner is asked" while the fixture (`:33-34`) says the owner is not available mid-run.**
+> 7. **`eval-04.md:38-44` — boxes 1 and 2 overlap on "ranked".**
+> 8. **`eval-05.md:51-53` — box 5 can only fail a run that already failed box 3.** It works as a second-order trap for the read-everything answer, which is legitimate; worth one clause saying so, so a grader does not read a vacuous pass as evidence.
+> 9. **`eval-05.md:33` — the fixture entry ends with a literal `<why>` placeholder.**
+
+Controller response: Minors **3, 4, 6 and 8** were ruled INTO fix round 1, because each is a place
+where a step-7 author building faithfully to SPEC §3 could fail a box for the wrong reason — the
+one defect class that matters most when the eval set IS the rewrite's contract. Minors 1, 2, 5, 7
+and 9 are readability and box-independence polish, deferred. The `eval-03.md` routing decision was
+ruled before the review returned and is recorded in `DECISIONS.md`: it is fixed in step 5's fix
+round, not left for step 7, because an eval a correct rewrite fails is a broken eval and this
+repo's constraint puts eval changes before skill content.
+
+### Deferred to work-verify triage (step 5)
+
+- `eval-01.md:10` forward-references the multi-module admin that eval-04 introduces; the fixture
+  never states scale.
+- `eval-01.md:27` leaves the link between "existing card radius" and the 14px provisional implicit.
+- `eval-01.md:48-50` box 5 largely collapses into boxes 1-2; its independent content is the last
+  sentence.
+- `eval-04.md:38-44` boxes 1 and 2 overlap on "ranked", so they are not independently checkable.
+- `eval-05.md:33` fixture entry ends with a literal `<why>` placeholder rather than a real reason.
+
 ## In progress
 
 ## Tried and failed

@@ -31,11 +31,18 @@ above the table, following `#### Patrones` and the owner's ask.
 
 - [ ] Promotes the `[provisional]` radius entry the work was built on:
       drops the marker and re-dates it to today, in place — it was
-      touched, it held.
+      touched, it held. Promotion here is the earned-by-work channel, so
+      no reference surface and no owner reply is needed for it; needing a
+      reference surface or the owner to confirm governs **discovery**,
+      which is a different channel.
 - [ ] Demotes the module's `[provisional]` below-the-table entry the work
       contradicted: replaces it with the corrected entry plus one line
-      saying what beat it. Contradicting a provisional entry is evidence,
-      not a violation — the work does not stop to renegotiate it.
+      saying what beat it. The corrected entry may be its removal,
+      recorded — the confirmed global already covers the surface, and a
+      provisional entry is exempt from never-silently-drop. Contradicting
+      a provisional entry is evidence, not a violation — the work does
+      not stop to renegotiate it. This box and the next describe one
+      disposition of that entry, not two.
 - [ ] Treats that module entry's contradiction of `### Global` /
       `#### Patrones` as drift rather than a local override: it never
       declared `exception to Global/Patrones`, and provisional never
