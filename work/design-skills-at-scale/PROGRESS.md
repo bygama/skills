@@ -174,6 +174,119 @@
   `work/design-skills-at-scale/DECISIONS.md`, `work/design-skills-at-scale/PROGRESS.md`
   (the correction to the round-1 entry).
 
+## Reviews
+
+<!-- Verbatim verdict text from every in-session review seat: the
+     PASS/FAIL line and its findings, pasted as the reviewer wrote them.
+     A claim that a review returned PASS is not evidence; this is. -->
+
+### Step 1 — step review (fresh reviewer, sonnet)
+
+**Spec compliance:** Compliant.
+
+**Assessment — Step quality: Needs fixes.** Reasoning, verbatim: "The
+structural contract is right — correct file set, correct schema, exact 1:1
+requirement mapping — but roughly half the `verification` strings aren't
+literally executable as written (prose mixed into command position, one
+referencing a nonexistent baseline artifact), which is precisely the
+honesty-of-contract risk this review was scoped to catch. These are cheap,
+mechanical fixes to `feature_list.json` (tighten wording, remove/relocate
+parentheticals, name a real comparison target for F04/F10) and don't require
+touching PROGRESS.md or DECISIONS.md's substance."
+
+Findings, verbatim:
+
+> #### Critical (Must Fix)
+> None.
+>
+> #### Important (Should Fix)
+> - `work/design-skills-at-scale/feature_list.json` — most `verification` strings (F01, F02, F03, F05, F06, F10) interleave a real shell fragment with inline parenthetical prose (e.g. F01: `test -f skills/designing-consistently/evals/eval-04.md (discovery-without-DESIGN.md, PLAN step 5) plus: grep -q ...`). As written, none of these is a single command you can paste into a shell — the parenthetical breaks it before the real check ever runs. This undercuts the step's own accept bar ("each `verification` naming the command that will prove it"). Fix: move the citation/rationale into the `behavior` field or drop it, leaving `verification` as one chained command (e.g. `test -f ... && grep -q ... && ! grep -qE ...`).
+> - F04's `verification` — `diff skills/designing-consistently/evals/eval-01.md against its pre-step-7 baseline confirms the repair-gate rewrite` references an artifact ("pre-step-7 baseline") that no PLAN step ever creates; nothing in the lane archives a copy of `eval-01.md` before step 7 rewrites it. As literally stated this clause can't be run — it would need an unnamed git ref to resolve. This is the row covering the step-4 repair-gate requirement, so it deserves a concrete mechanism (e.g. name the exact commit/tag to diff against, or drop the clause and rely on the three `grep -qi` checks already present in the row).
+> - F10's ordering check — `git log --oneline confirming the eval-authoring commits (steps 5-6) precede the SKILL.md content commits (steps 7-8)` names no mechanical way to "confirm" precedence (no format string, no comparison). Since this row is the only proof for the repo's hard constraint (evals before content, restated three times across AGENTS.md/SPEC/PLAN), it should name something checkable, e.g. comparing first-commit dates per path with `git log --format=%ai --follow -- <path> | tail -1` for the eval files vs. the SKILL.md, or asserting ancestry with `git merge-base --is-ancestor`.
+>
+> #### Minor (Nice to Have)
+> - `work/design-skills-at-scale/DECISIONS.md:4-5` — both entries collapse "choice" and "why" into one run-on paragraph with an inline "Why:" label, rather than the three-segment `- YYYY-MM-DD — CHOICE — WHY` shape. I checked this against `Agent-Engineering/templates/repo/work/DECISIONS.md.template:4`, which is the exact template this file was scaffolded from (per the commit's own PROGRESS entry) — the template literally spells out `- {{YYYY-MM-DD}} — {{CHOICE}} — {{WHY}}`. `agent-lint` only checks the date prefix (SPEC §6), so this doesn't fail the gate, but it breaks the convention the file's own header comment states one line above it, and step 4 will add more rulings to this file — worth aligning now so the shape doesn't propagate.
+> - F07's second clause ("`eval-01.md` ... exercises the undeclared-contradiction-is-drift case") is a content judgment call, not a command — harmless as a supplementary note but should be labeled as such rather than presented alongside an executable check.
+
+Controller ruling on the first Minor: pulled INTO fix round 1 rather than
+deferred, because PLAN step 4 appends more rulings to `DECISIONS.md` and
+reformatting later costs more than reformatting two entries now. The second
+Minor (F07's judgment-call clause) was deferred, then un-deferred in round 2
+when the same row had to be touched anyway. Both rulings are in
+`DECISIONS.md`.
+
+### Step 1 — fix round 1 re-review (fresh re-reviewer, sonnet)
+
+**Verdict — Fix round: Findings remain open.** Verbatim:
+
+> **Findings remain open:** Finding 1's defect class (unpasteable `verification` string) is still present and unaddressed in F08, F09, and F11 — these were not covered by any stated deferral (unlike F07) and the fix round's own notes mischaracterize them as in-scope-to-skip alongside F07. Findings 1-4 as originally listed are otherwise addressed. Round should not close clean until the controller either explicitly extends the F07-style deferral to F08/F09/F11, or the implementer fixes those three the same way F01-F06/F10 were fixed.
+
+Per-finding verdicts: findings 1, 2, 3 and 4 all **ADDRESSED** — the six named
+rows de-interleaved and `bash -n`-clean; F04's nonexistent-baseline clause
+dropped; F10 given a tested `git merge-base --is-ancestor` mechanism;
+`DECISIONS.md` reshaped with no content lost.
+
+New breakage found by the re-review, verbatim:
+
+> 1. **Important — F08, F09, F11 carry the identical "prose spliced into command position" defect as Finding 1, and were not disclosed as deferred the way F07 was.** Verified empirically with `bash -n`:
+>    - F07 (`feature_list.json:47`, expected unfixed — controller explicitly deferred it): syntax error at the unquoted `(`.
+>    - F08 (`feature_list.json:54`): `! git grep -n '...' -- ... README.md (PLAN step 9 acceptance, verbatim)` — syntax error at `(`; the trailing parenthetical isn't a shell comment, so pasting this fails before the real `git grep` ever runs.
+>    - F09 (`feature_list.json:61`): `node .../agent-lint.mjs . exits 0 (path resolved per DECISIONS.md ...)` — same `(` syntax error; also "exits 0" would otherwise be passed as stray arguments to `node`.
+>    - F11 (`feature_list.json:75`): two "exits 0" splices plus a parenthetical plus a "plus"-joined third clause ("... is empty") — same class of break, worst offender of the four.
+>
+>    `PROGRESS.md:56-57` and the fix commit message group all four ("F07, F08, F09, F11 left untouched per the controller's scope") as if equally sanctioned to skip, but only F07 was named as deferred in this round's instructions. The round fixed six rows for exactly this defect while silently leaving three more rows with the proven-identical defect, uncalled-out. That's the internal inconsistency the extra check was checking for, and it's present.
+>
+> 2. **Minor — DECISIONS.md reshape doesn't hit a clean two-dash/three-segment split.** Counting em-dashes per entry: line 5 has 3 (→ 4 apparent fields), line 6 has 4 (→ 5 apparent fields), versus the template's exact `DATE — CHOICE — WHY` (2 dashes) at `Agent-Engineering/templates/repo/work/DECISIONS.md.template:4`, and versus the fix's own new line 7, which uses exactly 2 real structural dashes (the other two dashes on that line are inside a backtick-quoted illustration of the shape, not delimiters). Content is intact and the "Why:" label is gone, but the entries still don't parse as a clean three-field record — an extra internal em-dash is used as ordinary prose punctuation inside what should be a single CHOICE or WHY segment. Not blocking; flagged for optional cleanup.
+
+### Step 1 — fix round 2 re-review (fresh re-reviewer, sonnet)
+
+**Verdict — Fix round: All findings addressed, no new Critical/Important
+breakage.** Verbatim:
+
+> **Finding verdict: ADDRESSED.** All four rows now carry the identical fix pattern applied to F01-F06/F10 in round 1: every parenthetical/prose splice is gone from `verification`, relocated verbatim into `behavior`. Confirmed both structurally (diff review) and empirically:
+>
+> ```
+> f07.sh: PARSE OK  — grep -q 'exception to Global' skills/designing-consistently/SKILL.md
+> f08.sh: PARSE OK  — ! git grep -n 'Context-Engineering|context-lint' -- skills/designing-consistently skills/extracting-design-md README.md
+> f09.sh: PARSE OK  — node .../Agent-Engineering/scripts/agent-lint.mjs .
+> f11.sh: PARSE OK  — node .../design-md-gen.mjs ... --target cssvars && node .../agent-lint.mjs . && [ -z "$(git -C ... status --porcelain)" ]
+> ```
+> `feature_list.json` also parses as valid JSON (`node -e "JSON.parse(...)"`, 11 rows) and the working tree already matches the diff's post-image exactly (`feature_list.json:46-47,53-54,60-61,74-75`).
+>
+> **Ruling A** — ADDRESSED. `DECISIONS.md:8` records the ruling as a new dated entry with exactly 2 em-dashes (clean `date — choice — why`, verified by `grep -o` count), naming that F07's pasteability break was never itself deferred (only the eval-01.md content-judgment Minor was). F07's citation was relocated, not dropped.
+>
+> **Ruling B** — ADDRESSED. F09 (`feature_list.json:61`) is now the bare `agent-lint.mjs .` invocation — no `exits 0` argv pollution, its own exit status is literally the answer. F11 (`feature_list.json:75`) is three real `&&`-chained invocations, the third being an actual `[ -z "$(git -C ... status --porcelain)" ]` test whose exit status genuinely encodes emptiness — not the old "plus ... is empty" prose. Both citations preserved into `behavior` (`feature_list.json:60,74`).
+>
+> **Ruling C** — ADDRESSED for the hard constraint: `DECISIONS.md:5-6` are byte-identical to before this round (unchanged context in the diff hunk `@@ -5,3 +5,5 @@`), and still carry the flagged em-dash-count issue — confirming they were genuinely left alone, not silently reformatted. One caveat: the round also appended a new `DECISIONS.md:9` entry documenting the deferral, when the ruling said it "should only be noted in PROGRESS.md." This doesn't touch the protected lines and follows the file's own established convention, so I don't read it as the "editing them" scope violation the ruling warned about — but it is a small deviation from "only," noted below rather than treated as blocking.
+>
+> **PROGRESS.md correction** — ADDRESSED. `PROGRESS.md:61-62` (the wrong round-1 claim) is left in place for history, immediately followed by `PROGRESS.md:64-68`: "**Correction (round 2):** the line above was wrong. Only F07 was actually deferred... F08, F09 and F11 carried the identical... defect... and were left broken by mistake, uncalled-out." The record no longer carries the false claim uncorrected.
+>
+> ### New breakage in the fix diff
+> None Critical/Important. Minor: `DECISIONS.md:9` adds a Ruling-C entry to the decisions log in addition to `PROGRESS.md`, slightly exceeding the "only... PROGRESS.md" instruction — non-blocking, causes no harm, doesn't touch the protected lines.
+>
+> ### Out-of-scope observations
+> `DECISIONS.md:7` (the round-1-reshaped third entry) carries the same em-dash-count characteristic (4 em-dashes) as lines 5-6, but wasn't named in Ruling C's scope. Non-blocking, leave for work-verify's triage alongside the named lines.
+
+**Step 1 closed: Approved after 2 fix rounds (cap 5, not reached).**
+Controller independently re-ran `bash -n` over all eleven `verification`
+strings extracted from the committed file: 11/11 PARSE OK.
+
+### Deferred to work-verify triage (step 1)
+
+- `DECISIONS.md:5-7` — entries use extra internal em-dashes as prose
+  punctuation, so they do not split cleanly into the template's three
+  `DATE — CHOICE — WHY` fields. Content intact; `agent-lint` only checks the
+  date prefix. Raised as Minor by the round-1 re-review and extended to line 7
+  by the round-2 re-review's out-of-scope observation.
+- `DECISIONS.md:9` — Ruling C was logged in `DECISIONS.md` as well as
+  `PROGRESS.md`, a small deviation from that ruling's "only ... PROGRESS.md".
+  Judged non-blocking by the round-2 re-review; it follows the file's own
+  convention that every controller ruling is logged there.
+- `feature_list.json` F07 — whether `eval-01.md` actually exercises the
+  undeclared-contradiction-is-drift case is a content judgment, not something
+  its `grep -q 'exception to Global'` check can prove. Named in `behavior` as
+  a work-verify triage item.
+
 ## In progress
 
 ## Tried and failed
