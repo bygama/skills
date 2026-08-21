@@ -393,6 +393,87 @@ strings extracted from the committed file: 11/11 PARSE OK.
   its `grep -q 'exception to Global'` check can prove. Named in `behavior` as
   a work-verify triage item.
 
+### Step 2 — step review (fresh reviewer, sonnet)
+
+**Spec compliance:** ❌ Issues found — `baseline-designing-consistently.md:26-32`, Misunderstood:
+the preamble's fence-attribution claim misrepresents Step 1's transcript by omission.
+
+**Assessment — Step quality: Needs fixes.** Reasoning, verbatim: "The transcript handling,
+acceptance criterion, and controller-addenda scoping are all clean; the one real defect is that
+the preamble's fence-attribution bullet quietly narrows 'core findings' to exclude a sub-finding
+in Step 1 that the transcript itself attributes partly to the read-only fence, then states a
+broader, unqualified 'not... artifacts of the fence' claim that doesn't hold for that
+sub-finding — a framing gap that could steer PLAN step 4's reconciliation of SPEC §5's first
+prediction the wrong way."
+
+Findings, verbatim:
+
+> #### Critical (Must Fix)
+> None.
+>
+> #### Important (Should Fix)
+> - `baseline-designing-consistently.md:21-32` (the "one constraint that shaped the run" bullet) vs. `:44` (Step 1, "Where this step failed"). The bullet claims read-only "does **not** affect Steps 1, 2, or 4's core findings," and defines those "core findings" only as the three absence facts (no DESIGN.md, no `## Decisions`, no tokens/generator/lint script) — then generalizes past its own careful scoping with "Do not read those three steps' failures as artifacts of the fence" (plural, unqualified "failures," not "core findings"). But Step 1 reports a second, distinct failure the bullet never mentions: the skill's fallback ("offer to instantiate... DESIGN.md.template") could not be carried out, and the runner gives two causes for that, in its own words — "the template source is outside my scope fence, **and even if it weren't, the repo is read-only so I could not create the file regardless**." That second clause is exactly a read-only-caused failure inside Step 1, and the preamble's blanket "does not affect Step 1" / "not... artifacts of the fence" statement doesn't disclose that it's silently excluding this sub-finding under the narrower "core findings" label.
+>   Why it matters: SPEC §5's first recorded prediction is "step 1 offers to instantiate a DESIGN.md," and PLAN step 4 reconciles that prediction against exactly this file. If step 4 trusts the preamble's blanket claim at face value, it will treat Step 1's failure-to-offer as a clean, fence-independent signal — when the runner's own words attribute part of that failure to the read-only fence. That risks step 4 landing on the wrong verdict (confirmed/contradicted/unobserved) for a prediction the whole evidence method (SPEC §5) was built to test honestly.
+>   Contrast: I checked the identical question for Step 4, since the review brief asked for both. Step 4's transcript (line ~154) says "even if DESIGN.md had existed, I made no file changes this run, so nothing needed gating on disk either way — but structurally, the gate itself had no file to gate against, **independent of the read-only rule**." The preamble's claim for Step 4 tracks this correctly — the runner itself disentangles the two causes and confirms the core finding is fence-independent. Step 1's transcript does the opposite: it entangles the two causes for its second finding, and the preamble erases that entanglement rather than surfacing it.
+>   How to fix: narrow the "does not affect" sentence to scope explicitly to the absence facts only (e.g., "the *absence* facts above are fence-independent"), and add one clause acknowledging that Step 1's offer-to-instantiate fallback was reported as blocked in part by the read-only constraint, leaving the reconciliation itself to PLAN step 4. This is a framing fix only — no transcript edits needed.
+>
+> #### Minor (Nice to Have)
+> - `baseline-designing-consistently.md:11` ("verified byte-identical to this worktree's `skills/designing-consistently/SKILL.md` **before the run**") vs. `PROGRESS.md`'s own account of this step, which says the `diff` was run "before writing this file" / "at transcription time" — i.e., after the cold run, not necessarily before it started. The underlying fact (byte-identical) is true either way and nothing turns on it, but the preamble's wording claims a verification timing that doesn't match the implementer's own described sequence. Reword to "verified byte-identical at transcription time" or similar.
+
+Controller response: the Important finding went into fix round 1. The Minor was pulled in with it
+(a false claim about when a verification happened, in the same paragraph already being edited).
+The controller also supplied a fourth controller-verified addendum it had checked directly — that
+the skill's cited `Context-Engineering templates/repo/DESIGN.md.template` does not resolve
+anywhere on the machine's work-repos folder — because it de-confounds the very finding under
+dispute and PLAN step 4 would otherwise have to guess at it.
+
+### Step 2 — fix round 1 re-review (fresh re-reviewer, sonnet, third seat — see the seat-failure note below)
+
+**Verdict — Fix round: All findings addressed, no new Critical/Important breakage.** Verbatim:
+
+> ### Finding verdicts
+>
+> 1. **Important — preamble's fence-attribution bullet erases an entanglement in Step 1.** ADDRESSED. `work/design-skills-at-scale/baseline-designing-consistently.md:27-40`. The unqualified, plural closer ("Do not read those three steps' failures as artifacts of the fence...") is gone entirely. The rewrite (a) scopes the fence-independence claim explicitly to "the *absence facts* in Steps 1, 2, and 4" (line 28) rather than "those three steps' failures" wholesale; (b) names the second Step 1 failure concretely — "the runner could not carry out the skill's own fallback ... and even if it weren't, the repo is read-only so I could not create the file regardless" (lines 32-37), quoting the runner's own words verbatim, matching the transcript at `baseline-designing-consistently.md:52`; (c) states the entanglement plainly ("a read-only-caused failure sitting inside Step 1, entangled with the fence-independent absence facts rather than separate from them," lines 37-38) without resolving it; (d) explicitly defers: "Whether and how that entanglement bears on SPEC §5's first recorded prediction is left to PLAN step 4's reconciliation, not decided here" (lines 38-40). This clears the over-correction bar too — it names SPEC §5 only to say the question isn't answered here, it doesn't answer it. A reader who has not parsed the transcript closely would still catch the entanglement from this bullet alone. Scope fence: held — this edit is entirely within the preamble blockquote (before `## Step 1` at line 42), not inside the verbatim transcript region.
+>
+> 2. **Minor — false claim about verification timing.** ADDRESSED. `baseline-designing-consistently.md:9-15`. Old text claimed the copy was "verified byte-identical ... before the run" without attribution. New text splits it correctly by party and timing: "The controller verified this copy byte-identical ... before dispatching the cold runner; the implementer transcribing this file independently re-verified the same byte-identity at transcription time, after the run." This matches the ground truth given to the implementer and the implementer's own described sequence — no sequence is asserted that either party didn't actually observe. Scope fence: held — preamble-only edit, above `## Step 1`.
+>
+> 3. **Addendum 4 required.** ADDRESSED. `baseline-designing-consistently.md:206-212`, under `## Controller-verified addenda`. States the fact set essentially verbatim as specified (skill's cited path, depth-2 search of the work-repos folder returning nothing, the three specific candidate paths failing to resolve, and the actual asset's location/size at `Agent-Engineering/templates/repo/DESIGN.md.template`, 789 bytes) and stops — no clause draws a conclusion about what it means for Step 1 or SPEC §5; PROGRESS.md's own note about the addendum ("PLAN step 4 owns what it means") is changelog prose, not part of the addendum text itself. Scope fence: held.
+>
+> **Scope fence overall:** held. Comparing the diff hunks against the file's actual section boundaries: both preamble edits land before the `## Step 1` heading (line 42), and the addendum edit lands after `## What I would have committed` (ends line 180) inside `## Controller-verified addenda`. Nothing between `## Step 1` and `## What I would have committed` (lines 42-180) is touched by this diff — the CJK-note line the controller already flagged as the sole prior alteration is unchanged here too. `SPEC.md` and `PLAN.md` do not appear in the diff at all.
+>
+> ### New breakage in the fix diff
+> None. (One trivial, non-blocking prose wrinkle noted below — not a break of any finding or fact.)
+>
+> ### Out-of-scope observations
+> - `baseline-designing-consistently.md:33-36`: the "two causes" sentence paraphrases the first cause ("the template source being outside its scope fence") but direct-quotes the second ("and even if it weren't..."), an asymmetric construction with a straight quote opening mid-sentence after an em-dash. Reads slightly awkwardly but is not a factual error, doesn't misquote anything, and doesn't affect the finding's substance. Non-blocking, not requiring a further round.
+>
+> ### Verdict
+> **Fix round:** All findings addressed, no new Critical/Important breakage.
+
+Controller cross-check, run independently of the re-review: a character-level diff of the
+transcript region against the original cold-runner report shows exactly one altered line — the one
+carrying the instructed editorial note on the stray CJK character — and nothing else.
+
+**Step 2 closed: Approved after 1 fix round (cap 5, not reached).**
+
+#### Seat-failure note (recorded because the rung's evidence depends on it)
+
+The step-2 fix-round re-review took three dispatched seats to produce a retrievable verdict. The
+first two (`sonnet`, then `opus`) each ran and then went idle repeatedly without their report ever
+reaching the controller — three empty idle notifications from the first, three from the second,
+across five explicit resend requests using two different phrasings. No refusal was observed: the
+tool accepted every dispatch and the agents ran; the report text simply never arrived. The third
+seat was dispatched with the delivery method changed — write the verdict to a scratch file, reply
+only `DONE` — and its verdict arrived intact on the first attempt. That is the verdict recorded
+above. Every later review seat on this lane uses file delivery for the same reason.
+
+### Deferred to work-verify triage (step 2)
+
+- `baseline-designing-consistently.md:33-36` — the "two causes" sentence paraphrases the first
+  cause and direct-quotes the second, an asymmetric construction that reads awkwardly. Not a
+  factual error and not a misquote. Raised by the round-1 re-review as a non-blocking
+  out-of-scope observation.
+
 ## In progress
 
 ## Tried and failed
