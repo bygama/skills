@@ -1280,6 +1280,282 @@
   Files changed: `skills/extracting-design-md/evals/eval-02.md`,
   `work/design-skills-at-scale/PROGRESS.md` (this entry).
 
+- 2026-08-20 — Step 7 (rewrite `skills/designing-consistently/SKILL.md` to the five evals).
+  One file rewritten end to end, 67 lines → 212. Nothing else touched: no eval file, no
+  `SPEC.md`, no `PLAN.md`, no `feature_list.json`, not the other skill's `SKILL.md`, and zero
+  writes to the Pegasuz checkout — `git status --porcelain` showed
+  `M skills/designing-consistently/SKILL.md` and nothing else before this entry was appended.
+
+  Per the owner instruction of 2026-08-20 recorded below under `## Reviews`, no per-step
+  reviewer was dispatched and no subagent of any kind was spawned. What stands in its place is
+  the box-by-box walk further down: every expected-behavior box of all five evals in
+  `skills/designing-consistently/evals/`, checked against the rewritten text with the line that
+  satisfies it named. Stated plainly so step 11 reads it correctly: this is a **text-level**
+  walk — the rewritten skill was not executed against a repo in this step, so the RED→GREEN
+  claims below mean "the text now carries what the box requires", not "a run was observed
+  passing it". The live proving run is PLAN step 10; the fresh-context review is step 11's.
+
+  **The acceptance target was the evals, not SPEC prose** (PLAN `## Interfaces between steps`).
+  All five evals were read first; SPEC §3.1-§3.6, including the two dated step-4 amendment
+  notes, was read as the design behind them. No case arose where an eval box and SPEC prose
+  pulled apart — they agree everywhere this rewrite touches.
+
+  **What the rewrite does, step by step.**
+
+  - **Step 1 `Locate` → `Discover what governs`** (`SKILL.md:33-72`). Produces a *written ranked
+    inventory* of what already governs the touched surfaces, from token definitions in
+    stylesheets, the app's own DESIGN.md if it has one, the repo's agent context files
+    (`AGENTS.md` gotchas), prose design docs, dated owner decisions left inline in source
+    comments, and the shared components the surfaces already use. SPEC §3.2's four-rank
+    source-trust table is carried (`:44-49`) with its consequences as bullets: nothing discovered
+    is emitted confirmed, and which surfaces are the reference is itself an open question when
+    nobody designated one (`:51-55`); coverage before convention, frequency breaks ties and never
+    promotes (`:56-60`); an unresolvable pointer is reported unresolved, never the standing line
+    by proxy (`:61-63`); the app's own DESIGN.md is the record while any *other* design doc found
+    in the repo is rank 3 (`:64-66`); instantiating is the last option, never the first answer,
+    and whatever it writes records the discovered system as `[provisional]` (`:67-70`). SPEC
+    §3.2's closing line survives as its own paragraph: "Finding a file is not evidence that it
+    governs" (`:72`).
+
+  - **Step 2 `Read` → `Read the slice`** (`SKILL.md:74-121`). The slice is exactly three reads in
+    order — `### Global` both sub-blocks first, then the touched page's own entries, then the 2-3
+    sibling pages the surface must match — plus the frontmatter tokens the work needs, and then
+    "Stop there" (`:88`). Working through the whole `## Decisions` section is called out as
+    failing the step as surely as skipping `### Global`, with the scale reason given. A fenced
+    block shows the exact addressing (`:95-106`); the prose after it fixes `### Global` as the
+    first section under `## Decisions`, the `[provisional]` marker's position after the date, and
+    where module names come from (declared navigation source → route tree → ask, SPEC §3.3). SPEC
+    §3.4's precedence rules follow (`:115-121`): the specific wins only with a declared
+    `exception to Global/<block>`, otherwise it is drift and step 4 flags it; provisional never
+    beats confirmed; confirmed-vs-confirmed with no declared exception stops and asks; an
+    exception is scoped to the surface that declares it; and silence is not freedom — a page whose
+    own entries say nothing about a point is governed by the global on it.
+
+  - **Step 3 `Build`** (`SKILL.md:123-135`). Substance unchanged — generated tokens never raw
+    values, reuse before invention, new patterns born tokenized through frontmatter, the
+    nudge-vs-escape line — plus SPEC §3.5's addition: a **confirmed** entry the work conflicts
+    with is renegotiated with the owner; a **`[provisional]`** entry the work conflicts with is
+    evidence, not a violation — build the better thing and carry it to step 4, which demotes it.
+    "The work does not stop to renegotiate a candidate."
+
+  - **Step 4 `Record` → `Record + repair (gate)`** (`SKILL.md:137-179`). The gate now has three
+    limbs, stated up front: an unrecorded decision, a `[provisional]` entry the work touched
+    still sitting as it was, or an unflagged contradiction the work exposed — "Appending today's
+    decision satisfies only the first." Then *Record* (one line, `- YYYY-MM-DD — <decision>`,
+    under `### <module>` → `#### <route> — <page>`, keeping the recordable-means list and the
+    honoring-does-not-satisfy rule), *Repair status* (promote in place — drop marker, re-date —
+    as the earned-by-work channel needing no reference surface and no owner reply, with the
+    discovery channel named as the different one; demote — corrected entry plus one line on what
+    beat it, removal-recorded allowed because provisional entries are exempt from
+    never-silently-drop), and *Repair scope* (escalate on the two-or-more-module trigger into
+    `#### Sistema` for values / `#### Patrones` for form and behavior, rewritten as a rule naming
+    no route, status carried up unchanged; narrow on an owner-confirmed contradiction; flag drift
+    on an undeclared contradiction of a global). Closing line: done is reported only once the gate
+    is clear, and the report names the entries recorded and repaired.
+
+  - **Step 5 `Verify`** (`SKILL.md:181-184`). Unchanged in substance, repointed at the live
+    tooling: `design-md-gen` regenerates and `agent-lint`'s design checks are the gate. No new
+    `Context-Engineering` or `context-lint` string was written — PLAN step 9 owns that sweep, and
+    this file now contains neither string.
+
+  - **Red flags** (`SKILL.md:202-212`). New table. Row 1 is the required flag, "I found a design
+    doc, so I know the system" → "A file's existence is not evidence that it governs. Unknown
+    authorship, unknown currency — rank 3, `[provisional]`, until the owner or a reference surface
+    says otherwise." Six further rows cover the failure this lane measured (no DESIGN.md read as
+    no system), the shared-component trap, the read-everything answer, the silence-is-freedom
+    answer, the append-and-call-it-done answer, and the two the old file carried as a judgment
+    note.
+
+  - **Frontmatter `description` widened**, because the skill's job widened: it now stands alone
+    without `extracting-design-md` having run, and discovers rather than requiring a DESIGN.md to
+    exist. It states discovery-when-no-DESIGN.md, the bounded slice however large the app is, and
+    repair; its triggers now include "any repo, whether its system lives in a DESIGN.md or only in
+    tokens, context-file gotchas and prose docs" and "when an app has too many surfaces to read
+    its whole decision log in one session", keeping the three original triggers. Third person
+    throughout. The description is this repo's stated discovery interface, so the widening is
+    load-bearing. `README.md`'s row for this skill still quotes the OLD description — PLAN step 9
+    owns that refresh and this step deliberately did not touch it.
+
+  **Box-by-box walk — all five evals.**
+
+  `eval-01.md` — the repair gate (RED today on boxes 1-2, with 3-4 behind them):
+
+  1. *Promote the provisional radius entry, drop marker, re-date in place; earned-by-work
+     channel, no reference surface and no owner reply needed.* → `SKILL.md:153-157`, the
+     **Promote** bullet, which states the move ("drop the marker and re-date the entry to today")
+     and the channel distinction the box spells out ("This is the earned-by-work channel; it
+     needs no reference surface and no owner reply. (Confirming something merely *discovered* is
+     the other channel, and that one does need the owner or a reference surface.)"). RED→GREEN:
+     `promote` occurred zero times in the old file.
+  2. *Demote the contradicted provisional: corrected entry plus one line on what beat it;
+     removal-recorded permitted; contradicting a provisional is evidence, not a violation, and
+     the work does not stop to renegotiate.* → `SKILL.md:158-162` for the demotion mechanics,
+     including "The corrected entry may be its removal, recorded, when a confirmed entry already
+     covers the surface — provisional entries are exempt from the never-silently-drop rule that
+     binds confirmed ones"; and `SKILL.md:132-135` for the second half the eval's RED section
+     names explicitly ("Box 2 also fails in the opposite direction — step 3 makes any conflict a
+     stop-and-ask"): step 3 now splits confirmed from provisional and says the work does not stop
+     to renegotiate a candidate. RED→GREEN on both halves.
+  3. *The module entry's undeclared contradiction of `### Global` / `#### Patrones` is drift, not
+     a local override; provisional never beats confirmed; the exception form.* →
+     `SKILL.md:115-121` (precedence, carrying the exact
+     `exception to Global/<block>: <what> — <why>` form and "it is not a local override") and
+     `SKILL.md:173-176` (**Flag drift** as a gate action, with both dispositions: declare the
+     exception with the owner, or correct the entry to the global).
+  4. *Escalate the shared-chrome decision to `### Global` / `#### Patrones` now that it stands in
+     two modules, carrying `[provisional]` up unchanged.* → `SKILL.md:166-170`, the **Escalate**
+     bullet: the two-or-more-modules trigger, the `#### Sistema` / `#### Patrones` routing (this
+     decision is form and behavior, so `#### Patrones`), the rewrite-as-a-rule requirement, and
+     "It carries its status up unchanged — escalation moves scope, it does not confirm."
+  5. *Not done while a provisional entry the work touched still sits as it was; appending today's
+     decision does not satisfy the gate on its own.* → `SKILL.md:137-140`, the gate's three limbs
+     plus "Appending today's decision satisfies only the first", and `SKILL.md:178-179` (done is
+     reported only once the gate is clear). Reinforced by the red-flag row at `:211`.
+
+  `eval-02.md` — new element consumes the system (GREEN today; the job was not to break it):
+
+  1. *Consumes token variables, zero raw hex, px radii or ad hoc padding.* → `SKILL.md:123-124`,
+     "Styles come from the generated `design.tokens.css`, never raw values", with the
+     nudge-vs-escape line at `:126-129` fixing where the boundary sits.
+  2. *No parallel button style while the existing component fits.* → `SKILL.md:124-125`, "Reuse
+     an existing component pattern when one fits".
+  3. *A genuinely new variant is born tokenized — frontmatter, then regenerate.* →
+     `SKILL.md:125-126`, unchanged in substance, with the generator named as `design-md-gen`
+     rather than a bare script path. Step 2's slice does not endanger this eval: its fixture has
+     frontmatter and a current generated stylesheet, and a file with no `### Global` or module
+     sections simply yields empty first two reads.
+
+  `eval-03.md` — unrecorded decision blocks completion (GREEN today, but its box 2 was rewritten
+  at step 5's fix round to the module architecture, so this rewrite had to meet the new shape):
+
+  1. *Completion is NOT claimed while the decision is unrecorded.* → `SKILL.md:137-140`.
+  2. *Appends `- YYYY-MM-DD — <decision>` (today) under `### catalogo` →
+     `#### /catalogo/inventario — Inventario`, one line.* → `SKILL.md:142-143`: "Each new decision
+     is one line, `- YYYY-MM-DD — <decision>`, under its `### <module>` → `#### <route> — <page>`"
+     — the eval's own arrow notation and the exact shape step 5's fix round put in the box. The
+     old file's flat `### <surface>` addressing is gone from the file entirely.
+  3. *Only then reports done, mentioning the recorded entry.* → `SKILL.md:178-179`, added
+     deliberately for this box: "Done is reported only once the gate is clear, and the report
+     names the entries recorded and the entries repaired." The old file implied the ordering but
+     never asked for the entry to be named; the box was passing on inference and now passes on
+     text.
+
+  `eval-04.md` — discovery when no DESIGN.md exists (RED today on box 1, boxes 2-4 with it; box 5
+  is a regression guard per the controller's ruling):
+
+  1. *Step 1 returns a ranked inventory of what already governs — tokens in code, the `AGENTS.md`
+     gotcha, the prose docs, the inline dated owner decisions — instead of stopping at "no
+     DESIGN.md".* → `SKILL.md:33-42`: "Produce a written inventory of what already governs the
+     surfaces about to be touched, ranked by who backs each source", "A missing DESIGN.md ends
+     nothing; the system is somewhere else", and a where-to-look list naming each of the four
+     source kinds the fixture plants, plus the shared components. RED→GREEN: the old step 1 was
+     "Locate … Missing? Offer to instantiate it first", which the cold baseline shows dead-ending.
+  2. *Ranked by source trust, not by how official a source looks: reference-surface code would
+     confirm, the gotcha and the prose docs are candidates, frequency is a tie-break only.* →
+     `SKILL.md:34-35` ("never by how official the file looks") and the four-rank table at
+     `:44-49`, whose rank-4 row reads "tie-break only, never a source of truth". RED→GREEN:
+     `rank`, `trust`, `reference surface` and `provisional` occurred zero times in the old file.
+  3. *Nothing discovered is emitted confirmed; with no reference surface designated everything
+     enters `[provisional]` and which surfaces are the reference is an open question for the
+     owner; the two unresolvable pointers are reported unresolved, not taken as the standing line
+     by proxy.* → `SKILL.md:51-55` for the first two clauses (including "When nobody has
+     designated one — the usual case") and `SKILL.md:61-63` for the third, in the eval's own
+     words: "not the standing line by proxy".
+  4. *The shared header is not adopted on the strength of existing and looking official: its
+     coverage is checked across the surfaces it would apply to (4 of 15) and it is recorded as an
+     open question.* → `SKILL.md:56-60`, "Coverage before convention", carrying the fixture's own
+     ratio as the worked case: "Four of fifteen is a split, not a rule: record it as an open
+     question, not as a standing decision. Frequency breaks ties between candidates; it never
+     promotes one." The red-flag row at `:208` repeats it as a rationalization.
+  5. *No instantiation proposed while the system is discoverable; instantiating is the last
+     option; what it writes records the discovered system as `[provisional]`.* → `SKILL.md:67-70`,
+     all three clauses. Recorded as the eval itself records it: a regression guard, not this
+     eval's RED.
+
+  `eval-05.md` — bounded slice at 157 surfaces (RED today on box 1, with boxes 2 and 4 behind it):
+
+  1. *`### Global` read first — both sub-blocks — before anything module-specific, even though the
+     query names one page and no global entry names a route.* → `SKILL.md:77-85`: item 1 of the
+     ordered slice, "**both** sub-blocks", with `#### Sistema` and `#### Patrones` defined,
+     "Always, whatever page is being touched, before anything module-specific", and the reason the
+     entry does not look relevant ("A global is written as a rule and names no route, which is
+     exactly why it does not look relevant and is" — SPEC §3.4's guard rail read from the reader's
+     side). RED→GREEN: `Global` occurred zero times in the old file.
+  2. *The touched module is read as the touched page's own entries plus the 2-3 sibling pages the
+     surface must match, not every page the module holds.* → `SKILL.md:86-87`, items 2 and 3 of
+     the slice. RED→GREEN: `sibling` occurred zero times in the old file.
+  3. *The other 12 modules and ~145 pages are not read and nothing from them is cited; a
+     whole-section read fails this box as surely as skipping `### Global`.* → `SKILL.md:88-94`:
+     "Stop there. The other modules are outside the slice: not read, not cited", followed by the
+     symmetric failure statement in the box's own terms and the scale reason behind it.
+  4. *The delivered header follows the `#### Patrones` entry and the sibling's back-link
+     precedent; an answer built from the touched page's own 3 entries alone fails.* → the slice
+     order at `:77-87` puts both in front of the work; `SKILL.md:119-121` closes the gap the
+     fixture is built on ("silence is not freedom: a page whose own entries say nothing about a
+     point is governed by the global on it, not exempt from it" — added deliberately for this
+     box); step 5's re-check at `:183-184` re-reads `### Global` first against each touched
+     surface; and the red-flag row at `:210` names the exact wrong answer.
+  5. *An `exception to Global/<block>` declared in another module is not carried over as
+     precedent.* → `SKILL.md:118-119`: "An exception declared on another surface is scoped to that
+     surface and is never precedent here." Read as the eval says to read it — together with box 3,
+     since a run that holds to the slice never reaches that module.
+
+  **Constraints checked.** 212 lines (<500; the acceptance command is below). Runtime neutral:
+  `grep -in 'context-engineering|context-lint|vue|pegasuz|react|tailwind|navConfig|nueva-linea'`
+  over the file returns nothing (exit 1), and the one framework-flavoured string the old file
+  carried — a `text-[13px]` utility-class example — was rephrased to "a 13px type size dropped
+  inline" rather than carried forward. No machine-anchored path of any form: the `machine-path`
+  check scans `skills/` and reported nothing. No reference files added, so
+  references-one-level-deep holds trivially. Frontmatter `description` is third person.
+
+  **Interface with step 8 — the heading shape this step settled on**, stated so step 8 can match
+  it exactly (it is `SKILL.md:95-113` in the file):
+
+  ```
+  ## Decisions
+  ### Global
+  #### Sistema
+  - 2026-06-02 — [provisional] cards use radius 14px; 10px is the migration target — 984 uses against 751, both in non-reference code
+  #### Patrones
+  - 2026-05-14 — detail surfaces open with the shared header: back link, then title, then actions
+  ### <module>
+  #### <route> — <page>
+  - 2026-07-11 — <decision>
+  - 2026-07-08 — exception to Global/Patrones: <what> — <why>
+  ```
+
+  Five rules travel with it: `### Global` is always the FIRST section under `## Decisions`; it has
+  exactly the two sub-blocks `#### Sistema` (values and scales — tokens, radii, type, modes, the
+  reference-surface declaration) and `#### Patrones` (form and behavior crossing modules); every
+  module is a `### <module>` section holding `#### <route> — <page>` subsections; every entry
+  keeps the lint's `- YYYY-MM-DD — ` prefix with `[provisional]` inside the entry text immediately
+  after the date; and the exception form is
+  `- YYYY-MM-DD — exception to Global/<block>: <what> — <why>`. Module names come from the app's
+  own declared navigation source when it has one, else the route tree, else ask. This is the shape
+  the step-5 eval fixtures already assume, so reader and writer agree.
+
+  Acceptance 1 (path resolved per `DECISIONS.md` ruling 1):
+  `node /c/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .` exits 0:
+
+  ```
+  agent-lint C:\Users\mateo\orca\workspaces\skills\design-skills-at-scale
+    LOW    AGENTS.md:15  ../Agent-Engineering/scripts/agent-lint.mjs escapes the repo — context-dependent, true only where that path exists outside it (a sibling checkout, CI)  [cmd-drift]
+  0 high, 0 medium, 1 low — PASS
+  lint exit: 0
+  ```
+
+  Only the pre-existing, expected LOW `cmd-drift` finding remains; the rewritten `SKILL.md` adds
+  no finding of its own.
+
+  Acceptance 2: `test $(wc -l < skills/designing-consistently/SKILL.md) -lt 500`:
+
+  ```
+  linecount test exit: 0 (212 lines)
+  ```
+
+  Files changed: `skills/designing-consistently/SKILL.md` (rewritten),
+  `work/design-skills-at-scale/PROGRESS.md` (this entry).
+
 ## Reviews
 
 <!-- Verbatim verdict text from every in-session review seat: the
