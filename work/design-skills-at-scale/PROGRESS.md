@@ -902,6 +902,103 @@
   `skills/designing-consistently/evals/eval-01.md` (rewritten),
   `work/design-skills-at-scale/PROGRESS.md` (this entry).
 
+- 2026-08-20 — Step 5 fix round 1 (the eval-03 ruling + four Minors). Five edits across four
+  eval files, all inside the stated fence: no `SKILL.md`, no `eval-02.md`, no `SPEC.md`, no
+  `PLAN.md`, no `feature_list.json`, zero writes to the Pegasuz checkout. Those four eval files
+  are the only files under `skills/` this round changed — see the commit-history flag below for
+  where they landed.
+
+  **1. The ruling on the flagged item — `eval-03.md` box 2 and its fixture line.** Rewritten to
+  SPEC §3.3's architecture: the fixture now designs the empty state for "the inventory page of
+  the `catalogo` module — `### catalogo` → `#### /catalogo/inventario — Inventario`", and box 2
+  appends the dated line "under `### catalogo` → `#### /catalogo/inventario — Inventario`". The
+  eval's subject is untouched: it still tests that an unrecorded decision blocks completion,
+  same query, same three boxes in the same order, boxes 1 and 3 byte-identical. Only the heading
+  shape it addresses changed — the correction the ruling asked for, not a repurposing.
+  `eval-02.md` was not touched.
+
+  **2. `eval-01.md` box 1 — promotion channel made explicit.** Added: "Promotion here is the
+  earned-by-work channel, so no reference surface and no owner reply is needed for it; needing a
+  reference surface or the owner to confirm governs **discovery**, which is a different
+  channel." Written self-containedly rather than as a "§3.1 / §3.2" citation, since the eval
+  ships in `skills/` where a lane-file section number resolves to nothing; the resolution the
+  reviewer asked for is stated in full, so a step-7 author does not have to re-derive it.
+
+  **3. `eval-01.md` box 2 — the two-dispositions ambiguity closed.** Added: "The corrected entry
+  may be its removal, recorded — the confirmed global already covers the surface, and a
+  provisional entry is exempt from never-silently-drop", and a closing clause, "This box and the
+  next describe one disposition of that entry, not two." A step-7 rewrite that deletes the
+  redundant module entry and records why now passes box 2 instead of failing it on wording.
+
+  **4. `eval-04.md` box 3 — aligned with box 4 and with the fixture.** "and the owner is asked
+  which surfaces are the reference" became "and which surfaces are the reference is recorded as
+  an open question for the owner", which is box 4's disposition and is consistent with the
+  fixture's "the owner is not available mid-run".
+
+  **5. `eval-05.md` box 5 — its vacuity disclosed in the file.** Added to the box: "This box is
+  a second-order trap for the read-everything answer, not an independent test — a run that
+  correctly holds to the slice never reads that module, so it passes here by never seeing the
+  entry. Read a pass on this box together with box 3, never as evidence on its own." One
+  sentence was also added to that eval's `## Why this is RED today` recording that box 5 is not
+  part of its RED, so the two statements cannot drift apart.
+
+  **Re-checked every `## Why this is RED today` claim after the edits, as instructed.** The
+  three RED sections still name the same boxes and every claim in them still holds: `provisional`,
+  `promote`, `demote`, `escalat`, `Global`, `sibling`, `reference surface`, `rank` and `trust`
+  all still occur **zero** times in `skills/designing-consistently/SKILL.md` (re-counted this
+  round — the file was not touched). eval-01's RED still names boxes 1-2 and both still fail
+  today: box 1's new clause only settles *which* channel promotes, and today's skill has no
+  promotion of any kind; box 2's new "removal, recorded" alternative is still a repair move that
+  today's additive-only step 4 never makes, and step 3's stop-and-ask still halts a faithful run
+  on the provisional entry either way. eval-04's RED still names box 1, and its "boxes 2-4 fall
+  with it" still holds — box 3's rewording changed the disposition, not the fact that nothing in
+  today's skill ranks a source or marks anything provisional. eval-05's RED still names box 1,
+  now with box 5 explicitly excluded from it.
+
+  **Deferred, per the fix dispatch — recorded so work-verify's triage sees them:** Minors 1, 2,
+  5, 7 and 9, all readability / box-independence polish, none verdict-changing —
+  (1) `eval-01.md`'s forward reference to the admin fixture introduced in `eval-04.md`;
+  (2) the implicit link between the fixture's "existing card radius" and the 14px provisional;
+  (5) `eval-01.md` box 5 largely collapsing into boxes 1-2; (7) `eval-04.md` boxes 1 and 2
+  overlapping on "ranked"; (9) `eval-05.md`'s literal `<why>` placeholder in the fixture. Not
+  acted on this round.
+
+  **One thing to flag about the commit history of this round.** The four eval edits are already
+  in the tree under commit `eda82ca` ("docs(lane): record the step-5 review verdict verbatim"),
+  not under a commit of mine: that commit was made from another seat while this round's edits
+  were on disk, and it swept them in alongside the review verdict it was written for. I did not
+  rewrite it — the content is correct and committed, and rewriting another seat's commit is not
+  a call this step makes. Verified by `git diff 2543242 HEAD -- skills/designing-consistently/evals/`,
+  which shows exactly the five edits described above and nothing else. This entry is therefore
+  the only file in my own fix-round commit.
+
+  Acceptance 1: `test $(ls skills/designing-consistently/evals/*.md | wc -l) -eq 5`
+
+  ```
+  === ACCEPT 1 ===
+  5
+  ACCEPT 1 PASS (exit 0)
+  ```
+
+  Acceptance 2: `node /c/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .` exits 0:
+
+  ```
+  agent-lint C:\Users\mateo\orca\workspaces\skills\design-skills-at-scale
+    LOW    AGENTS.md:15  ../Agent-Engineering/scripts/agent-lint.mjs escapes the repo — context-dependent, true only where that path exists outside it (a sibling checkout, CI)  [cmd-drift]
+  0 high, 0 medium, 1 low — PASS
+  lint exit: 0
+  ```
+
+  Re-ran the runtime-neutrality check over all four touched eval files (drive-rooted, `/mnt/`,
+  `~/`, `/home/`, `/Users/` paths plus the framework/product/filename names the fixtures ruling
+  bars): no hits, exit 1. Only the pre-existing expected LOW `cmd-drift` finding remains.
+
+  Files changed: `skills/designing-consistently/evals/eval-01.md`,
+  `skills/designing-consistently/evals/eval-03.md`,
+  `skills/designing-consistently/evals/eval-04.md`,
+  `skills/designing-consistently/evals/eval-05.md` (all four committed inside `eda82ca`, see
+  the flag above), `work/design-skills-at-scale/PROGRESS.md` (this entry).
+
 ## Reviews
 
 <!-- Verbatim verdict text from every in-session review seat: the
