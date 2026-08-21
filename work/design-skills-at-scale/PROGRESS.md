@@ -1589,6 +1589,69 @@ repo's constraint puts eval changes before skill content.
 - `eval-04.md:38-44` boxes 1 and 2 overlap on "ranked", so they are not independently checkable.
 - `eval-05.md:33` fixture entry ends with a literal `<why>` placeholder rather than a real reason.
 
+### Step 5 — fix round 1 re-review (fresh re-reviewer, sonnet)
+
+**Verdict — Fix round: All findings addressed, no new Critical/Important breakage.**
+
+All five items ADDRESSED. The two that mattered — the ones where a faithful step-7 rewrite could
+have failed a box for the wrong reason — were checked for the opposite failure too, which is the
+adversarial move that made this re-review worth its seat:
+
+> **3. Minor 4 — `eval-01.md` boxes 2 and 3 disposition ambiguity — ADDRESSED.** … correctly permits deletion-with-record as an alternative to replace-with-correction. I checked whether this widens the box into unfalsifiability: it does not — a run that leaves the stale entry untouched still fails (neither replaced nor removed), and a run that silently deletes without recording why still fails ("recorded" is a stated requirement, not optional). The box still discriminates a correct rewrite from an incorrect one; it is tightened, not hollowed out.
+
+> **2. Minor 3 — `eval-01.md` box 1 promotion channel — ADDRESSED.** … The two SPEC clauses genuinely govern different situations, and the box now says so self-containedly rather than citing section numbers that wouldn't resolve inside a shipped `skills/` file. A step-7 author can no longer read §3.2 as overriding §3.1's promotion-by-work and fail this box for the wrong reason.
+
+> **1. `eval-03.md`'s flat heading — ADDRESSED.** … This matches SPEC §3.3's `### <module>` then `#### <route> — <page>` shape exactly. Boxes 1 and 3 are byte-identical to the pre-fix version — the eval's subject (completion blocked on an unrecorded decision) is untouched, only the heading shape addressed. `eval-02.md` confirmed untouched.
+
+> **4. Minor 6 — `eval-04.md` box 3 alignment — ADDRESSED.** … The old "the owner is asked" (which implied a live, synchronous ask the fixture rules out) is gone.
+
+> **5. Minor 8 — `eval-05.md` box 5 vacuity disclosure — ADDRESSED.** … Both statements agree; a grader now cannot mistake a vacuous pass on box 5 for evidence the skill handles exceptions correctly.
+
+**Still RED — independently re-counted, not taken on the implementer's word:**
+
+> ```
+> provisional 0 · promote 0 · demote 0 · escalat 0 · Global 0
+> sibling 0 · reference surface 0 · rank 0 · trust 0
+> ```
+> All nine are zero, matching the implementer's claim exactly.
+
+Per-file it confirmed the rewordings did not disturb the RED mechanism, and made a correct call
+about `eval-03.md`, which carries no RED section:
+
+> **eval-03.md** — has no `## Why this is RED today` section at all. `git log --diff-filter=A` shows this file originated in the original skill-authoring commit, predating the lane's steps 5-6 and the `DECISIONS.md` ruling that binds *evals written at steps 5-6* to carry an explicit RED box. It is therefore not subject to that requirement, and the fix round correctly left it without one rather than fabricating a RED claim to satisfy the letter of a rule that doesn't apply to it.
+
+**Scope fence: held.** Verified with its own path-scoped diffs that `SKILL.md`, `eval-02.md`,
+`SPEC.md`, `PLAN.md` and `feature_list.json` are all empty diffs across the range; that no
+machine-anchored path appears in the four touched eval files; and that all five deferred Minors
+were left untouched, naming each one's surviving line.
+
+**New breakage: none at Critical or Important.** One Minor observation, with the reviewer's own
+judgment that it should be left:
+
+> `eval-01.md` box 2's new "may be its removal, recorded" alternative doesn't say *where* a deletion should be recorded … This is underspecification, not a false-pass risk (a silent, unrecorded deletion still fails the box as worded), so it doesn't rise to the "widened until it cannot fail" defect class the round was checking for. Judgment call: leave as-is.
+
+**Step 5 closed: Approved, then 1 fix round (cap 5, not reached).**
+
+#### Controller error in this step, recorded because the history carries it
+
+The controller ran `git add -A` for a PROGRESS-only bookkeeping commit while the step-5 fix
+implementer held the working tree. Commit `eda82ca`, whose message says only "record the step-5
+review verdict verbatim", therefore also contains all four of that round's eval edits. Nothing was
+lost and no history was rewritten — the branch is shared — so the mis-attribution is recorded here
+and in `DECISIONS.md` instead. The implementer was told immediately so it would not read its own
+clean tree as a failed edit and redo the work, and it independently audited the range and reported
+the same thing. The controller now stages explicit paths.
+
+### Deferred to work-verify triage (step 5, carried forward)
+
+- `eval-01.md:10` forward-references the multi-module admin that eval-04 introduces.
+- `eval-01.md:27` leaves the link between "existing card radius" and the 14px provisional implicit.
+- `eval-01.md` box 5 largely collapses into boxes 1-2.
+- `eval-01.md` box 2 does not specify WHERE a recorded deletion is recorded — underspecification,
+  not a false-pass risk; the re-reviewer's judgment was to leave it.
+- `eval-04.md` boxes 1 and 2 overlap on "ranked".
+- `eval-05.md:33` fixture entry ends with a literal `<why>` placeholder.
+
 ## In progress
 
 ## Tried and failed
