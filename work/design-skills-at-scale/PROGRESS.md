@@ -1070,6 +1070,142 @@
   mis-attribution sentence added to the fix-round entry above). No eval file, no `SKILL.md`, no
   `SPEC.md`, no `PLAN.md`, no `feature_list.json`; zero writes to the Pegasuz checkout.
 
+- 2026-08-20 — Step 6 (evals for `extracting-design-md`). Wrote the two new evals and rewrote
+  `eval-01.md`, from `baseline-extracting-design-md.md` read in full plus the step-4 rulings in
+  `DECISIONS.md` and SPEC §3.6's step-4 amendment note — not from PLAN's descriptions of the
+  failures, per the PLAN's own interface note. Read step 5's five `designing-consistently` evals
+  first and followed their shape (`## Why this is RED today`, honest marking of boxes that are
+  guards rather than RED). Touched no `SKILL.md`, no `SPEC.md`, no `PLAN.md`, no
+  `feature_list.json`; made zero writes to the Pegasuz checkout (I read nothing from it this
+  step — every number below comes from the lane's baseline file). Dispatched no subagent.
+
+  **`skills/extracting-design-md/evals/eval-01.md` — rewritten.** Retitled "drift report —
+  counts measure, they do not elect". The old box 2 ("The proposed token set collapses the
+  variants (fewer gray tokens than raw gray values)") was frequency-shaped and is replaced by
+  three boxes: counts measure spread and never elect (box 3); the collapse is still proposed,
+  with every proposed token carrying `[provisional]` plus the count of what it beat and the
+  missing reference-surface designation recorded as the question that would settle them (box 4);
+  a losing variant with a written decision behind it is a competing claim, not migration debt
+  (box 5). Boxes 1 and 2 (counts + file:line evidence, ordering by spread) are the old boxes 1
+  and 3, kept verbatim in substance. Fixture rebuilt on the baseline's numbers (2009/2308/6821
+  grays across 49/39 files, one file mixing two scales, 43 raw hex over 21 distinct values;
+  1832/340/32 control radius) and made runtime-neutral — the old fixture named Tailwind, which
+  the controller's runtime-neutral-fixtures ruling forbids in `skills/`.
+
+  **RED: boxes 3, 4 and 5.** Evidence: today's step 4 is the whole criterion ("Semantic role +
+  frequency decide: the dominant or correct variant becomes the token"); in
+  `skills/extracting-design-md/SKILL.md` `provisional` and `tie-break` occur **0** times each
+  and the file's single `reference` is the path `reference/design-md.md` at line 13 (counted,
+  not asserted) — no criterion to elect on and no marker to carry doubt. Direct observation:
+  baseline `## Step 4` elected the 984-use card value over a ~751-use family "per the rule as
+  stated" while recording the loser "wasn't sloppy drift, it was a considered decision". Boxes
+  1 and 2 pass today (baseline `## Step 2`'s counts with file:line samples; `## Step 3` opens
+  "Ordering by spread (broadest first)") and are kept so the step-8 rewrite cannot answer "no
+  reference surface, so no numbers".
+
+  **`skills/extracting-design-md/evals/eval-05.md` — new: reference surfaces elect, frequency
+  only breaks ties.** Built on the fixture the step-4 reviewer asked be carried here: the card
+  role at 984 against an ~751 8px family that was a deliberate, documented decision with a
+  two-paragraph written rationale, later overridden by a newer self-declared-current document
+  without the migration completing. The owner's query designates two modules as the reference
+  surfaces and every card inside them is 8px, so reference and frequency point opposite ways.
+  The opposite-directions case is exercised too, as instructed: the modal/drawer role, where the
+  reference modules render no modal, the code says 12px at 68 uses and the newer document says
+  20px at 12 — >5:1 against the document that calls itself current.
+
+  **RED: box 1** (the card token elected from the reference surfaces at 8px despite losing 984
+  to ~751), with box 2 falling with it and box 3 alongside them. Evidence: `reference surface`
+  occurs **0** times in today's `SKILL.md`, `tie-break` **0**, `provisional` **0**; a box
+  requiring the election to come from reference surfaces cannot pass against a skill with no
+  such concept. Direct observation: baseline `## Step 4`'s card role, elected on count while the
+  run itself called it "exactly the kind of near-tie the skill would want an owner's eyes on".
+  Box 3's RED is separate and textual: the rule that run actually applied was "(a) the largest
+  live occurrence count, and (b) alignment with the codebase's own most recent self-declared
+  'source of truth' comment" — the newest document is half of today's decision rule, which is
+  exactly the authority box 3 denies it. **Stated as NOT the RED, in the eval itself:** box 4
+  (the modal role goes unelected) — the cold run reached that same disposition at the election
+  stage ("I did **not** elect a token for this role"), so a faithful run of today's skill passes
+  it there; it fails one step later, in what got emitted, and that is `eval-06`'s RED. Box 5
+  (frequency still settles the pure naming split, 447/424/22) is a guard against overcorrection
+  whose first half is already GREEN; only its `[provisional]` clause fails today.
+
+  **`skills/extracting-design-md/evals/eval-06.md` — new: provisional by default, and no token
+  without an election.** Encodes SPEC §3.6's amendment note (the parent's binding ruling) in its
+  two halves rather than paraphrasing it: boxes 1 and 2 are the role WITH a genuine but
+  unconfirmed election — control radius, 1832 against the older document's 340 — whose token
+  goes into frontmatter (the compile source) **and** gets a `[provisional]` entry under
+  `### Global` / `#### Sistema` naming the token and what it beat **with both counts**, with the
+  note's own "an entry that says only … is not enough" written into the box as a failure
+  condition. Boxes 3 and 4 are the role with NO election — modal/drawer, 68 against 12 — which
+  gets **no** frontmatter token at all plus an open-question entry carrying the role, both
+  candidates and their locations. Box 5 covers the wholesale carry-in (a config that declares
+  itself current is a candidate, not a reference surface) and box 6 the note's "mostly
+  provisional is the correct output" clause.
+
+  **RED: box 3.** Evidence, the baseline's own words: the emitted frontmatter under `## The
+  DESIGN.md I would have written` ships `radius: sheet: '20px'` unqualified, while `## Step 4`
+  of the same run states verbatim "I did **not** elect a token for this role" about that exact
+  role and records the code running 68 to 12 against it. Box 2 fails with it: `provisional`,
+  `Global` and `Sistema` occur **0** times each in today's `SKILL.md`, and the emitted
+  `## Decisions` carries its doubt in nine `###` prose sections (six headed `### Open —`) with
+  zero entries in the dated `- YYYY-MM-DD — ` form and no `### Global` heading anywhere —
+  verified by slicing that section out of the baseline and grepping it. Boxes 5 and 6 fail too
+  (all twelve evidenced type roles shipped as plain values, eleven with no election work of
+  their own; nothing in the emitted file is marked provisional). **Stated as NOT the RED, in the
+  eval itself:** box 1 (the token does reach frontmatter) passes today and is kept deliberately,
+  because holding unconfirmed tokens out of frontmatter is option C in the parent's ruling,
+  rejected there. Box 4 largely passes too — today's step 5 already says to record a
+  contradicted pattern "as an open question with both variants and their locations" — and its
+  force is standing next to box 3: that run recorded the open question **and** shipped the token
+  anyway. Box 5's last clause (the zero-use thirteenth declared role gets no token) is also
+  already GREEN in the baseline.
+
+  **Files I was told to leave alone, and the flags on them** (not rewritten — the step-5
+  precedent and the controller's own ruling on `eval-03` are why a flag beats a quiet fix):
+
+  1. **`eval-02.md` is now under-specified, though a correct step-8 rewrite still passes it.**
+     Box 1 says the consistent back button "becomes a dated `## Decisions` entry under its
+     surfaces, citing the evidence". Under SPEC §3.2 that pattern is evidenced only in
+     non-reference code, so the correct emission is a `[provisional]` entry — but the box does
+     not require the marker, so a rewrite emitting it confirmed also passes. It is not false;
+     it just stopped testing the thing that now matters. Flagged for the controller, left
+     untouched.
+  2. **`eval-04.md`'s fixture names framework-specific constructs** (`globals.css`, `@theme`,
+     `[data-theme]`), which the controller's runtime-neutral-fixtures ruling would not permit in
+     a fixture written today. That same ruling preserves this file's `## Validation log` naming
+     a real repo and PR, and the file was explicitly out of my scope. Left untouched; flagged
+     only.
+  3. **`eval-03.md`'s stale `Context-Engineering` / `context-lint` references left in place** —
+     PLAN step 9's `[batch]` sweep owns that file, per the dispatch. Not touched.
+
+  I added no `## Validation log` to any file: I ran no validation, and the precedent permits one
+  only where a run was actually logged.
+
+  Acceptance 1: `test $(ls skills/extracting-design-md/evals/*.md | wc -l) -eq 6`
+
+  ```
+  $ test $(ls skills/extracting-design-md/evals/*.md | wc -l) -eq 6
+  exit: 0
+  ```
+
+  Acceptance 2: `node /c/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .` exits 0:
+
+  ```
+  agent-lint C:\Users\mateo\orca\workspaces\skills\design-skills-at-scale
+    LOW    AGENTS.md:15  ../Agent-Engineering/scripts/agent-lint.mjs escapes the repo — context-dependent, true only where that path exists outside it (a sibling checkout, CI)  [cmd-drift]
+  0 high, 0 medium, 1 low — PASS
+  exit: 0
+  ```
+
+  Also checked before committing: no line in the three files exceeds 76 columns, and a grep for
+  framework/product/filename identities and machine-anchored path forms (drive-rooted, POSIX
+  home, WSL mount) across all three returns nothing.
+
+  Files changed: `skills/extracting-design-md/evals/eval-01.md` (rewritten),
+  `skills/extracting-design-md/evals/eval-05.md` (new),
+  `skills/extracting-design-md/evals/eval-06.md` (new),
+  `work/design-skills-at-scale/PROGRESS.md` (this entry).
+
 ## Reviews
 
 <!-- Verbatim verdict text from every in-session review seat: the
