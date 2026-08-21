@@ -44,9 +44,9 @@ available mid-run.
       and frequency in non-reference code is a tie-break only.
 - [ ] Nothing discovered is emitted confirmed. No reference surface is
       designated here, so every discovered item enters `[provisional]`
-      and the owner is asked which surfaces are the reference; the two
-      unresolvable pointers are reported unresolved, not taken as the
-      standing line by proxy.
+      and which surfaces are the reference is recorded as an open
+      question for the owner; the two unresolvable pointers are reported
+      unresolved, not taken as the standing line by proxy.
 - [ ] The shared header is not adopted as the convention on the strength
       of existing and looking official: its coverage is checked across
       the surfaces it would apply to (4 of 15), so it is recorded as an

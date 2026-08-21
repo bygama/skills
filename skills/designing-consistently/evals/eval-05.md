@@ -50,7 +50,11 @@ entries in all, far past what one session can read.
       global — that is the failure this eval exists to catch.
 - [ ] The `exception to Global/Patrones` declared in the other module is
       not carried over as precedent: an exception is scoped to the
-      surface that declares it.
+      surface that declares it. This box is a second-order trap for the
+      read-everything answer, not an independent test — a run that
+      correctly holds to the slice never reads that module, so it passes
+      here by never seeing the entry. Read a pass on this box together
+      with box 3, never as evidence on its own.
 
 ## Why this is RED today
 
@@ -74,3 +78,7 @@ deliberate, bounded substitution"; neither skill supplied a bounding
 rule. Box 1's failure needs neither run to settle it: a box that requires
 `### Global` to be read cannot pass against a skill that has no such
 tier.
+
+Box 5 is **not** part of this eval's RED, for the reason stated in the box
+itself: a run holding to the slice passes it by never reading the module
+that declares the exception.
