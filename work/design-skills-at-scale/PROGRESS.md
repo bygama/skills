@@ -1556,6 +1556,237 @@
   Files changed: `skills/designing-consistently/SKILL.md` (rewritten),
   `work/design-skills-at-scale/PROGRESS.md` (this entry).
 
+- 2026-08-20 — Step 8 (rewrite `skills/extracting-design-md/SKILL.md` to the six evals).
+  Rewritten whole, 87 → 268 lines. The acceptance target was the six eval files, not SPEC §3
+  prose (PLAN `## Interfaces between steps`); SPEC §3.1-§3.6 including the dated step-4
+  amendment note in §3.6 and the parent's two binding emission rules were read first, and where
+  a box and the prose could be read apart, the box governed.
+
+  **What changed, in the skill's own terms.** Step 4 stopped being "semantic role + frequency
+  decide" and became a four-outcome election run off the owner-designated reference surfaces,
+  with frequency demoted to a tie-break among non-reference variants that carry no design
+  question inside them. Step 1 gained SPEC §3.2's source-trust table plus the "ask which
+  surfaces are done right" question that makes rank 1 reachable at all. Step 5 gained the
+  `### Global` + module architecture, the entry rules for it, and a bounded backfill method that
+  replaces "Read each surface". Step 6 gained the frontmatter-is-the-compile-source rule and the
+  live gate names. Step 7 stopped implying this skill is `designing-consistently`'s
+  prerequisite. A `## Red flags` table was added, mirroring the sibling's, because every RED in
+  these evals is a rationalization under count pressure.
+
+  **Box-by-box walk over all six evals** (line numbers are the delivered
+  `skills/extracting-design-md/SKILL.md`):
+
+  *`eval-01.md` — counts measure, they do not elect.*
+  1. *Both families named with counts and ≥1 file:line pointer each.* → `:69-72` keeps the
+     harvest's "occurrence counts and file:line locations"; `:74-75` requires each family in the
+     report to carry "its variant count, evidence, and the surfaces it touches"; `:251-252`
+     holds every claim to its evidence. Kept deliberately: the eval warns that a skill answering
+     "no reference surface, so no numbers" fails this box as surely as today's fails box 3.
+  2. *Order by spread, not discovery order.* → `:76` verbatim: "Order by spread (surfaces
+     affected), not by discovery order."
+  3. *Counts do not elect; with no reference surface the report says nothing confirms.* →
+     `:71-72` "Counts measure spread. They do not elect; step 4 does."; `:57-61` "When nobody has
+     designated a reference surface — the usual case … nothing in the app confirms anything, the
+     whole output runs `[provisional]`, and *which surfaces are the reference* is itself recorded
+     as the open question that would settle the file"; `:83-86`; red-flag row `:262`.
+  4. *Collapse still proposed; losers are migration targets; each token carries `[provisional]`
+     and what it beat; the missing input recorded.* → `:115-119` "Provisional is not paralysis
+     … 7 grays in the code become one `ink-muted` token plus six rows in the migration plan. …
+     An extraction that ends with as many tokens as there were raw values did not do step 4";
+     `:88-91` for migration targets carrying counts; `:160-167` for the entry with both counts;
+     `:57-61` + `:168-170` for the reference-surface question as a recorded `#### Sistema` entry.
+  5. *A losing variant with a written decision behind it is a competing claim, not debt.* →
+     `:121-127`, written to this exact case: one document assigning 8px with a rationale, a later
+     one assigning 10px and calling itself current — "reported as an open question. The newer
+     does not govern by being newer, the older does not govern by having a rationale."
+
+  *`eval-02.md` — faithful backfill.*
+  1. *`[provisional]` entry under `### <module>` → `#### <route> — <page>` per surface, citing
+     the files — both halves required.* → `:171-176` is the box's own fixture: "the same back
+     button in three views) becomes a dated entry under `### <module>` → `#### <route> — <page>`,
+     one under each surface it covers, citing the files it was found in. Three views agreeing is
+     evidence from non-reference code, so the entry ships `[provisional]` — repetition is not
+     confirmation." Address half and marker half both explicit. `:177-179` keeps the
+     same-module case per route rather than escalating it (escalation needs two or more modules).
+  2. *Contradictory card styles get no entry; open question with both variants and locations.* →
+     `:180-188`, again the box's own fixture ("two card styles for the same data"), with the
+     dated open-question form and "Every candidate carries its count and where it is used".
+  3. *No invented decision.* → `:189-191` "A decision the code does not evidence is not written
+     down, in either marked or unmarked form"; reinforced by `:109-113`.
+
+  *`eval-03.md` — gates green, code untouched, convergence stated.* (All three green before;
+  kept green.)
+  1. *`design-md-gen` parse **and** generation plus the lint design checks before completion.* →
+     `:214-216`: "run `design-md-gen` (it must parse *and* generate) and `agent-lint` — the
+     design checks passing is the definition of 'the file is real', not optional polish." The
+     eval's own text still says `context-lint`; PLAN step 9 owns that string and this step did
+     not touch it — but the skill names the live tool, per the brief's no-new-stale-references
+     rule.
+  2. *Zero application code files modified; writes limited to DESIGN.md, its
+     `design.tokens.css`, optionally the migration-plan companion doc.* → `:216-218` names
+     exactly those three; `:220-222` puts the plan in a companion doc "never inside the
+     always-consumed DESIGN.md".
+  3. *Per-surface batches, hand-off to `designing-consistently`, drift count as the convergence
+     metric.* → `:220-231`.
+
+  *`eval-04.md` — mode variants are not drift.* (All three green before; kept green, wording
+  carried over unchanged so its dated `## Validation log` still describes the shipped behavior.)
+  1. *Selector-scoped reassignments → frontmatter `modes:`, not drift.* → `:76-79`.
+  2. *Unscoped grays still in the drift report with counts and evidence.* → `:79-81` ("Drift is
+     the unscoped, scattered variation") feeding `:69-75`.
+  3. *A mode duplicating another's values is a widened selector, not a third value set.* →
+     `:80-81`.
+
+  *`eval-05.md` — reference surfaces elect, frequency only breaks ties.*
+  1. *Card token elected from the reference surfaces (8px) though 14px leads 984 to ~751.* →
+     `:88-91`, outcome 1: "A reference surface covers the role → its value is the token,
+     **confirmed**", with `:83-86` making the criterion the reference surfaces and stating
+     "Frequency is not the criterion — the biggest count is the biggest migration, not the right
+     answer."
+  2. *The 984 reported with its count and made a migration target; the count never says what is
+     right.* → `:88-91`: "Every other variant becomes a migration target carrying its count,
+     however far ahead it leads. 984 against 751 the other way is the size of the move, not a
+     counter-argument."
+  3. *Neither document confirms; the conflict is an open question; the role is settled by the
+     reference surfaces.* → `:62-65` puts both docs at rank 3 ("A doc that calls itself the
+     source of truth … is rank 3 however recent, however widely cited, however carefully
+     argued"), and `:121-127` closes with "where a reference surface covers the role, the code
+     settles it and both documents stay candidates."
+  4. *Modal/drawer not elected at all; open question with both counts and where each is used —
+     and this is where a frequency rule and a reference-surface rule visibly diverge.* →
+     `:95-101`, outcome 3, states the divergence in the fixture's own numbers and says which
+     governs: "when the code says one value 68 times and the document that calls itself current
+     says another 12 times, frequency picks the 68 — this skill picks neither, because a
+     documented decision losing on count is the owner's call, not the extraction's." The
+     open-question form and its locations requirement are `:180-188`. The eval's warning that a
+     rewrite electing the 68-use value on count breaks this box is what `:102-107` fences:
+     frequency's tie-break is scoped to variants "that carry no design question inside them", and
+     12px-vs-20px is a design question.
+  5. *Frequency still settles the pill role; the elected name still ships `[provisional]`.* →
+     `:102-107`, outcome 4: "three spellings of one identical value (a semantic alias, the
+     framework default, a raw literal) is a naming tie, and the most-used spelling wins it. The
+     elected name still ships `[provisional]` — a tie-break confirms nothing."
+
+  *`eval-06.md` — provisional by default, and no token without an election.*
+  1. *Control radius elected and its token goes into the frontmatter (the compile source).* →
+     `:92-94`, outcome 2, plus `:206-212`: "The frontmatter is the compile source, so an elected
+     but unconfirmed token lives there like any other — holding it out would generate a
+     near-empty stylesheet and send every build back to raw values." This is the parent's option
+     A and the eval's explicit anti-overcorrection guard.
+  2. *A `[provisional]` `### Global` / `#### Sistema` entry naming the token **and what it beat,
+     with both counts**; the bare form fails.* → `:160-167`, written to the fixture's own
+     numbers: `- 2026-06-02 — [provisional] control radius 10px — 1832 uses against the 8px
+     control rule at 340, no reference surface`, followed by the negative example the box names
+     ("An entry reading only `[provisional] control radius is 10px` is not enough; without the
+     numbers a later session cannot decide whether to promote or demote it").
+  3. *Modal/drawer gets **no** frontmatter token at all.* → `:95-96` "No frontmatter token for
+     that role at all"; `:212` "Roles with no election have no entry in the frontmatter at all";
+     `:109-113` "Marking something provisional does not license inventing it" — the parent's
+     sentence, kept verbatim as the rule's name.
+  4. *That role gets an open-question entry with both candidates, their counts, and where each is
+     used.* → `:180-188`, whose worked example is that role and which requires "Every candidate
+     carries its count and where it is used". `:186-188` resolves the collision this creates with
+     SPEC §3.4's never-name-a-route guard rail: "An open question is not a rule, so this is the
+     one entry under `### Global` that does name locations — it has to, or the owner cannot
+     settle it."
+  5. *Declared type roles are not law; a self-declaring config is a candidate; evidenced roles
+     ship `[provisional]`; the zero-use thirteenth role gets no token.* → `:62-65` (declaration
+     ≠ confirmation, config at rank 3) and `:109-113`: "a scale declared in config or a document
+     ships only the roles that are live, `[provisional]` like any other unconfirmed election, and
+     a declared role with zero live uses gets no token at all." Red-flag row `:266` carries the
+     twelve-role case by name.
+  6. *The mostly-provisional file is the correct output; no marker dropped, no election
+     manufactured; the provisional share reported as the drift measure.* → `:20-22` states it in
+     the opening ("a first extraction from a drifted app comes out **mostly `[provisional]`, and
+     that is the correct output** — the pull toward making it look decided is the failure this
+     skill exists to stop"); `:227-231` makes the provisional share the second reported metric,
+     falling "as sessions promote entries by building on them, never by the extraction getting
+     bolder"; `:253-256` sets the honest-measurement-versus-fabrication line; red-flag row `:265`
+     catches the exact in-session sentence ("Most of this file is `[provisional]` — tighten it
+     before delivering").
+
+  **The two SPEC §3.6 amendment rules, located.** (i) Genuine-but-unconfirmed election →
+  frontmatter token (`:92-94`, `:206-212`) **and** a `#### Sistema` `[provisional]` entry naming
+  the token and what it beat with both counts (`:160-167`). (ii) No election → no frontmatter
+  token at all (`:95-96`, `:212`) plus an open-question entry with the role, the competing
+  candidates and their locations (`:180-188`).
+
+  **Interface with step 7 — byte-identical, and how that was checked.** The architecture block
+  emitted at `:138-148` carries the six heading lines `## Decisions`, `### Global`,
+  `#### Sistema`, `#### Patrones`, `### <module>`, `#### <route> — <page>`. Checked, not eyeballed:
+  the six lines were extracted from both files with the same anchored `grep` and compared with
+  `diff` (exit 0) and `md5sum` — both sequences hash to `8962f6332fab7d46ab83aafc92c90e58`, so
+  they agree byte for byte including the U+2014 em dash in `#### <route> — <page>` (`cat -A`
+  shows `M-bM-^@M-^T` on both sides, i.e. `E2 80 94`, not a hyphen and not U+2013). The exception
+  form matches `designing-consistently:105` and its prose at `:114`
+  (`exception to Global/<block>: <what> — <why>`), and every entry line keeps the lint's
+  `- YYYY-MM-DD — ` prefix with `[provisional]` inside the entry text after the date
+  (`:193-195`). The five rules travelling with the shape hold: `### Global` first (`:150-151`,
+  `:206-207`), exactly two sub-blocks (`:151-154`), a global written as a rule naming no route
+  (`:153-154`, with the open-question carve-out stated at `:186-188`), module names from the
+  app's own declared navigation source else the route tree else ask (`:154-156`).
+
+  **Scale honesty.** The baseline's "Read each surface" met 157 views and the runner invented a
+  bound off script. `:197-204` replaces it: "Do not read every surface — at a hundred and fifty
+  that read either does not happen or does not finish, and a bound invented mid-run is not a
+  method", then makes search the instrument for finding patterns and reading the instrument for
+  resolving disagreements, capped at the reference surfaces, the shared components the routes
+  import, and ~3 routes per module, with the coverage stated in the output. `## Scaling
+  (bounded)` (`:233-242`) keeps the fan-out lever, tells it what to do past a hundred surfaces,
+  and states what governs when the runtime refuses subagents — the baseline's actual condition.
+  Red-flag row `:268` catches the claim itself.
+
+  **No longer a prerequisite.** `:220-225`: execution "belongs to `designing-consistently`: its
+  read-consume-record loop takes over from here, and it does not need this extraction to have run
+  — it discovers what governs on its own and consumes whatever this produced." No other sentence
+  in the file describes this skill as a required precursor.
+
+  **Description (the discovery interface) rewritten** to the changed contract: reference-surface
+  election over frequency, `[provisional]` output, per-module decisions under a `### Global`
+  tier; triggers kept (adopting DESIGN.md, multiplied values, "quedó desprolijo", re-audit after
+  a migration batch) and one added for the size case ("when an app has too many surfaces for one
+  flat list of decisions"). Third person, single `description:` key inside the first 400 bytes.
+
+  **Constraints checked.** 268 lines (<500; acceptance below). Runtime-neutral:
+  `grep -Ein 'context-engineering|context-lint|vue|pegasuz|react|tailwind|navConfig|nueva-linea|globals\.css|@theme|next\.js|svelte|angular|nl-'` over the file exits 1 (no hits) — the old
+  file's `@theme` and tailwind-config mentions were rephrased to "stylesheets and theme layers,
+  the build's style config", and the one worked example that had named modules was rewritten to
+  "the drawers of two modules vs … three dialogs of a third". `[data-theme]` and `modes:` are
+  kept as DESIGN.md-convention vocabulary, per the controller's dated eval-04 ruling in
+  `DECISIONS.md`. No machine-anchored path of any form:
+  `grep -Ein '[A-Za-z]:[\\/]|/home/|/Users/|/mnt/[a-z]/'` exits 1 and the lint's `machine-path`
+  check reported nothing. No `references/` directory exists in this skill, so
+  references-one-level-deep holds trivially. The stale `Context-Engineering` /
+  `context-lint` strings the old file carried at `:13` and `:61` are gone as a side effect of the
+  whole-file rewrite; PLAN step 9's remaining targets (`evals/eval-03.md`, `README.md`) were NOT
+  touched and its `git grep` gate is still the thing that proves them.
+
+  Acceptance 1 (path resolved per `DECISIONS.md` ruling 1):
+  `node /c/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .` exits 0:
+
+  ```
+  agent-lint C:\Users\mateo\orca\workspaces\skills\design-skills-at-scale
+    LOW    AGENTS.md:15  ../Agent-Engineering/scripts/agent-lint.mjs escapes the repo — context-dependent, true only where that path exists outside it (a sibling checkout, CI)  [cmd-drift]
+  0 high, 0 medium, 1 low — PASS
+  lint exit: 0
+  ```
+
+  Only the pre-existing, expected LOW `cmd-drift` finding remains; the rewritten `SKILL.md` adds
+  no finding of its own.
+
+  Acceptance 2: `test $(wc -l < skills/extracting-design-md/SKILL.md) -lt 500`:
+
+  ```
+  linecount test exit: 0 (268 lines)
+  ```
+
+  No reviewer ran on this step (the owner's dated instruction dropping the per-step reviewer for
+  steps 6-10); the walk above is this step's own verification, and step 11's work-verify is the
+  next thing that checks it.
+
+  Files changed: `skills/extracting-design-md/SKILL.md` (rewritten),
+  `work/design-skills-at-scale/PROGRESS.md` (this entry).
+
 ## Reviews
 
 <!-- Verbatim verdict text from every in-session review seat: the
