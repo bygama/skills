@@ -358,6 +358,203 @@
 
   Files changed: `work/design-skills-at-scale/baseline-extracting-design-md.md` (new).
 
+- 2026-08-20 — Step 4 (reconcile the two baselines against SPEC §5's three recorded predictions).
+  Read both baseline files in full — preambles first, then the transcripts, then the
+  controller-verified addenda. Wrote one dated ruling per prediction into `DECISIONS.md` (the
+  10th, 11th and 12th dated entries, one line each in the file's `- YYYY-MM-DD — <choice> —
+  <why>` shape), and amended `SPEC.md` §3.5 and §3.6 for the two predictions ruled contradicted.
+  Changed nothing else: no eval written or edited, nothing under `skills/`, no other SPEC
+  section, no `PLAN.md`. I did not open the Pegasuz checkout at all this step — every fact below
+  comes from the two baseline files in this lane.
+
+  **Prediction 1 — "step 1 offers to instantiate a DESIGN.md" — CONTRADICTED on the literal
+  wording; the defect it was reaching for is present in a more severe form.**
+
+  - *Evidence:* `baseline-designing-consistently.md`, `## Step 1` (six searches, zero hits; the
+    skill's instantiate fallback quoted and named as such; no offer of any kind made) and
+    `## What I would have committed` ("no `DESIGN.md` was created or edited"). The standing
+    system appears only at `## Step 2`, where the runner marks it "Improvisation (flagged — the
+    skill did not tell me to do this)". Plus addendum 4 of the same file.
+  - *Fence:* yes — this is the entanglement the step-2 preamble names and hands to step 4 by
+    name. Resolved, not discounted. Cause A (the scope fence over the template source) is not
+    load-bearing: addendum 4 verified `Context-Engineering` exists nowhere on this machine, so a
+    fence-free runner hits the same dead pointer. Cause B (READ-ONLY) blocks *creating* a file,
+    not *offering* one, and the same run recorded counterfactual writes four separate times
+    (Step 3's component, Step 3's view diff, Step 4's would-be Decisions line, the closing
+    section) without ever recording an offer. The third stopper, the absent live owner, means an
+    offer could only ever have been recorded rather than delivered — and none was. No fence
+    accounts for the missing offer.
+  - *Literal vs. underlying, kept apart:* the offer did not happen, and it did not fail to
+    happen because the skill discovered the standing system instead. Step 1 produced **neither**
+    an offer **nor** a discovery — it dead-ends. So SPEC §1's underlying charge ("proposes
+    creating a file instead of finding what already governs") holds in an altered and worse
+    form: step 1 carries no discovery instruction at all, and its single fallback points at a
+    repo that does not exist. The design fix in §3.5's `After` column is strengthened, not
+    weakened.
+  - *SPEC §3 amended:* yes, §3.5 — additive marked note only, no approved text rewritten.
+
+  **Prediction 2 — "step 4 elects `13px` a token on frequency" — CONTRADICTED on the literal
+  wording; the defect it was reaching for is present in a different place.**
+
+  - *Evidence:* `baseline-extracting-design-md.md`, `## Step 4`. The 92 `text-[13px]` uses were
+    never elected: the run refused to elect any token for the 430 arbitrary-pixel type values
+    ("a genuine fork in the road") and carried them to `## Step 5` as an open question. The one
+    type token elected on frequency was `ui` (2644 vs 801 vs 138), where frequency and the
+    codebase's own most recent source-of-truth comment agreed. 13px does reach the emitted
+    frontmatter as `small: '0.8125rem'`, but as the doc47 named role (`text-small`, 398 uses)
+    carried in wholesale with that declared config scale — not as the arbitrary drift value. The
+    predicted mechanism did not operate.
+  - *The defect, one layer down:* the emitted frontmatter (in `## The DESIGN.md I would have
+    written`) ships elections the runner itself judged unsafe, as unqualified law.
+    `radius: card: '14px'` was elected "per the rule as stated" at 984 against roughly 751 while
+    flagged "exactly the kind of near-tie the skill would want an owner's eyes on"; and
+    `radius: sheet: '20px'` ships although `## Step 4` states "I did **not** elect a token for
+    this role" and its 12px competitor leads it 68 to 12. Eleven of the twelve `type:` roles
+    ship with no individual election work at all. The `### Open` prose under `## Decisions`
+    carries the doubt; the machine-readable half of the file has no way to express it.
+  - *Fence:* none touches this evidence. The step-3 preamble records that NO-SUBAGENTS does not
+    touch Step 4's token-election reasoning and that READ-ONLY touches neither the harvest nor
+    the elections. The one fence-adjacent gap — no live owner to confirm names with — makes the
+    finding stronger, not weaker: an absent owner is precisely the condition under which the
+    rule as written still emitted a complete, unqualified token block.
+  - *SPEC §3 amended:* yes, §3.6 — additive marked note only, no approved text rewritten.
+
+  **Prediction 3 — "neither produces a bounded slice" — CONFIRMED for `extracting-design-md` on
+  direct evidence; UNOBSERVED for `designing-consistently`, which never exercised the behavior.**
+
+  - *Evidence, `extracting-design-md`:* `baseline-extracting-design-md.md`, `## Step 5` — the
+    instruction "Read each surface" met 157 view files, the runner did not read them, and it
+    substituted a bound of its own (one structural pattern checked across the 15
+    `*DetailView.vue` files), disclosing it as "a deliberate, bounded substitution for 'read
+    each surface'". The skill supplied no bounding rule; the runner invented one off script.
+  - *Evidence, `designing-consistently`:* `baseline-designing-consistently.md`, `## Step 2` —
+    no `DESIGN.md`, therefore no `## Decisions` to slice, "not 'few entries,' literally none".
+    The behavior was never exercised. To observe it, the repo would have had to contain a
+    `DESIGN.md` with a populated `## Decisions` section. That absence is fence-independent (the
+    step-2 preamble lists it among the absence facts; the step-3 runner independently confirmed
+    "no existing DESIGN.md anywhere"). A negative compound prediction passes vacuously on this
+    half, which is not evidence — so it is recorded unobserved rather than folded into the
+    confirmation.
+  - *Fence:* one looked linked and is not. NO-SUBAGENTS did block the skill's own
+    `## Scaling (bounded)` fan-out lever at roughly ten times its stated ~15-surface threshold,
+    and `## Step 5` opens "Same scale problem as Step 2". But fan-out changes *who* reads 157
+    surfaces, not *whether* the read is bounded to a principled subset — which is why the
+    step-3 preamble's attribution ("does not touch … Step 5's backfill") holds. The
+    fence-touched unbounded-harvest observation in `## Step 2` is not relied on here.
+  - *Defect in an altered form, reported separately:* the emitted `## Decisions` is not the flat
+    per-route section set SPEC §1 describes. It is nine `### <token family or pattern>` prose
+    sections covering the whole 157-view app, with zero entries in the dated `- ` bullet form
+    the format and the lint require. A later `designing-consistently` step 2 could not select
+    "the entries for the surface I am touching" at all — the slice is *undefined*, not merely
+    unbounded. The two skills also disagree on addressing: `baseline-designing-consistently.md`
+    `## What I would have committed` shows the writer side appending under `### Stock`, a
+    per-surface heading the extractor never emits.
+  - *SPEC §3 amended:* no. The prediction is not contradicted, and nothing in §3 is contradicted
+    by this evidence — §3.3's module architecture is the fix for it.
+
+  **Flagged for the controller, deliberately NOT acted on** (SPEC §4 is the feature list's
+  contract and F01-F11 are committed against it, so this step changed no requirement):
+
+  1. **Requirement 1** ends "and does not propose instantiating a DESIGN.md while a system is
+     discoverable." Prediction 1's ruling shows today's unfixed skill never reaches a proposal
+     at all, so that clause passes vacuously against the *pre-rewrite* skill. An eval written
+     only to that clause would not be a test. Steps 5 and 7 need this resolved before the
+     discovery eval is written.
+  2. **Requirement 5** ends "every unconfirmed token ships `[provisional]`", but SPEC §3.1
+     defines that marker only inside `## Decisions` entry text (and SPEC §6's verified
+     constraint concerns `- ` lines under `## Decisions`). A frontmatter token has no defined
+     way to carry it — and the baseline shows the frontmatter is exactly where unconfirmed
+     elections land as law. Requirement 5 left as approved; the gap is recorded in the §3.6 note
+     and in ruling 2.
+  3. Not a requirement change, but it bears on the PLAN's step-7 / step-8 interface: the
+     baselines show the reader and the writer disagree on the Decisions heading shape today
+     (`### <surface>` on the write side, `### <token family>` on the emit side). The interface
+     note already requires them to agree; the evidence says they start from two different
+     shapes, not one.
+
+  **SPEC §3.5 — before and after.** No approved text was rewritten; the amendment is the marked
+  note appended after the table.
+
+  Before:
+
+  ```
+  | 5 | Verify | unchanged, repointed at `agent-lint` |
+
+  ### 3.6 extracting-design-md — honest output
+  ```
+
+  After:
+
+  ```
+  | 5 | Verify | unchanged, repointed at `agent-lint` |
+
+  > **Amended at step 4 (2026-08-20) — SPEC §5 prediction 1 contradicted; ruling in `DECISIONS.md`.**
+  > The cold baseline (`baseline-designing-consistently.md`, `## Step 1`) shows the run made **no**
+  > offer to instantiate. The `Now` cell describes the skill's *text* correctly, but its behavior is
+  > worse than the prediction assumed: step 1 dead-ends. The template it names does not exist on
+  > this machine (controller addendum 4); neither the read-only fence nor the absent owner accounts
+  > for the missing offer (the run recorded four other counterfactual writes and never this one);
+  > and step 1 produced neither an offer nor a discovery — the standing system surfaced only at
+  > `## Step 2`, as an improvisation the runner flagged as outside what the skill asked for. The
+  > `After` column is unchanged: the baseline strengthens it.
+
+  ### 3.6 extracting-design-md — honest output
+  ```
+
+  **SPEC §3.6 — before and after.** Same shape: the four approved bullets are untouched, the
+  marked note is appended after them.
+
+  Before:
+
+  ```
+  - It stops being a prerequisite: `designing-consistently` no longer depends on it having run.
+
+  ## 4. Requirements
+  ```
+
+  After:
+
+  ```
+  - It stops being a prerequisite: `designing-consistently` no longer depends on it having run.
+
+  > **Amended at step 4 (2026-08-20) — SPEC §5 prediction 2 contradicted; ruling in `DECISIONS.md`.**
+  > The cold baseline (`baseline-extracting-design-md.md`, `## Step 4`) shows `13px` was **not**
+  > elected: the run declined to elect any token for the 430 arbitrary-pixel type values and carried
+  > them to `## Step 5` as an open question. The defect appears one layer down instead, in the
+  > emitted frontmatter, which ships elections the runner itself judged unsafe as unqualified law —
+  > `radius: card: '14px'` at 984 against roughly 751 while flagged a near-tie needing the owner's
+  > eyes, and `radius: sheet: '20px'` although `## Step 4` states "I did **not** elect a token for
+  > this role". The bullets above are unchanged and remain the right fix. Open for the controller,
+  > not decided here: §3.1 places the `[provisional]` marker inside `## Decisions` entry text only,
+  > so a frontmatter token has no defined way to carry it — which is exactly where the baseline
+  > shows unconfirmed elections landing. SPEC §4 requirement 5 is left as approved.
+
+  ## 4. Requirements
+  ```
+
+  Acceptance: `test $(grep -c '^- 2026-' work/design-skills-at-scale/DECISIONS.md) -ge 3`
+
+  ```
+  exit: 0  (count: 12)
+  ```
+
+  Recorded honestly, per the standing `DECISIONS.md` ruling on this step: that command could not
+  have failed — the file already held 9 dated entries before this step began, so it would have
+  passed on an empty step. It is run and reported because the PLAN is binding, not as proof. The
+  substantive bar is the three rulings above.
+
+  Re-ran the gate: `node /c/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .` exits 0:
+
+  ```
+  agent-lint C:\Users\mateo\orca\workspaces\skills\design-skills-at-scale
+    LOW    AGENTS.md:15  ../Agent-Engineering/scripts/agent-lint.mjs escapes the repo — context-dependent, true only where that path exists outside it (a sibling checkout, CI)  [cmd-drift]
+  0 high, 0 medium, 1 low — PASS
+  ```
+
+  Files changed: `work/design-skills-at-scale/DECISIONS.md` (three rulings appended),
+  `work/design-skills-at-scale/SPEC.md` (§3.5 and §3.6 notes, additive only),
+  `work/design-skills-at-scale/PROGRESS.md` (this entry).
+
 ## Reviews
 
 <!-- Verbatim verdict text from every in-session review seat: the

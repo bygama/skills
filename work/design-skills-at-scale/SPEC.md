@@ -128,6 +128,16 @@ First section under `## Decisions`, always read whatever page is touched. Two su
 | 4 | Record decisions (gate) | **Record + repair (gate)**: promote/demote status *and* escalate/narrow scope |
 | 5 | Verify | unchanged, repointed at `agent-lint` |
 
+> **Amended at step 4 (2026-08-20) — SPEC §5 prediction 1 contradicted; ruling in `DECISIONS.md`.**
+> The cold baseline (`baseline-designing-consistently.md`, `## Step 1`) shows the run made **no**
+> offer to instantiate. The `Now` cell describes the skill's *text* correctly, but its behavior is
+> worse than the prediction assumed: step 1 dead-ends. The template it names does not exist on
+> this machine (controller addendum 4); neither the read-only fence nor the absent owner accounts
+> for the missing offer (the run recorded four other counterfactual writes and never this one);
+> and step 1 produced neither an offer nor a discovery — the standing system surfaced only at
+> `## Step 2`, as an improvisation the runner flagged as outside what the skill asked for. The
+> `After` column is unchanged: the baseline strengthens it.
+
 ### 3.6 extracting-design-md — honest output
 
 - Reference surfaces replace frequency as the token criterion; frequency only breaks ties among
@@ -136,6 +146,18 @@ First section under `## Decisions`, always read whatever page is touched. Two su
   from a drifted app being mostly provisional is the correct output, not a failure.
 - It writes the module architecture and the `### Global` tier.
 - It stops being a prerequisite: `designing-consistently` no longer depends on it having run.
+
+> **Amended at step 4 (2026-08-20) — SPEC §5 prediction 2 contradicted; ruling in `DECISIONS.md`.**
+> The cold baseline (`baseline-extracting-design-md.md`, `## Step 4`) shows `13px` was **not**
+> elected: the run declined to elect any token for the 430 arbitrary-pixel type values and carried
+> them to `## Step 5` as an open question. The defect appears one layer down instead, in the
+> emitted frontmatter, which ships elections the runner itself judged unsafe as unqualified law —
+> `radius: card: '14px'` at 984 against roughly 751 while flagged a near-tie needing the owner's
+> eyes, and `radius: sheet: '20px'` although `## Step 4` states "I did **not** elect a token for
+> this role". The bullets above are unchanged and remain the right fix. Open for the controller,
+> not decided here: §3.1 places the `[provisional]` marker inside `## Decisions` entry text only,
+> so a frontmatter token has no defined way to carry it — which is exactly where the baseline
+> shows unconfirmed elections landing. SPEC §4 requirement 5 is left as approved.
 
 ## 4. Requirements
 
