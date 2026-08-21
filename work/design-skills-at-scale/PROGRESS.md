@@ -705,6 +705,83 @@
   `work/design-skills-at-scale/DECISIONS.md` (three entries appended),
   `work/design-skills-at-scale/PROGRESS.md` (this entry).
 
+- 2026-08-20 — Step 4 fix round 1, second pass (fresh seat). This seat was dispatched the round
+  above as unfinished. It was not: the previous seat completed and committed it as `6798ec7`
+  while this seat was reading the lane. So this pass verified that commit against the three
+  chartered changes rather than redoing them. Change 2 (the addendum-4 overstatement) and change
+  3 (prediction 1's fourth confound) landed exactly as the review asked; `DECISIONS.md` took
+  three appended entries and zero deletions (`git diff --stat`: 3 insertions, 0 deletions); no
+  requirement, no other SPEC section, no `PLAN.md`, no eval and nothing under `skills/` was
+  touched. One gap remained, so this pass makes a single additive edit to the §3.6 note and
+  nothing else.
+
+  **The gap.** The dispatch required the rewritten §3.6 note to say plainly that step 4's own
+  CONTRADICTED verdict happened and was superseded — "Say that plainly rather than pretending the
+  earlier verdict never happened" — and that the two readings are not in factual conflict. The
+  committed note labels the literal facts "not a competing one" but never states the superseded
+  verdict inside the SPEC at all: a reader of §3.6 alone sees only CONFIRMED and must reach
+  `DECISIONS.md` ruling 18 to learn an earlier verdict ever existed. Two evidence specifics the
+  dispatch named were also thinned out — that the run *carried the 430 values to its Step 5 as an
+  open question*, and that the 13px-shaped `small: '0.8125rem'` was *carried in as a block*
+  rather than individually elected. Both are verified in the baseline:
+  `baseline-extracting-design-md.md:466-474` ("I did **not** elect either the doc47 scale or the
+  `--nl-t-*` scale … I've carried it into Step 5 as an open"), and `:787-799` under
+  `## The DESIGN.md I would have written`, where all twelve doc47 `type:` roles ship together as
+  one block.
+
+  **SPEC §3.6 — before and after.** Only the evidence-detail sentence inside the previous seat's
+  note changed. The note's CONFIRMED header, the parent's two emission rules, and every approved
+  bullet above the note are untouched.
+
+  Before:
+
+  ```
+  > that verdict, not a competing one: `13px` itself was never elected, the run having declined to
+  > elect any token for the 430 arbitrary-pixel type values, and the `small: '0.8125rem'` in that
+  > frontmatter is the doc47 `text-small` role (398 uses), not the 92-count drift value.
+  ```
+
+  After:
+
+  ```
+  > that verdict, not a competing one: `13px` itself was never elected — the run declined to elect
+  > any token for the 430 arbitrary-pixel type values and carried them to its `## Step 5` as an open
+  > question — and the 13px-shaped `small: '0.8125rem'` in the emitted frontmatter is the doc47
+  > `text-small` role (398 uses) carried in as a block with the other eleven, not the 92-count drift
+  > value. Step 4 first recorded prediction 2 CONTRADICTED on that literal reading; the parent's
+  > verdict supersedes it, and nothing is falsified either way. The two agree on every fact and
+  > differ only on what prediction 2 asserts: step 4 read SPEC §5's literal sentence, the parent
+  > reads the defect that sentence was reaching for, and the same transcript supports both readings.
+  ```
+
+  **SPEC §3.5 — unchanged in this pass**, verified as committed and quoted before/after in the
+  entry above.
+
+  No `DECISIONS.md` entry is appended for this pass: it records no new ruling, only restores
+  wording the dispatch already specified for a ruling that entries 18 and 21 both already carry.
+  The deferred items stayed untouched as instructed — the three long entries were not reformatted,
+  and ruling 3's lint claim was neither re-litigated nor re-verified.
+
+  Acceptance: `test $(grep -c '^- 2026-' work/design-skills-at-scale/DECISIONS.md) -ge 3`
+
+  ```
+  exit: 0  (count: 17)
+  ```
+
+  Unchanged caveat, per the standing `DECISIONS.md` ruling on this step: that command cannot fail
+  and is reported because the PLAN is binding, not as proof.
+
+  Gate: `node /c/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .` exits 0:
+
+  ```
+  agent-lint C:\Users\mateo\orca\workspaces\skills\design-skills-at-scale
+    LOW    AGENTS.md:15  ../Agent-Engineering/scripts/agent-lint.mjs escapes the repo — context-dependent, true only where that path exists outside it (a sibling checkout, CI)  [cmd-drift]
+  0 high, 0 medium, 1 low — PASS
+  ```
+
+  Files changed: `work/design-skills-at-scale/SPEC.md` (§3.6 note, one sentence expanded),
+  `work/design-skills-at-scale/PROGRESS.md` (this entry).
+
 ## Reviews
 
 <!-- Verbatim verdict text from every in-session review seat: the

@@ -158,9 +158,14 @@ First section under `## Decisions`, always read whatever page is touched. Two su
 > `radius: card: '14px'` was elected on a 984-against-roughly-751 count the run itself flagged as
 > a near-tie needing the owner's eyes, and `radius: sheet: '20px'` shipped in the emitted
 > frontmatter for a role the run states verbatim it "did **not** elect". Evidence detail beneath
-> that verdict, not a competing one: `13px` itself was never elected, the run having declined to
-> elect any token for the 430 arbitrary-pixel type values, and the `small: '0.8125rem'` in that
-> frontmatter is the doc47 `text-small` role (398 uses), not the 92-count drift value.
+> that verdict, not a competing one: `13px` itself was never elected — the run declined to elect
+> any token for the 430 arbitrary-pixel type values and carried them to its `## Step 5` as an open
+> question — and the 13px-shaped `small: '0.8125rem'` in the emitted frontmatter is the doc47
+> `text-small` role (398 uses) carried in as a block with the other eleven, not the 92-count drift
+> value. Step 4 first recorded prediction 2 CONTRADICTED on that literal reading; the parent's
+> verdict supersedes it, and nothing is falsified either way. The two agree on every fact and
+> differ only on what prediction 2 asserts: step 4 read SPEC §5's literal sentence, the parent
+> reads the defect that sentence was reaching for, and the same transcript supports both readings.
 >
 > **Decided by the parent, binding on steps 6 and 8** (ruling in `DECISIONS.md`; SPEC §4
 > requirement 5 unchanged): a role with a genuine but unconfirmed election puts its token in
