@@ -1206,6 +1206,80 @@
   `skills/extracting-design-md/evals/eval-06.md` (new),
   `work/design-skills-at-scale/PROGRESS.md` (this entry).
 
+- 2026-08-20 — Step 6 fix round 1 (the `eval-02.md` ruling). One file edited,
+  `skills/extracting-design-md/evals/eval-02.md`, plus this entry. No other eval, no `SKILL.md`,
+  no `SPEC.md`, no `PLAN.md`, no `feature_list.json`; zero writes to the Pegasuz checkout.
+
+  **Both defects fixed in one edit, as ruled.** Box 1 read "The consistent back button becomes a
+  dated `## Decisions` entry under its surfaces, citing the evidence (files where it appears)."
+  It now requires a dated **`[provisional]`** entry under **`### <module>` → `#### <route> —
+  <page>`** for each surface it covers, still citing the files, with both halves named as
+  required and the failure condition spelled out: "An entry recorded as settled fails this box
+  however well it cites the three files." Boxes 2 and 3 are untouched, and the eval's subject —
+  record what the code evidences, surface what it contradicts, invent nothing — is unchanged.
+
+  **Two supporting changes inside the same file, both needed to make box 1 decidable**, reported
+  rather than slipped in:
+  1. The fixture now says nobody has designated a reference surface and the owner is not
+     available mid-run. Without that, "ships `[provisional]`" is not decidable — a fixture where
+     the three views *were* the reference surfaces would correctly emit the entry confirmed.
+  2. The three detail views are now stated to be **in the same module**. Otherwise SPEC §3.4's
+     two-or-more-modules escalation trigger fires and a correct answer could legitimately put
+     the entry under `### Global` / `#### Patrones` instead of the module/route address box 1
+     asks for — an ambiguity that would make the box unfair. This eval was never about
+     escalation; the sibling `designing-consistently/evals/eval-01.md` owns that.
+  3. Added a `## Why this is RED today` section, matching the other three files this step
+     touched and the standing bar that a rewritten box must fail against today's skill.
+
+  **The re-check that was asked for: yes, box 1 still fails a wrong answer.** Walked four
+  candidate step-8 answers against the rewritten box:
+  - confirmed entry, correct `### <module>` / `#### <route> — <page>` address → **FAILS** (the
+    marker half). This is the exact case the ruling asked about.
+  - `[provisional]` entry under a flat `### <surface>` heading → **FAILS** (the addressing
+    half).
+  - `[provisional]` entry under the module/route address, citing the three files → **PASSES**.
+  - `[provisional]` entry, correct address, no evidence cited → **FAILS** (the citation clause,
+    which is the original box's requirement and survives unchanged).
+  Also checked the box is satisfiable at all, not just strict: SPEC §3.1's own example
+  (`- 2026-08-20 — [provisional] cards use radius 14px; …`) puts the marker after the date, so a
+  passing entry keeps the lint's `- YYYY-MM-DD — ` prefix intact — verified against `SPEC.md:76`
+  rather than assumed.
+
+  **RED evidence for the rewritten box**, recorded in the file: today's step 5 says the pattern
+  "becomes a dated entry under its `### <surface>`" — the flat addressing SPEC §3.3 replaces,
+  with no marker — and `provisional` occurs **0** times in today's `SKILL.md`. In
+  `baseline-extracting-design-md.md` the emitted `## Decisions` is nine `###` prose sections
+  addressed by token family or pattern, with no `### <module>` heading and no
+  `#### <route> — <page>` subsection anywhere, and the two entries it recorded as decided carry
+  no marker in a run where no reference surface was ever designated. Boxes 2 and 3 pass today
+  (that run did record its contradicted pattern as an open question with both variants and their
+  file locations, and invented nothing) and are stated as passing in the file.
+
+  **Flags 2 and 3, per the rulings:** nothing touched under either. `eval-03.md` was not opened
+  — the ruling on it is withdrawn, my flag having mis-attributed to it a heading that belongs to
+  `skills/designing-consistently/evals/eval-03.md`, and its stale `context-lint` reference stays
+  for PLAN step 9. `eval-04.md` is left as it stands, its fixture deferred rather than rewritten
+  so its dated GREEN `## Validation log` is not falsified.
+
+  Acceptance 1: `test $(ls skills/extracting-design-md/evals/*.md | wc -l) -eq 6`
+
+  ```
+  $ test $(ls skills/extracting-design-md/evals/*.md | wc -l) -eq 6
+  exit: 0
+  ```
+
+  Acceptance 2: `node /c/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .` exits 0:
+
+  ```
+  agent-lint C:\Users\mateo\orca\workspaces\skills\design-skills-at-scale
+    LOW    AGENTS.md:15  ../Agent-Engineering/scripts/agent-lint.mjs escapes the repo — context-dependent, true only where that path exists outside it (a sibling checkout, CI)  [cmd-drift]
+  0 high, 0 medium, 1 low — PASS
+  exit: 0
+  ```
+
+  Files changed: `skills/extracting-design-md/evals/eval-02.md`,
+  `work/design-skills-at-scale/PROGRESS.md` (this entry).
+
 ## Reviews
 
 <!-- Verbatim verdict text from every in-session review seat: the
