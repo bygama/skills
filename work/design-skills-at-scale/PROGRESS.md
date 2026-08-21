@@ -552,6 +552,53 @@ above. Every later review seat on this lane uses file delivery for the same reas
   factual error and not a misquote. Raised by the round-1 re-review as a non-blocking
   out-of-scope observation.
 
+### Step 3 — step review (fresh reviewer, sonnet)
+
+**Spec compliance:** ✅ Compliant.
+
+**Assessment — Step quality: Approved.** Reasoning, verbatim: "The transcript's integrity was
+already controller-verified; this review's job was the framing, and it holds up under the specific
+stress-test the brief posed — four distinct stoppages, one of them (Step 4) splitting into two
+causes on the same step, are attributed correctly and separately rather than compressed into one
+blanket claim, the no-subagent fence is named as the lane's rather than the skill's and the review
+of what it means is explicitly left to PLAN step 4, and the addenda stay confined to the three
+scoped facts without adjudicating anything SPEC §5 predicted. Nothing found here would mislead
+step 4's reconciliation."
+
+Strengths, verbatim:
+
+> - **The four causes are kept apart, including at the sub-step level, not just the step level.** Step 4 in `extracting-design-md` bundles two different asks ("propose tokens" + "confirm with the owner"), and the preamble splits them correctly: the READ-ONLY bullet attributes the owner-confirmation gap to "this being an unattended cold run with no live owner in the loop, not to write permission," while the NO-SUBAGENTS bullet separately confirms it "does not touch... Step 4's token-election reasoning." Step 6's tool-unreachability is likewise pinned on the repo-scope fence in both bullets. All four causes named in the brief — READ-ONLY, NO-SUBAGENTS, no live owner, repo-scope fence — land on the step each actually produced, with no cause absorbing another's effect.
+> - **The NO-SUBAGENTS bullet states the ownership boundary explicitly and stops.** "This fence is the lane's, not the skill's." It then reports the ~15-surface / ~60-label / "roughly 10x" numbers and the runner's own claim that the grep aggregation is exhaustive, but closes with "Say what it was, not what it means for the harvest's practicality or for SPEC §5... the reconciliation itself belongs to PLAN step 4, not here." It reports magnitude, not verdict, and hands the verdict to step 4 by name.
+> - **No editorializing about SPEC §5 anywhere in the preamble or addenda.** The one mention of "SPEC §5" is the disclaimer above, not a claim about a prediction. Given that Step 4's transcript itself elects a `text-ui` token on frequency+recency rather than "electing 13px" verbatim, and never elects a token for the `.nl` arbitrary-pixel case at all, this framing had real room to tip into an early verdict on SPEC §5 prediction #2 — it does not.
+> - **Addenda are scoped to exactly the three facts, and record both halves honestly.** Item 1 states plainly "the runner was not wrong" and separates "accurate about its own scope" from "the files exist two levels up". It also correctly notes this is the *same pattern* as step 2's baseline, now over two *additional* pointers (`ADMIN_UX_ROADMAP.md`, doc 47), not a re-report of the same two files.
+> - **The verbatim-transcription discipline is stated and appears to have been honored.** The PROGRESS.md entry states explicitly that self-caught methodology mistakes in the runner's Step 2 were left in rather than cleaned up, and the transcript does in fact retain both false-count paragraphs before the corrected numbers.
+> - **Fence handling for the doubly-fenced Markdown block is correct.** "## The DESIGN.md I would have written" is left inside the runner's own single ```markdown fence with no second fence added around it.
+
+Findings, verbatim:
+
+> #### Critical (Must Fix)
+> None.
+>
+> #### Important (Should Fix)
+> None.
+>
+> #### Minor (Nice to Have)
+> - `work/design-skills-at-scale/PROGRESS.md` (new step-3 entry, "Files changed:" line): lists only `baseline-extracting-design-md.md (new)`, omitting `PROGRESS.md` itself even though this very entry is a change to that file. The step-2 entry's equivalent line lists both files. Cosmetic inconsistency between the two entries, no effect on evidence integrity.
+> - `work/design-skills-at-scale/baseline-extracting-design-md.md` (addendum 1): "now observed a second time and independently, over two more pointers" is accurate but dense enough that a future reader has to work to parse "the first two of those files" vs. "two more pointers" as non-overlapping sets. A reader unfamiliar with step 2 would still get it right, just slower than necessary.
+
+Controller cross-check, run independently of the review: a line-level diff of the transcript
+region against the cold-runner's report shows 910 source lines, 910 transcript lines, and **zero**
+changed lines.
+
+**Step 3 closed: Approved on the first review, no fix round.**
+
+### Deferred to work-verify triage (step 3)
+
+- `PROGRESS.md` step-3 entry — its "Files changed:" line omits `PROGRESS.md` itself, unlike the
+  step-2 entry. Cosmetic.
+- `baseline-extracting-design-md.md` addendum 1 — "the first two of those files" vs "two more
+  pointers" is accurate but dense; a reader unfamiliar with step 2 parses it slowly.
+
 ## In progress
 
 ## Tried and failed
