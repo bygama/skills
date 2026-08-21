@@ -555,6 +555,156 @@
   `work/design-skills-at-scale/SPEC.md` (§3.5 and §3.6 notes, additive only),
   `work/design-skills-at-scale/PROGRESS.md` (this entry).
 
+- 2026-08-20 — Step 4 fix round 1 (parent ruling + two review Minors). Three changes, all inside
+  the stated fence: the two step-4 SPEC notes in §3.5 and §3.6 (my own text, rewritten in place,
+  still marked and dated, with the approved table rows and bullets untouched), and three appended
+  `DECISIONS.md` entries. No requirement touched, no other SPEC section, no `PLAN.md`, no eval,
+  nothing under `skills/`. Read the parent's verbatim ruling under `## Reviews` and both new
+  `DECISIONS.md` entries before editing.
+
+  **1. Binding — the parent's ruling on requirement 5's gap; prediction 2 becomes CONFIRMED.**
+  The escalation I raised was answered: option A confirmed, with the binding addition that a role
+  with no election gets no frontmatter token at all. The parent also rules SPEC §5 prediction 2
+  **CONFIRMED**, superseding my CONTRADICTED-on-the-literal-wording verdict. I rewrote the §3.6
+  note accordingly: CONFIRMED is now the governing verdict, attributed to the parent and dated;
+  the literal facts (`13px` never elected; the frontmatter's `small: '0.8125rem'` is the doc47
+  `text-small` role at 398 uses, not the 92-count drift value) sit beneath it as evidence detail
+  and are explicitly labelled "not a competing one"; and the open question the note used to pose
+  is closed and replaced with the parent's two emission rules, compact enough for steps 6 and 8
+  to build against, citing the `DECISIONS.md` ruling. Nothing was deleted or falsified —
+  `DECISIONS.md` ruling 2 stays exactly as written, append-only, with the parent's superseding
+  ruling recorded below it.
+
+  **2. Minor — the overstatement inside approved SPEC text.** The §3.5 note said the template
+  "does not exist on this machine (controller addendum 4)". Addendum 4 verifies something
+  narrower: a depth-2 search of the machine's work-repos folder plus three named candidate paths.
+  Rephrased to "does not resolve at any plausible sibling location searched (controller addendum
+  4; SPEC §1)", the form the skill's pointer actually takes and one SPEC §1 already records as
+  verified. The de-confounding rests on the narrower fact and survives unchanged.
+  `DECISIONS.md:14` carries the same overstatement and is append-only history — corrected in a
+  new entry, not rewritten.
+
+  **3. Minor — the unnamed fourth confound in prediction 1.** `baseline-designing-consistently.md`
+  `## Step 1` ends "I was told to proceed through steps 2–5 anyway and record what happens." An
+  offer is a halt-and-ask act, so a proceed instruction is a fourth candidate cause for the
+  missing offer, distinct from the scope fence, READ-ONLY and the absent owner. Named and
+  dismissed in the §3.5 note and in a new `DECISIONS.md` entry, on the three grounds the review
+  set out: the runner never cites it, the counterfactual convention it used four times was
+  precisely the tool for recording a would-be offer under such an instruction, and the ruling's
+  load-bearing half (step 1 produced no *discovery* either) does not depend on it. The note now
+  says that last part explicitly. The CONTRADICTED verdict on prediction 1 stands.
+
+  Deferred items were left alone as instructed: the three long `DECISIONS.md` entries were not
+  reformatted, and ruling 3's lint claim was not re-litigated or re-verified. The three new
+  entries were kept deliberately short so the round does not make that deferred Minor worse —
+  measured at 769 / 909 / 794 characters, against the 2061 / 2450 / 2784 of the flagged ones;
+  two of the three sit under the file's pre-existing 778-character maximum and the third is
+  modestly above it.
+
+  **SPEC §3.5 — before and after.** The `Now`/`After` table above the note is untouched; only my
+  step-4 note changed.
+
+  Before:
+
+  ```
+  > **Amended at step 4 (2026-08-20) — SPEC §5 prediction 1 contradicted; ruling in `DECISIONS.md`.**
+  > The cold baseline (`baseline-designing-consistently.md`, `## Step 1`) shows the run made **no**
+  > offer to instantiate. The `Now` cell describes the skill's *text* correctly, but its behavior is
+  > worse than the prediction assumed: step 1 dead-ends. The template it names does not exist on
+  > this machine (controller addendum 4); neither the read-only fence nor the absent owner accounts
+  > for the missing offer (the run recorded four other counterfactual writes and never this one);
+  > and step 1 produced neither an offer nor a discovery — the standing system surfaced only at
+  > `## Step 2`, as an improvisation the runner flagged as outside what the skill asked for. The
+  > `After` column is unchanged: the baseline strengthens it.
+  ```
+
+  After:
+
+  ```
+  > **Amended at step 4 (2026-08-20) — SPEC §5 prediction 1 contradicted; ruling in `DECISIONS.md`.
+  > Revised at step 4 fix round 1 (2026-08-20).** The cold baseline
+  > (`baseline-designing-consistently.md`, `## Step 1`) shows the run made **no** offer to
+  > instantiate. The `Now` cell describes the skill's *text* correctly, but its behavior is worse
+  > than the prediction assumed: step 1 dead-ends. The template it names does not resolve at any
+  > plausible sibling location searched (controller addendum 4; SPEC §1); neither the read-only
+  > fence nor the absent owner accounts for the missing offer (the run recorded four other
+  > counterfactual writes and never this one); nor does the fourth candidate cause, the runner's
+  > instruction to "proceed through steps 2–5 anyway" (same section), which the runner never cites
+  > as its reason and which that same counterfactual convention existed to work around; and step 1
+  > produced neither an offer nor a discovery — the standing system surfaced only at `## Step 2`, as
+  > an improvisation the runner flagged as outside what the skill asked for. That second half, the
+  > missing discovery, depends on none of the four causes. The `After` column is unchanged: the
+  > baseline strengthens it.
+  ```
+
+  **SPEC §3.6 — before and after.** The four approved bullets above the note are untouched; only
+  my step-4 note changed.
+
+  Before:
+
+  ```
+  > **Amended at step 4 (2026-08-20) — SPEC §5 prediction 2 contradicted; ruling in `DECISIONS.md`.**
+  > The cold baseline (`baseline-extracting-design-md.md`, `## Step 4`) shows `13px` was **not**
+  > elected: the run declined to elect any token for the 430 arbitrary-pixel type values and carried
+  > them to `## Step 5` as an open question. The defect appears one layer down instead, in the
+  > emitted frontmatter, which ships elections the runner itself judged unsafe as unqualified law —
+  > `radius: card: '14px'` at 984 against roughly 751 while flagged a near-tie needing the owner's
+  > eyes, and `radius: sheet: '20px'` although `## Step 4` states "I did **not** elect a token for
+  > this role". The bullets above are unchanged and remain the right fix. Open for the controller,
+  > not decided here: §3.1 places the `[provisional]` marker inside `## Decisions` entry text only,
+  > so a frontmatter token has no defined way to carry it — which is exactly where the baseline
+  > shows unconfirmed elections landing. SPEC §4 requirement 5 is left as approved.
+  ```
+
+  After:
+
+  ```
+  > **Amended at step 4 (2026-08-20) — SPEC §5 prediction 2 CONFIRMED, per the parent's ruling in
+  > `DECISIONS.md`; note rewritten at step 4 fix round 1 (2026-08-20).** Election ran on frequency
+  > and landed unconfirmed values as law. In `baseline-extracting-design-md.md` `## Step 4`,
+  > `radius: card: '14px'` was elected on a 984-against-roughly-751 count the run itself flagged as
+  > a near-tie needing the owner's eyes, and `radius: sheet: '20px'` shipped in the emitted
+  > frontmatter for a role the run states verbatim it "did **not** elect". Evidence detail beneath
+  > that verdict, not a competing one: `13px` itself was never elected, the run having declined to
+  > elect any token for the 430 arbitrary-pixel type values, and the `small: '0.8125rem'` in that
+  > frontmatter is the doc47 `text-small` role (398 uses), not the 92-count drift value.
+  >
+  > **Decided by the parent, binding on steps 6 and 8** (ruling in `DECISIONS.md`; SPEC §4
+  > requirement 5 unchanged): a role with a genuine but unconfirmed election puts its token in
+  > frontmatter, which is the compile source, **and** gets a `[provisional]` entry under
+  > `### Global` / `#### Sistema` naming the token and what it beat, carrying both counts — "an
+  > entry that says only `[provisional] card is 14px` is not enough." A role with **no** election
+  > gets **no** frontmatter token at all, plus an open-question entry recording the role, the
+  > competing candidates and their file locations. Marking something provisional does not license
+  > inventing it.
+  ```
+
+  **Verdict state after this round**, for the record: prediction 1 CONTRADICTED (unchanged, now
+  with the fourth confound named and dismissed); prediction 2 **CONFIRMED** (parent's ruling,
+  superseding this step's literal-wording verdict, which is retained as evidence); prediction 3
+  CONFIRMED for `extracting-design-md` and UNOBSERVED for `designing-consistently` (unchanged).
+
+  Acceptance: `test $(grep -c '^- 2026-' work/design-skills-at-scale/DECISIONS.md) -ge 3`
+
+  ```
+  exit: 0  (count: 17)
+  ```
+
+  Same caveat as the original entry: that command cannot fail and is reported because the PLAN is
+  binding, not as proof.
+
+  Re-ran the gate: `node /c/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .` exits 0:
+
+  ```
+  agent-lint C:\Users\mateo\orca\workspaces\skills\design-skills-at-scale
+    LOW    AGENTS.md:15  ../Agent-Engineering/scripts/agent-lint.mjs escapes the repo — context-dependent, true only where that path exists outside it (a sibling checkout, CI)  [cmd-drift]
+  0 high, 0 medium, 1 low — PASS
+  ```
+
+  Files changed: `work/design-skills-at-scale/SPEC.md` (§3.5 and §3.6 notes only),
+  `work/design-skills-at-scale/DECISIONS.md` (three entries appended),
+  `work/design-skills-at-scale/PROGRESS.md` (this entry).
+
 ## Reviews
 
 <!-- Verbatim verdict text from every in-session review seat: the
