@@ -1788,6 +1788,87 @@ the same thing. The controller now stages explicit paths.
 - `eval-04.md` boxes 1 and 2 overlap on "ranked".
 - `eval-05.md:33` fixture entry ends with a literal `<why>` placeholder.
 
+### OWNER INSTRUCTION — 2026-08-20 — per-step reviewer dropped for steps 6-10
+
+Received mid-lane, through the parent, and recorded here because a lane that silently stops
+running a standard rung looks like a skipped gate later. This is the owner's call, not a
+self-granted shortcut. The instruction, verbatim:
+
+> Owner instruction, effective now, overriding the brief on this point only.
+>
+> STOP running work-run's per-step reviewer after each implementation step. Do not run a review subagent per PLAN step for steps 6 through 10. Implement them straight through.
+>
+> Review happens ONCE, at the end: step 11's work-verify, including its step-4 fresh-context review over the whole lane. That rung stays mandatory and is NOT waived — the owner removed the per-step layer, not verification. My cross-model reviewer still runs after your worker_done, so the lane still gets two independent review layers at close.
+>
+> Three things I need from you on this:
+>
+> 1. RECORD IT IN PROGRESS.md as an owner instruction with today's date, naming what was dropped and what was kept. A lane that silently stops running a standard rung looks like a skipped gate later; a lane that records the instruction is just following the owner. Do not let this read as a self-granted shortcut.
+>
+> 2. STEP 6 CARRIES THE RISK, so be deliberate there. Step 8 is written to PASS step 6's evals — a wrong eval there propagates straight into the rewrite, and now nothing catches it until step 11, where the fix is 'redo 6 and 8' rather than 'fix one eval'. Give step 6 your own care in place of the reviewer: re-derive the RED claims yourself the way step 5's reviewer did, and state those counts in PROGRESS.
+>
+> 3. The audit I asked for in my last message still stands — all evals in extracting-design-md, not just the PLAN's named set, and report the delta in worker_done.
+>
+> Speed is the point of this change. Do not spend the savings on extra self-checking that recreates the layer by another name.
+
+**What was DROPPED:** work-run's per-step reviewer and its fix-round re-reviewer, for PLAN steps
+6 through 10 only. Steps 1-5 ran the full rung and their verdicts are recorded above.
+
+**What was KEPT, and is not waived:** step 11's `work-verify`, including its step-4 fresh-context
+review over the whole lane; and the parent's cross-model adversarial reviewer after `worker_done`.
+Two independent review layers still close the lane.
+
+**One seat straddled the instruction.** `rev-step6` was dispatched before this message arrived. Its
+verdict is read and recorded rather than discarded — the work was already done, and it doubles as
+coverage for the audit in point 3. No per-step reviewer was dispatched after the instruction
+landed, and no fix-round re-review was run for steps 6-10.
+
+**On point 2 — the controller's own RED re-derivation for step 6** is recorded with step 6's entry,
+counted directly against `skills/extracting-design-md/SKILL.md` rather than taken from the
+implementer's report.
+
+### Controller's own step-6 work, standing in for the dropped reviewer
+
+**RED re-derivation, counted directly against `skills/extracting-design-md/SKILL.md` (87 lines)**
+rather than taken from the implementer's report, as the owner instruction requires:
+
+```
+provisional 0 · "reference surface" 0 · tie-break 0 · Global 0
+Sistema 0 · "open question" 0 · rank 0
+```
+
+`confirm` appears twice, both times as owner confirmation ("Confirm names and palette intent with
+the owner"), never as reference-surface confirmation. And the frequency criterion is live at
+`SKILL.md:46` — "**4. Propose tokens.** Semantic role + frequency decide: the dominant or …".
+So every RED claim in step 6's eval set holds: the vocabulary the new evals require is absent, and
+the rule they are written to replace is present and quotable.
+
+### Generalized eval audit (parent instruction), across BOTH skills — all eleven evals
+
+Swept for the defect class the parent named: any eval whose fixture or expected-behavior box
+hard-codes something the approved design replaces. The four known replacements were checked
+individually across `skills/*/evals/*.md`.
+
+| Replacement | Finding |
+|---|---|
+| flat `### <surface>` Decisions shape (SPEC §3.3) | **1 live instance**: `extracting-design-md/eval-02.md` box 1, "under its surfaces". Every other Decisions heading in either skill is already in `### <module>` → `#### <route> — <page>` form — `designing-consistently` eval-01, eval-03 and eval-05 all verified in the new shape. |
+| absence of a `### Global` tier (SPEC §3.4) | none — the tier appears wherever it is relevant. |
+| frequency as the token criterion (SPEC §3.6) | none surviving. `extracting-design-md/eval-01.md` was rewritten this step and now states it outright: "Counts measure spread; they do not elect. No variant is named 'the token' for leading the count". The remaining `frequency` mentions are the new tie-break framing or quotations of the old skill text inside `## Why this is RED today` sections. |
+| "locate the DESIGN.md, else instantiate" framing (SPEC §3.5 step 1) | none — the only `instantiat` hits are `designing-consistently/eval-04.md`'s box 5, which carries the **new** framing ("instantiating is the last option"). |
+
+**Delta beyond the PLAN's named set: 2 evals.** `designing-consistently/eval-03.md` (fixed in step
+5's fix round under the orphan-eval ruling) and `extracting-design-md/eval-02.md` (fixed in step
+6's fix round). No third instance exists; the sweep is closed.
+
+**A ruling of mine was wrong and is corrected here.** Step 6's implementer flagged
+"`eval-03.md`'s second box hard-codes the flat `### catalogo/inventario` heading", and I ruled it
+into step 6's fix round before verifying. The audit shows `skills/extracting-design-md/evals/eval-03.md`
+contains no such heading and no `###` heading at all — the flag described
+`skills/designing-consistently/evals/eval-03.md`, which step 5 had already fixed. The flag
+mis-attributed the file; my ruling inherited the error because I acted on it before checking. The
+ruling is withdrawn in `DECISIONS.md`, and nothing was changed on a false premise. What
+`extracting-design-md/eval-03.md` does carry is the stale `context-lint` reference, which PLAN
+step 9 owns and which stays for that step.
+
 ## In progress
 
 ## Tried and failed
