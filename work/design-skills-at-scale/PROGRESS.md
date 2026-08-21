@@ -782,6 +782,126 @@
   Files changed: `work/design-skills-at-scale/SPEC.md` (§3.6 note, one sentence expanded),
   `work/design-skills-at-scale/PROGRESS.md` (this entry).
 
+- 2026-08-20 — Step 5 (evals for `designing-consistently`). Wrote the two new evals and rewrote
+  `eval-01.md`, from `baseline-designing-consistently.md` and the step-4 rulings in
+  `DECISIONS.md` — not from PLAN step 5's one-line descriptions and not from SPEC §3's prose
+  (§3.5 and §3.6 read with their dated step-4 amendment notes). Touched no `SKILL.md`, no
+  `SPEC.md`, no `PLAN.md`, no `feature_list.json`, and made zero writes to the Pegasuz checkout
+  (did not open it at all this step). `eval-02.md` and `eval-03.md` were left byte-untouched —
+  see the flag at the end.
+
+  Per the controller ruling in `DECISIONS.md` (every step-5/6 eval carries at least one
+  expected-behavior box that demonstrably FAILS against the skill as it stands today, and the
+  author names it), each file carries a `## Why this is RED today` section naming its box and
+  citing the baseline. All three follow the existing eval shape — `# Eval NN: <title>`,
+  `## Query` in the owner's register, `## Fixture`, `## Expected behavior` as a checklist — with
+  the RED section appended after the checklist. Fixtures are runtime-neutral per the fixtures
+  ruling: an abstract large multi-module admin carrying the baselines' real numbers (157
+  surfaces, 13 nav groups, 175 components, 83 `--<prefix>-*` custom properties, an ~82 KB prose
+  doc of unknown authorship, 4-of-15 shared-component coverage). No framework, product or repo
+  filename appears in any of the three — verified mechanically with one `grep -nE` over the
+  three files for drive-rooted / `/mnt/` / `~/` / `/home/` / `/Users/` paths and for the names
+  the fixtures ruling bars; no hits (exit 1). No `## Validation log` section was added to any of
+  them: there is no validation run to log yet.
+
+  **`skills/designing-consistently/evals/eval-04.md` (new) — discovery when no DESIGN.md
+  exists.** RED box: **box 1**, "Step 1 returns a ranked inventory of what already governs …
+  instead of stopping at 'no DESIGN.md'". Baseline evidence:
+  `baseline-designing-consistently.md` `## Step 1` records six searches for a DESIGN.md-shaped
+  file, zero hits, and a dead end — no inventory, no ranking, nothing carried forward; the
+  standing system (the token line the app's own `AGENTS.md` names, the 288-line stylesheet
+  defining it, the inline dated owner decisions with names and ticket ids) surfaces only at
+  `## Step 2`, where the runner labels it "Improvisation (flagged — the skill did not tell me to
+  do this)". Boxes 2-4 fall with it: `provisional`, `reference surface`, `rank` and `trust` each
+  occur **zero** times in today's `SKILL.md` (counted), so no source is ranked against another,
+  and `## Step 3` of the same baseline shows the shared-component trap live — the run reused a
+  shared component because it existed and was commented as shared, checking no sibling surface
+  for how widely it is actually used. Box 5 (no instantiation proposal while a system is
+  discoverable) is marked **inside the file** as a regression guard rather than this eval's RED,
+  per the controller's ruling answering step 4's flagged item 1: today's skill reaches no
+  proposal at all, so that box passes trivially against the unfixed skill.
+
+  **`skills/designing-consistently/evals/eval-05.md` (new) — bounded slice at 157 surfaces.**
+  RED box: **box 1**, "`### Global` is read first — both sub-blocks — before anything
+  module-specific". Today's step 2 reads "every entry under the surfaces (routes/screens) about
+  to be touched" — the touched surface and nothing else — and `Global` and `sibling` occur
+  **zero** times in today's `SKILL.md` (counted), so there is no global tier to read first and
+  no sibling rule to bound the read with. Box 2 (module section = touched page + 2-3 siblings)
+  fails with it, and box 4 falls behind them: the fixture's touched page carries 3 entries, none
+  about a header, so a page-only read ships a header contradicting a standing global. The
+  baseline position is stated honestly inside the file rather than overclaimed: the cold run
+  could not exercise this — `baseline-designing-consistently.md` `## Step 2` had "zero material
+  to read from its prescribed source — not 'few entries,' literally none", and the step-4 ruling
+  records the slicing behavior **unobserved** for this skill for exactly that reason. The
+  nearest direct observation is the lane's other baseline, `baseline-extracting-design-md.md`
+  `## Step 5`, where the same "read each surface" shape met these 157 surfaces, the run read
+  none of them, and it substituted a bound of its own off script ("a deliberate, bounded
+  substitution"). Box 1 needs neither run to settle it: a box requiring `### Global` to be read
+  cannot pass against a skill that has no such tier. The eval also fails an answer that reads
+  everything (box 3), which is the other half of PLAN step 5's brief.
+
+  **`skills/designing-consistently/evals/eval-01.md` (rewritten) — the repair gate: promote,
+  demote, escalate.** The old content (a standing decision surviving an edit, under a flat
+  `### <surface>` heading) was the pre-lane flat model; the new one exercises the repair half of
+  SPEC §3.5 step 4, with §3.1's promotion rule and §3.4's precedence rule. RED boxes: **boxes 1
+  and 2** — promote the `[provisional]` entry the work was built on, and demote the
+  `[provisional]` entry it contradicted (replacing it with the corrected entry plus one line
+  saying what beat it). Baseline evidence: `baseline-designing-consistently.md` `## Step 4` —
+  the run's would-be record is three flat one-line additions under a single `### <surface>`
+  heading, and no existing entry is revisited, re-dated or re-scoped anywhere in the run;
+  today's step 4 is additive by construction ("Each gets `- YYYY-MM-DD — <decision>` under its
+  `### <surface>`"), and `promote`, `demote`, `provisional`, `escalat` and `Global` each occur
+  **zero** times in `SKILL.md` (counted). Box 2 fails in the opposite direction as well: step 3
+  makes any conflict a stop-and-ask ("A standing decision the work conflicts with is
+  renegotiated with the user — never silently overridden") with no exemption for a candidate, so
+  a faithful run halts on the provisional entry instead of demoting it. Boxes 3 and 4
+  (undeclared contradiction is drift; two-module escalation keeps `[provisional]` status) fail
+  behind them — the skill has no global tier to contradict or escalate into. Stated in the file,
+  not hidden: that cold run found no `DESIGN.md`, so no provisional entry existed for it to
+  repair — the additive-only shape of its record is what was observed, and the absence of every
+  repair verb from the skill text is what makes boxes 1-2 unreachable today. The rewrite also
+  covers `feature_list.json` F07's expectation that `eval-01.md` exercise the
+  undeclared-contradiction-is-drift case (box 3).
+
+  **Flagged, deliberately NOT acted on — `eval-03.md`.** Its second box hard-codes the flat
+  `### catalogo/inventario` heading ("Appends `- YYYY-MM-DD — <decision>` … under
+  `### catalogo/inventario`"), which is the pre-lane addressing shape. SPEC §3.3/§4.6 replace it
+  with `### <module>` / `#### <route> — <page>`, and the step-4 ruling on prediction 3 sharpens
+  the point directly: it records that the writer side appends under a per-surface heading "the
+  extractor never emits", and that the PLAN's step-7 / step-8 interface requires reader and
+  writer to agree on the exact heading shape. So a skill rewritten at step 7 to SPEC §3.3 would
+  fail `eval-03.md` box 2 as literally written. I did not rewrite it — it is another
+  requirement's contract and this step was not chartered to touch it. The controller rules.
+  `eval-02.md` is unaffected: SPEC §3.5 leaves step 3 unchanged, and nothing in the step-4
+  rulings touches consuming generated tokens.
+
+  Acceptance 1: `test $(ls skills/designing-consistently/evals/*.md | wc -l) -eq 5`
+
+  ```
+  === ACCEPT 1 ===
+  5
+  ACCEPT 1 PASS (exit 0)
+  ```
+
+  Acceptance 2 (path resolved per `DECISIONS.md` ruling 1):
+  `node /c/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .` exits 0:
+
+  ```
+  agent-lint C:\Users\mateo\orca\workspaces\skills\design-skills-at-scale
+    LOW    AGENTS.md:15  ../Agent-Engineering/scripts/agent-lint.mjs escapes the repo — context-dependent, true only where that path exists outside it (a sibling checkout, CI)  [cmd-drift]
+  0 high, 0 medium, 1 low — PASS
+  lint exit: 0
+  ```
+
+  Only the pre-existing, expected LOW `cmd-drift` finding remains; the three new/rewritten eval
+  files add no finding of their own — in particular no `machine-path`, the check that scans
+  `skills/`.
+
+  Files changed: `skills/designing-consistently/evals/eval-04.md` (new),
+  `skills/designing-consistently/evals/eval-05.md` (new),
+  `skills/designing-consistently/evals/eval-01.md` (rewritten),
+  `work/design-skills-at-scale/PROGRESS.md` (this entry).
+
 ## Reviews
 
 <!-- Verbatim verdict text from every in-session review seat: the
