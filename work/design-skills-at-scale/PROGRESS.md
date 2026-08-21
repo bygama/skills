@@ -280,6 +280,84 @@
   Files changed: `work/design-skills-at-scale/baseline-designing-consistently.md`,
   `work/design-skills-at-scale/PROGRESS.md`.
 
+- 2026-08-20 — Step 3 (cold baseline of `extracting-design-md`, transcription only). Per the same
+  two-seat controller ruling as step 2, the cold run itself was executed by a separate cold-runner
+  agent given only the current `extracting-design-md` workflow and the read-only admin repo, told
+  nothing of this lane, this SPEC, or SPEC §5's three recorded predictions. The runner's report
+  (`cold-run-extracting-design-md.md`, 910 lines / 53,784 bytes) was transcribed into
+  `work/design-skills-at-scale/baseline-extracting-design-md.md`, not re-derived. My own work this
+  step was transcription and framing only: I did not run `extracting-design-md` myself, did not
+  re-derive any finding, and did not correct, condense, reorder, or reword the runner's account —
+  including its self-caught methodology mistakes (the `\b(btn|card)\b` and `\brounded\b` false
+  counts in Step 2, both left in as the runner described fixing them).
+
+  Copied the runner's report verbatim (byte-for-byte) from its own `# Cold run:` header through
+  the end of the file — its seven `## Step N` sections, the `## The DESIGN.md I would have
+  written` section (left inside its existing fenced ```` ```markdown ```` block, not unwrapped,
+  no second fence added), and the closing `## What I would have committed` section. Verified
+  byte-identity mechanically: located the transcript's start line in the destination file, sliced
+  out exactly as many lines as the source file has, and ran `diff` against the source — empty
+  diff, confirming an exact copy, not a spot check.
+
+  Added a blockquote preamble above the transcript, clearly marked as the lane's framing and not
+  the runner's words, stating: what was run (`extracting-design-md` as it stands today,
+  unmodified); which copy (the user's global skills folder install — the controller verified it
+  byte-identical to this worktree's `skills/extracting-design-md/SKILL.md` before dispatching the
+  cold runner, and I independently re-verified the same byte-identity myself at transcription time
+  via `diff`, stated as my own separate check rather than folded into the controller's); against
+  what (`<PEGASUZ>/Pegasuz-Core/frontend-admin/admin`, read-only); the task the runner was given,
+  quoted verbatim in Spanish; the isolation the runner ran under, including the further scope
+  fence its own Step 6 records (barred from reading this session's other repositories, which is
+  why it could not reach the Context-Engineering/Agent-Engineering clone housing
+  `design-md-gen`/`context-lint`).
+
+  For the two constraints (READ-ONLY, NO SUBAGENTS), stated honestly and separately which
+  observations each touches and which it does not, rather than one blanket claim — read-only
+  touches Step 7 and the closing "what I would have committed" section, not the Steps 1-5 harvest
+  (read actions, would read the same in a writable clone), and does not explain Step 4's
+  no-live-owner gap or Step 6's repo-scope-fence gap either. No-subagents touches Step 2's harvest
+  method directly: the runner recorded that the skill's own `## Scaling (bounded)` section names
+  fan-out past ~15 surfaces as the answer, that this repo's nav config runs to 60+ entries (~10x
+  that threshold), and that the fan-out lever was unavailable "by direct instruction," not the
+  skill's own choice — stated as the lane's fence, not the skill's, with no decision here about
+  what that means for the harvest's practicality or for SPEC §5 (left to PLAN step 4). Confirmed
+  no-subagents does not touch Steps 1, 3, 4, 5, or 6's findings.
+
+  Appended `## Controller-verified addenda` below the transcript, containing only the three facts
+  supplied by the controller: the four dead documentation pointers (`UX-UI-STANDARDS.md`,
+  `VISUAL_QA.md`, `ADMIN_UX_ROADMAP.md`, and doc 47 /
+  `47-FRONTEND-DESIGN-SYSTEM.md`) resolving one level up at the Pegasuz monorepo root (sizes
+  9757 / 3775 / 10,351 / 57,030 bytes) — the same pattern step 2's baseline recorded, now observed
+  a second time over two more pointers; the one pointer that resolves nowhere at all
+  (`servicio.css`'s `C:\Users\nicol\rcsistemas-design-stage\NODOS.md`, verified absent on this
+  machine, not a scope artifact); and zero writes (`git status --short` empty, HEAD unchanged at
+  `00ddbcbaf`). Each labelled controller-verified, no interpretation added — that is PLAN step 4's
+  job.
+
+  Did not touch `skills/`, `SPEC.md`, or `PLAN.md`. Made zero writes to the Pegasuz checkout.
+  Dispatched no subagent for this step's own work.
+
+  Verified before recording: `diff ~/.claude/skills/extracting-design-md/SKILL.md
+  skills/extracting-design-md/SKILL.md` exits with no output (byte-identical, confirming the
+  DECISIONS.md ruling this step's preamble cites still holds at transcription time).
+
+  Acceptance: `test $(grep -c '^## Step ' work/design-skills-at-scale/baseline-extracting-design-md.md) -eq 7`
+
+  ```
+  ACCEPT PASS
+  ```
+
+  Re-ran the gate: `node /c/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .` still
+  exits 0:
+
+  ```
+  agent-lint C:\Users\mateo\orca\workspaces\skills\design-skills-at-scale
+    LOW    AGENTS.md:15  ../Agent-Engineering/scripts/agent-lint.mjs escapes the repo — context-dependent, true only where that path exists outside it (a sibling checkout, CI)  [cmd-drift]
+  0 high, 0 medium, 1 low — PASS
+  ```
+
+  Files changed: `work/design-skills-at-scale/baseline-extracting-design-md.md` (new).
+
 ## Reviews
 
 <!-- Verbatim verdict text from every in-session review seat: the
