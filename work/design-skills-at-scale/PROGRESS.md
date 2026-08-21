@@ -1086,6 +1086,106 @@ instruction to record SPEC §5 prediction 2 as CONFIRMED supersedes step 4's own
 CONTRADICTED-on-the-literal-wording verdict, and that both facts stay in the record — they differ
 only in what they take prediction 2 to assert, and the parent's verdict governs.
 
+### Step 4 — step review (fresh reviewer, opus)
+
+**Spec compliance:** ✅ Compliant.
+
+**Assessment — Step quality: Approved.** Reasoning, verbatim: "All three verdicts hold against the
+transcripts on the literal wording of their predictions, each separates the literal verdict from
+the underlying defect with quoted support, and the load-bearing counterfactual-writes claim
+survives a line-by-line count; the two SPEC amendments are additive, marked, dated, confined to
+§3.5/§3.6, and leave §4 and every approved sentence untouched. The five Minors are precision and
+framing, none of which changes a verdict or what steps 5-8 must build."
+
+Ruling-by-ruling, the reviewer checked each verdict against the transcript rather than checking
+that rulings merely existed. On prediction 1 it verified the load-bearing claim by counting:
+
+> *The load-bearing third claim — verified.* The ruling asserts the run used its counterfactual convention four times for other blocked writes and never for an offer. I counted them in the transcript: (1) `:76-141` the full component; (2) `:143-152` the diff block; (3) `:162` "Decisions I would have recorded had the file existed"; (4) `:175-180` the whole `## What I would have committed` section. The count holds. Nitpick only: #4 partly recapitulates #1-#3, so "four separate times" is three distinct loci plus a summary section — the inference is unaffected.
+
+On prediction 2 it named the trap the ruling avoided:
+
+> **The 13px-in-frontmatter trap was not walked into.** The easy failure mode on P2 was to declare CONTRADICTED on Step 4 alone and never notice `small: '0.8125rem'` sitting in the emitted file. The ruling surfaces it and disposes of it on provenance rather than ignoring it.
+
+Findings, verbatim:
+
+> #### Critical (Must Fix)
+> None.
+>
+> #### Important (Should Fix)
+> None. No ruling asserts anything the transcripts do not support, and neither amendment reaches beyond marked commentary in §3.
+>
+> #### Minor (Nice to Have)
+> 1. **`DECISIONS.md:14` and `SPEC.md:134` overstate their own cited evidence.** Both say the template repo "exists nowhere on this machine" / "does not exist on this machine (controller addendum 4)". Addendum 4 verifies something narrower: a **depth-2 search of the machine's work-repos folder**, plus three named candidate paths that fail to resolve. That is not a whole-machine search. *Why it matters:* the overstatement is now inside the approved SPEC, and the de-confounding rests on it. *Fix:* rephrase to "does not resolve at any plausible sibling location searched (controller addendum 4; SPEC §1)".
+> 2. **One confound in prediction 1's evidence is never named.** `baseline-designing-consistently.md:52` ends *"I was told to proceed through steps 2–5 anyway and record what happens."* An offer is a halt-and-ask act; a runner instructed to proceed regardless is a fourth candidate cause for the missing offer, distinct from the three the ruling de-confounds. *Why the verdict survives anyway:* the runner attributes the non-offer to its own two causes and never to the proceed instruction; the counterfactual convention was precisely the tool for recording a would-be offer under a proceed instruction, and it was used four times for other things; and the amendment's load-bearing half — that step 1 produced no *discovery* either — does not depend on this at all. *Fix:* one clause naming and dismissing it.
+> 3. **Prediction 2's headline framing slightly under-sells the confirming half.** "The defect appears one layer down instead, in the emitted frontmatter" locates the defect at the frontmatter. But `card`/14px was elected *at Step 4, on pure frequency*, over an ~751-use 8px family the baseline describes as *"a deliberate, documented v1.1 decision (Sanity/Stripe/Shopify comparison, not sloppy drift)"* later overridden without a completed migration. Frequency overriding a documented owner decision is the sharpest available statement of SPEC §1's third defect. *Fix:* no SPEC edit needed; the controller should carry the v1.1-deliberate-decision detail into step 6's dispatch as the eval's fixture.
+> 4. **The three entries are 2061 / 2450 / 2784 characters against a prior file maximum of 778.** The `- date — choice — why` shape holds, so this is not a violation — but a reader in three months reaches for PROGRESS.md instead, and the DECISIONS entries become an archive rather than the index they are meant to be.
+> 5. ⚠️ **One claim I could not verify from the material given.** Ruling 3 says the emitted Decisions sections carry "zero entries in the dated `- ` bullet form the format and the lint require". The zero-entries fact I confirmed directly. Whether `agent-lint` *fails* a `## Decisions` section containing no `- ` lines at all is not established by anything in the lane. Noting it so the claim is not inherited downstream as verified.
+
+On the three items step 4 flagged for the controller rather than acting on, the reviewer judged
+all three correctly flagged, and on the second:
+
+> **Requirement 5's `[provisional]` marker has no defined carrier in frontmatter — flagging was right.** Closing it requires a new design decision, not a reconciliation of prediction against evidence — so it is outside this step's mandate. Escalating instead of quietly inventing a carrier was the correct restraint. This is the item most likely to block step 8; it should reach the owner, not just the controller.
+
+That is what happened: the controller escalated it as a blocking question and the parent ruled.
+The ruling is quoted verbatim above under "Parent ruling — where a provisional frontmatter token
+lives".
+
+### Step 4 — fix round 1 re-review (fresh re-reviewer, sonnet)
+
+Minors 1 and 2 were ruled INTO the fix round (an overstatement sitting inside approved SPEC text,
+and an unnamed confound in the very entanglement the step was chartered to resolve), together with
+the parent's binding ruling. Minors 3, 4 and 5 were deferred.
+
+**Verdict — Fix round: All findings addressed, no new Critical/Important breakage.** Verbatim:
+
+> **1. Parent ruling / prediction 2 → CONFIRMED — ADDRESSED.** `SPEC.md:155-177` leads with a bold header stating `SPEC §5 prediction 2 CONFIRMED, per the parent's ruling`, so a skimming reader sees the governing verdict first, not a tie. The literal facts are introduced with "Evidence detail beneath that verdict, not a competing one" and the note goes on to say explicitly "Step 4 first recorded prediction 2 CONTRADICTED on that literal reading; the parent's verdict supersedes it, and nothing is falsified either way" — so the superseded verdict is named and subordinated *inside SPEC itself*. The open question the note used to pose is gone; in its place the parent's two rules are stated operationally: (i) unconfirmed-but-genuine election → frontmatter token **and** a `[provisional]` entry under `### Global`/`#### Sistema` naming the token and what it beat, "carrying both counts"; (ii) no election → **no** frontmatter token at all, plus an open-question entry recording the role, competing candidates and file locations. Both rules are concrete enough for a step-6 eval or step-8 skill author to act on without returning to the parent. The counts (984-vs-~751 for `card`) survive.
+>
+> **2. Overstatement rephrase — ADDRESSED.** `SPEC.md:135-136` now reads "does not resolve at any plausible sibling location searched (controller addendum 4; SPEC §1)". Checked against the actual addendum-4 text: it verifies a depth-2 search of the work-repos folder plus three explicitly named candidate paths failing to resolve — narrower than "this machine" as claimed. The new wording is accurate to that narrower scope and is not a second overstatement. `DECISIONS.md:14` is untouched, append-only.
+>
+> **3. Fourth confound — ADDRESSED.** `SPEC.md:138-140` adds "nor does the fourth candidate cause, the runner's instruction to 'proceed through steps 2–5 anyway' (same section), which the runner never cites as its reason and which that same counterfactual convention existed to work around," and closes with "That second half, the missing discovery, depends on none of the four causes." Verified against `baseline-designing-consistently.md:52` — quote is accurate.
+>
+> **Scope fence held.** SPEC §4 is untouched — all eleven requirements read identically to the approved text. No `PLAN.md` edit, no eval touched, nothing under `skills/`. Both deferred items were left alone.
+>
+> ### New breakage in the fix diff
+> None in the diff's own content. **Minor (process, non-blocking):** the fix-diff artifact supplied for this review is stale relative to the live repo — a second pass by a fresh seat added three sentences the diff does not show. It does not misrepresent anything falsely (the missing text only strengthens the note), but a reviewer who checks only the supplied diff will certify an older version of §3.6 than what's actually committed. Recommend future rounds supply the full current state rather than a single named diff file, especially when a fix round spans more than one dispatched seat.
+>
+> ### Out-of-scope observations
+> `SPEC.md:42` (§1, untouched, correctly out of this round's fence) states "`../Context-Engineering` does not exist — verified" with the same unqualified "does not exist" phrasing that item 2 just corrected in §3.5. It is the fact the §3.5 rephrase leans on, so the two sentences now sit at different levels of precision for what appears to be the same claim. Worth a future pass reconciling it with the narrower addendum-4 evidence.
+>
+> ### Verdict
+> **Fix round:** All findings addressed, no new Critical/Important breakage.
+
+**Controller cross-check, run independently.** `git diff c56f316 HEAD -- SPEC.md`, filtered to
+lines that are not blockquote content, returns a single `+>` (an empty note line). Every other
+change to `SPEC.md` since the owner approved it at `c56f316` sits inside a `> ` blockquote note.
+The approved prose — including all eleven §4 requirements — is byte-identical to what the owner
+approved. Both fix commits (`6798ec7`, `39e08bd`) delete only `> ` lines.
+
+**Step 4 closed: Approved, then 1 fix round carrying the parent's binding ruling.**
+
+#### Controller process defect, recorded because a reviewer caught it
+
+The re-review packet handed to the reviewer was a single named diff file for one commit, while the
+fix round had in fact spanned two commits across two seats — the first seat became unresponsive
+mid-round and a fresh seat picked it up, landing a second pass. The reviewer noticed the live file
+carried text its diff did not, traced it, verified the extra text independently, and flagged the
+packaging rather than certifying the stale version. Its recommendation is adopted for the rest of
+this lane: **package review diffs as the full range from the step's base to HEAD, not a single
+commit**, and say which commits the range spans.
+
+### Deferred to work-verify triage (step 4)
+
+- SPEC §3.6's "one layer down" framing under-sells the confirming half of prediction 2. No SPEC
+  edit needed; the controller carries the v1.1-deliberate-decision detail into step 6's dispatch
+  as the eval fixture, which is where the reviewer said it belongs.
+- The three step-4 `DECISIONS.md` rulings run 2061 / 2450 / 2784 characters against a prior file
+  maximum of 778. Format holds; readability suffers.
+- ⚠️ Ruling 3's claim that the lint *requires* dated `- ` entries under `## Decisions` is not
+  established by anything in the lane. Not inherited downstream as verified.
+- `SPEC.md:42` (§1) carries the same unqualified "does not exist — verified" phrasing that §3.5
+  was just corrected away from, and is the fact §3.5's rephrase leans on. §1 is approved text
+  outside step 4's editable section, so it was correctly left alone.
+
 ## In progress
 
 ## Tried and failed
