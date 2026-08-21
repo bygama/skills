@@ -1943,6 +1943,31 @@ ruling is withdrawn in `DECISIONS.md`, and nothing was changed on a false premis
 `extracting-design-md/eval-03.md` does carry is the stale `context-lint` reference, which PLAN
 step 9 owns and which stays for that step.
 
+### Step 6 — closed without a per-step reviewer, per the owner instruction
+
+`rev-step6` was dispatched a few minutes BEFORE the owner's instruction to drop the per-step
+reviewer arrived. It never delivered a verdict — the same report-delivery failure this lane has hit
+repeatedly — and it was **not re-dispatched**, because by then the owner had removed that layer for
+steps 6-10. So step 6 carries no reviewer verdict, and that is the instruction being followed, not
+a gate quietly skipped. What stands in its place, both recorded above:
+
+- the controller's own RED re-derivation counted directly against today's
+  `skills/extracting-design-md/SKILL.md`, and
+- the generalized eval audit across all eleven evals in both skills.
+
+Step 6's own fix round closed on the discriminating check the controller asked for, in the
+implementer's words: "re-checked and confirmed a confirmed entry under a correct module heading
+FAILS box 1 while a `[provisional]` entry at the module/route address citing the files PASSES". A
+box that fails the wrong answer and passes the right one is the whole test; that is the evidence
+the reviewer would have been asked to produce.
+
+Step 6 result: 6 evals in `skills/extracting-design-md/evals/`, both acceptance commands exit 0.
+`eval-01.md` rewritten so counts measure spread rather than elect; `eval-05.md` new (reference
+surfaces elect, frequency only breaks ties); `eval-06.md` new (provisional by default, including
+the rule that a role with no election gets no frontmatter token at all); `eval-02.md` repaired for
+both the missing `[provisional]` marker and the flat per-surface addressing. `eval-03.md` and
+`eval-04.md` untouched, under a withdrawn ruling and a deferred one respectively.
+
 ## In progress
 
 ## Tried and failed
