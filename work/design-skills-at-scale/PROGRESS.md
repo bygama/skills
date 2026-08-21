@@ -966,9 +966,15 @@
   **One thing to flag about the commit history of this round.** The four eval edits are already
   in the tree under commit `eda82ca` ("docs(lane): record the step-5 review verdict verbatim"),
   not under a commit of mine: that commit was made from another seat while this round's edits
-  were on disk, and it swept them in alongside the review verdict it was written for. I did not
-  rewrite it — the content is correct and committed, and rewriting another seat's commit is not
-  a call this step makes. Verified by `git diff 2543242 HEAD -- skills/designing-consistently/evals/`,
+  were on disk, and it swept them in alongside the review verdict it was written for. **Said
+  plainly, so a later reader is not misled: `eda82ca`'s message describes a PROGRESS-only
+  bookkeeping entry and says nothing about eval content, but the commit contains this round's
+  changes to `eval-01.md`, `eval-03.md`, `eval-04.md` and `eval-05.md`.** The controller has
+  since given the cause directly — a `git add -A` run for that bookkeeping entry while this
+  seat's edits sat uncommitted in the shared worktree — and rules that history stays as it is.
+  I did not rewrite it — the content is correct and committed, and rewriting another seat's
+  commit is not a call this step makes. Verified by
+  `git diff 2543242 HEAD -- skills/designing-consistently/evals/`,
   which shows exactly the five edits described above and nothing else. This entry is therefore
   the only file in my own fix-round commit.
 
@@ -998,6 +1004,71 @@
   `skills/designing-consistently/evals/eval-04.md`,
   `skills/designing-consistently/evals/eval-05.md` (all four committed inside `eda82ca`, see
   the flag above), `work/design-skills-at-scale/PROGRESS.md` (this entry).
+
+- 2026-08-20 — Step 5 fix round 1, second pass (audit after the controller's `git add -A`
+  notice). The controller reported that its `git add -A` for a PROGRESS-only bookkeeping entry
+  swept this seat's in-flight eval edits into `eda82ca`, and asked which of the five chartered
+  items were already applied there and which still needed work. **All five were already
+  applied**; nothing in the eval files remained to change, so this pass wrote no eval content
+  and made no empty commit. Audited each item against the files as they stand on disk, not
+  against my own report of them:
+
+  1. **`eval-03.md` heading ruling — applied.** Fixture reads "the inventory page of the
+     `catalogo` module — `### catalogo` → `#### /catalogo/inventario — Inventario`"; box 2
+     appends under `### catalogo` → `#### /catalogo/inventario — Inventario`. Boxes 1 and 3 and
+     the query are byte-identical to the pre-round file, so the eval still tests exactly what it
+     tested: an unrecorded decision blocks completion.
+  2. **Minor 3, `eval-01.md` box 1 — applied.** Carries the earned-by-work promotion clause and
+     the statement that reference-surface/owner confirmation governs discovery instead.
+  3. **Minor 4, `eval-01.md` box 2 — applied.** Carries both the "corrected entry may be its
+     removal, recorded" alternative and the closing "This box and the next describe one
+     disposition of that entry, not two."
+  4. **Minor 6, `eval-04.md` box 3 — applied.** Reads "which surfaces are the reference is
+     recorded as an open question for the owner", matching box 4 and the fixture's absent owner.
+  5. **Minor 8, `eval-05.md` box 5 — applied**, with the matching sentence in that eval's
+     `## Why this is RED today`.
+
+  Also re-verified nothing outside the fence moved: `git diff 2543242 HEAD --stat --
+  skills/designing-consistently/evals/eval-02.md skills/designing-consistently/SKILL.md` is
+  empty — `eval-02.md` and the skill are untouched since my step-5 commit.
+
+  **Re-checked every `## Why this is RED today` claim again this pass**, against the current
+  `SKILL.md` rather than against the earlier count: `provisional`, `promote`, `demote`,
+  `escalat`, `Global`, `sibling`, `reference surface`, `rank` and `trust` all still occur zero
+  times, and the three verbatim quotes the RED sections lean on are still present and still say
+  what is claimed — `SKILL.md:32` ("every entry under the surfaces (routes/screens)"),
+  `SKILL.md:42` ("renegotiated with the user — never silently") and `SKILL.md:49` ("Each gets").
+  Every RED section still names a box that genuinely fails today.
+
+  **The mis-attribution, stated plainly here as well as in the entry above:** `eda82ca`'s commit
+  message ("docs(lane): record the step-5 review verdict verbatim") describes a PROGRESS-only
+  bookkeeping entry and says nothing about eval content, yet that commit carries this round's
+  changes to `eval-01.md`, `eval-03.md`, `eval-04.md` and `eval-05.md`. The controller has given
+  the cause — its own `git add -A` while this seat's edits sat uncommitted in the shared
+  worktree — and ruled that history stays as it is: no revert, reset or amend, since other work
+  shares this repository. A later reader looking for where the fix-round eval content landed
+  should look at `eda82ca`, not at a commit of mine.
+
+  Acceptance 1: `test $(ls skills/designing-consistently/evals/*.md | wc -l) -eq 5`
+
+  ```
+  === ACCEPT 1 ===
+  5
+  ACCEPT 1 PASS (exit 0)
+  ```
+
+  Acceptance 2: `node /c/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .` exits 0:
+
+  ```
+  agent-lint C:\Users\mateo\orca\workspaces\skills\design-skills-at-scale
+    LOW    AGENTS.md:15  ../Agent-Engineering/scripts/agent-lint.mjs escapes the repo — context-dependent, true only where that path exists outside it (a sibling checkout, CI)  [cmd-drift]
+  0 high, 0 medium, 1 low — PASS
+  lint exit: 0
+  ```
+
+  Files changed: `work/design-skills-at-scale/PROGRESS.md` only (this entry, plus the plain
+  mis-attribution sentence added to the fix-round entry above). No eval file, no `SKILL.md`, no
+  `SPEC.md`, no `PLAN.md`, no `feature_list.json`; zero writes to the Pegasuz checkout.
 
 ## Reviews
 
