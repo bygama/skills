@@ -1186,6 +1186,39 @@ commit**, and say which commits the range spans.
   was just corrected away from, and is the fact §3.5's rephrase leans on. §1 is approved text
   outside step 4's editable section, so it was correctly left alone.
 
+### Step 4 — fix round 1, SECOND re-review seat (independent, sonnet)
+
+A second re-review seat had been dispatched while the first appeared unresponsive. Both later
+returned, independently, and **agree on every item**. The second seat's verdict, verbatim:
+
+> **Fix round:** All findings addressed, no new Critical/Important breakage.
+
+It reached that verdict by reading the files as they stand on disk rather than the supplied diff,
+and flagged the same packaging defect the first seat did:
+
+> `step-04-fix1.diff` captures only commit `6798ec7d` (fix round 1's first pass). … I read the SPEC.md and DECISIONS.md files as they currently stand on disk (not just the diff), which is the ground truth that includes this second pass. … This is not a new defect — the second pass is a real improvement, and it is exactly what closes the "is the open question genuinely closed" judgment call — but flagging it since the diff file alone would under-represent the current text.
+
+On the half most at risk of being softened, it was explicit:
+
+> This is operational: a step-6/8 author can act on it without going back to the parent, and the "no token at all" half — the one likeliest to get softened — is stated unambiguously.
+
+And it checked the residual-hedge question directly:
+
+> No residual "open"/"for the controller"/"not decided here" language remains anywhere in the note (checked both §3.5 and §3.6 text in full); the one occurrence of "open question" (SPEC.md:163) is a factual description of the transcript's own wording, not a hedge on the SPEC's verdict.
+
+#### Correction to the seat-failure record above
+
+The controller earlier treated the step-4 fix seat as unresponsive and dispatched a fresh one. That
+was wrong in one respect and should not stand uncorrected: the original seat had in fact completed
+its work and committed `6798ec7` — only its REPORT failed to arrive. It later resent the report
+unprompted, and correctly flagged that an uncommitted working-tree edit had appeared in `SPEC.md`
+that was not its own, leaving it in place rather than reverting or committing it. That edit was the
+fresh seat's second pass, which the fresh seat then committed as `39e08bd`. So both commits are
+accounted for, the working tree is clean, and no edit was orphaned or lost. The failure in this
+lane has consistently been report DELIVERY, never the work itself — worth stating plainly, because
+"the seat is dead" and "the seat's message did not arrive" call for different responses, and the
+controller acted on the wrong one.
+
 ## In progress
 
 ## Tried and failed
