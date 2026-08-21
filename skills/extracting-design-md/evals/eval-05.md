@@ -77,7 +77,7 @@ reference surfaces cannot pass against a skill that has no such concept,
 and a box that requires the losing 984 to be reported as spread rather
 than authority has nothing in the skill text to rest on.
 
-`baseline-extracting-design-md.md` `## Step 4` is the same case, run for
+[`baseline-extracting-design-md.md`](https://github.com/bygama/skills/blob/966b264db7ca7fc4e41eacdbedb473a44f9dd4f3/work/design-skills-at-scale/baseline-extracting-design-md.md) `## Step 4` is the same case, run for
 real: 984 against roughly 751 at the card role, elected "per the rule as
 stated", while the run recorded in that same paragraph that the losing
 family "wasn't sloppy drift, it was a considered decision" with a

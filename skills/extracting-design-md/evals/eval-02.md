@@ -35,7 +35,7 @@ the flat per-surface addressing SPEC §3.3 replaces, and no marker of any
 kind. `provisional` occurs zero times in
 `skills/extracting-design-md/SKILL.md`.
 
-`baseline-extracting-design-md.md` shows both halves failing in the
+[`baseline-extracting-design-md.md`](https://github.com/bygama/skills/blob/966b264db7ca7fc4e41eacdbedb473a44f9dd4f3/work/design-skills-at-scale/baseline-extracting-design-md.md) shows both halves failing in the
 emitted file. Its `## Decisions` is nine `###` prose sections addressed
 by token family or pattern — no `### <module>` heading and no
 `#### <route> — <page>` subsection anywhere — and the two it recorded as

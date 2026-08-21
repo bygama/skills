@@ -67,7 +67,7 @@ lands on the touched page's 3 entries, none of which mentions a header,
 and box 4 falls with box 1.
 
 The cold run could not exercise this directly, and the lane says so:
-`baseline-designing-consistently.md` `## Step 2` had "zero material to
+[`baseline-designing-consistently.md`](https://github.com/bygama/skills/blob/966b264db7ca7fc4e41eacdbedb473a44f9dd4f3/work/design-skills-at-scale/baseline-designing-consistently.md) `## Step 2` had "zero material to
 read from its prescribed source — not 'few entries,' literally none",
 and the step-4 ruling in `DECISIONS.md` records the slicing behavior
 **unobserved** for this skill for exactly that reason. Where the same

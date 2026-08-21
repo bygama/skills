@@ -64,7 +64,7 @@ tokens." In `skills/extracting-design-md/SKILL.md`, `provisional` and
 `reference` is the path `reference/design-md.md` on line 13 — there is no
 other criterion to elect on and no marker to carry doubt with.
 
-`baseline-extracting-design-md.md` `## Step 4` is the direct
+[`baseline-extracting-design-md.md`](https://github.com/bygama/skills/blob/966b264db7ca7fc4e41eacdbedb473a44f9dd4f3/work/design-skills-at-scale/baseline-extracting-design-md.md) `## Step 4` is the direct
 observation. At the card role the run elected the 984-use value over a
 roughly 751-use family "per the rule as stated", in the same paragraph
 where it recorded that the losing family "wasn't sloppy drift, it was a
