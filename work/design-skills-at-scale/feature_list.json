@@ -1,43 +1,43 @@
 [
   {
     "id": "F01",
-    "behavior": "designing-consistently step 1 discovers the standing system from code, owner context files and prose docs, and does not propose instantiating a DESIGN.md while a system is discoverable (SPEC §4.1, §3.5 step 1).",
-    "verification": "test -f skills/designing-consistently/evals/eval-04.md (discovery-without-DESIGN.md, PLAN step 5) plus: grep -q 'Discover the standing system' skills/designing-consistently/SKILL.md && ! grep -qE '^\\*\\*1\\. .*[Ii]nstantiat' skills/designing-consistently/SKILL.md",
+    "behavior": "designing-consistently step 1 discovers the standing system from code, owner context files and prose docs, and does not propose instantiating a DESIGN.md while a system is discoverable (SPEC §4.1, §3.5 step 1). Encoded by the discovery-without-DESIGN.md eval (expected skills/designing-consistently/evals/eval-04.md, PLAN step 5).",
+    "verification": "test -f skills/designing-consistently/evals/eval-04.md && grep -q 'Discover the standing system' skills/designing-consistently/SKILL.md && ! grep -qE '^\\*\\*1\\. .*[Ii]nstantiat' skills/designing-consistently/SKILL.md",
     "state": "not_started",
     "evidence": null
   },
   {
     "id": "F02",
-    "behavior": "Both skills apply the source-trust hierarchy of SPEC §3.2 (code at reference surfaces confirms; owner context files and prose docs are [provisional]; frequency is tie-break only) — nothing discovered is emitted confirmed (SPEC §4.2).",
-    "verification": "grep -l 'provisional' skills/designing-consistently/SKILL.md skills/extracting-design-md/SKILL.md | wc -l -> 2, cross-checked against the evals from PLAN steps 5-6 that encode the hierarchy (designing-consistently eval-04.md/eval-05.md; extracting-design-md eval-05.md/eval-06.md).",
+    "behavior": "Both skills apply the source-trust hierarchy of SPEC §3.2 (code at reference surfaces confirms; owner context files and prose docs are [provisional]; frequency is tie-break only) — nothing discovered is emitted confirmed (SPEC §4.2). Cross-checked against the evals from PLAN steps 5-6 that encode the hierarchy (designing-consistently expected eval-04.md/eval-05.md; extracting-design-md expected eval-05.md/eval-06.md).",
+    "verification": "grep -q 'provisional' skills/designing-consistently/SKILL.md && grep -q 'provisional' skills/extracting-design-md/SKILL.md",
     "state": "not_started",
     "evidence": null
   },
   {
     "id": "F03",
-    "behavior": "designing-consistently reads a bounded slice (### Global + touched module + siblings), never the whole Decisions section (SPEC §4.3, §3.5 step 2).",
-    "verification": "test -f skills/designing-consistently/evals/eval-05.md (bounded-slice-at-157-surfaces, PLAN step 5) plus: grep -qE 'Global.*module|module.*Global' skills/designing-consistently/SKILL.md && grep -q 'sibling' skills/designing-consistently/SKILL.md",
+    "behavior": "designing-consistently reads a bounded slice (### Global + touched module + siblings), never the whole Decisions section (SPEC §4.3, §3.5 step 2). Encoded by the bounded-slice-at-157-surfaces eval (expected skills/designing-consistently/evals/eval-05.md, PLAN step 5).",
+    "verification": "test -f skills/designing-consistently/evals/eval-05.md && grep -qE 'Global.*module|module.*Global' skills/designing-consistently/SKILL.md && grep -q 'sibling' skills/designing-consistently/SKILL.md",
     "state": "not_started",
     "evidence": null
   },
   {
     "id": "F04",
-    "behavior": "designing-consistently step 4 gate promotes or demotes every provisional entry the work touched, and escalates to ### Global on the two-or-more-module trigger (SPEC §4.4, §3.5 step 4).",
-    "verification": "diff skills/designing-consistently/evals/eval-01.md against its pre-step-7 baseline confirms the repair-gate rewrite (PLAN step 5), plus: grep -qi 'promote' skills/designing-consistently/SKILL.md && grep -qi 'demote' skills/designing-consistently/SKILL.md && grep -qi 'escalat' skills/designing-consistently/SKILL.md",
+    "behavior": "designing-consistently step 4 gate promotes or demotes every provisional entry the work touched, and escalates to ### Global on the two-or-more-module trigger (SPEC §4.4, §3.5 step 4). eval-01.md is rewritten for this gate per PLAN step 5; no earlier copy of it is archived in the lane, so this row proves the behavior through the skill text alone.",
+    "verification": "grep -qi 'promote' skills/designing-consistently/SKILL.md && grep -qi 'demote' skills/designing-consistently/SKILL.md && grep -qi 'escalat' skills/designing-consistently/SKILL.md",
     "state": "not_started",
     "evidence": null
   },
   {
     "id": "F05",
-    "behavior": "extracting-design-md elects tokens from reference surfaces; frequency appears only as a tie-break; every unconfirmed token ships [provisional] (SPEC §4.5, §3.6).",
-    "verification": "test $(ls skills/extracting-design-md/evals/*.md | wc -l) -eq 6 (PLAN step 6: eval-01.md rewritten + 2 new) plus: grep -qi 'reference surface' skills/extracting-design-md/SKILL.md && grep -qi 'tie-break' skills/extracting-design-md/SKILL.md && grep -q '\\[provisional\\]' skills/extracting-design-md/SKILL.md",
+    "behavior": "extracting-design-md elects tokens from reference surfaces; frequency appears only as a tie-break; every unconfirmed token ships [provisional] (SPEC §4.5, §3.6). Encoded by PLAN step 6 (eval-01.md rewritten + 2 new evals, 6 total).",
+    "verification": "test $(ls skills/extracting-design-md/evals/*.md | wc -l) -eq 6 && grep -qi 'reference surface' skills/extracting-design-md/SKILL.md && grep -qi 'tie-break' skills/extracting-design-md/SKILL.md && grep -q '\\[provisional\\]' skills/extracting-design-md/SKILL.md",
     "state": "not_started",
     "evidence": null
   },
   {
     "id": "F06",
-    "behavior": "Both skills emit and read the ### <module> / #### <route> — <page> architecture with ### Global first (SPEC §4.6, §3.3-3.4).",
-    "verification": "grep -q '### Global' skills/designing-consistently/SKILL.md skills/extracting-design-md/SKILL.md && grep -qE '#### .* — ' skills/designing-consistently/SKILL.md skills/extracting-design-md/SKILL.md, cross-checked against the heading shape actually written in work/design-skills-at-scale/proving-run/DESIGN.md (PLAN step 10).",
+    "behavior": "Both skills emit and read the ### <module> / #### <route> — <page> architecture with ### Global first (SPEC §4.6, §3.3-3.4). Cross-check against the heading shape actually written in work/design-skills-at-scale/proving-run/DESIGN.md (PLAN step 10) at work-verify.",
+    "verification": "grep -q '### Global' skills/designing-consistently/SKILL.md && grep -q '### Global' skills/extracting-design-md/SKILL.md && grep -qE '#### .* — ' skills/designing-consistently/SKILL.md && grep -qE '#### .* — ' skills/extracting-design-md/SKILL.md",
     "state": "not_started",
     "evidence": null
   },
@@ -64,8 +64,8 @@
   },
   {
     "id": "F10",
-    "behavior": "Each skill ships at least 3 evals, and the evals change before the skill content, per the repo hard constraint (SPEC §4.10).",
-    "verification": "test $(ls skills/designing-consistently/evals/*.md | wc -l) -eq 5 && test $(ls skills/extracting-design-md/evals/*.md | wc -l) -eq 6 (PLAN steps 5-6 acceptance), plus git log --oneline confirming the eval-authoring commits (steps 5-6) precede the SKILL.md content commits (steps 7-8)",
+    "behavior": "Each skill ships at least 3 evals, and the evals change before the skill content, per the repo hard constraint (SPEC §4.10). Eval counts are PLAN steps 5-6's own acceptance (5 and 6 respectively); ordering is proved by asserting the last commit to touch each skill's evals/ directory is an ancestor of the last commit to touch its SKILL.md — confirmed as a working mechanism today with the pre-existing files (both point at the same commit, and a commit is its own ancestor, so --is-ancestor correctly returns 0; it returns 1 when SKILL.md's last touch precedes evals/'s).",
+    "verification": "test $(ls skills/designing-consistently/evals/*.md | wc -l) -eq 5 && test $(ls skills/extracting-design-md/evals/*.md | wc -l) -eq 6 && git merge-base --is-ancestor \"$(git log --format=%H -1 -- skills/designing-consistently/evals)\" \"$(git log --format=%H -1 -- skills/designing-consistently/SKILL.md)\" && git merge-base --is-ancestor \"$(git log --format=%H -1 -- skills/extracting-design-md/evals)\" \"$(git log --format=%H -1 -- skills/extracting-design-md/SKILL.md)\"",
     "state": "not_started",
     "evidence": null
   },
