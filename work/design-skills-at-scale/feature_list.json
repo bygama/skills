@@ -43,22 +43,22 @@
   },
   {
     "id": "F07",
-    "behavior": "A module entry contradicting a global is treated as drift unless it declares 'exception to Global/<block>' (SPEC §4.7, §3.4 precedence rule).",
-    "verification": "grep -q 'exception to Global' skills/designing-consistently/SKILL.md, and skills/designing-consistently/evals/eval-01.md (repair gate, PLAN step 5) exercises the undeclared-contradiction-is-drift case.",
+    "behavior": "A module entry contradicting a global is treated as drift unless it declares 'exception to Global/<block>' (SPEC §4.7, §3.4 precedence rule). skills/designing-consistently/evals/eval-01.md (repair gate, PLAN step 5) is expected to exercise the undeclared-contradiction-is-drift case, but whether it actually does so is a content judgment for work-verify's triage, not something the command below can check.",
+    "verification": "grep -q 'exception to Global' skills/designing-consistently/SKILL.md",
     "state": "not_started",
     "evidence": null
   },
   {
     "id": "F08",
-    "behavior": "Zero stale Context-Engineering / context-lint references remain in either skill (SPEC §4.8, §1 defect 4).",
-    "verification": "! git grep -n 'Context-Engineering\\|context-lint' -- skills/designing-consistently skills/extracting-design-md README.md (PLAN step 9 acceptance, verbatim)",
+    "behavior": "Zero stale Context-Engineering / context-lint references remain in either skill (SPEC §4.8, §1 defect 4). PLAN step 9 acceptance, verbatim.",
+    "verification": "! git grep -n 'Context-Engineering\\|context-lint' -- skills/designing-consistently skills/extracting-design-md README.md",
     "state": "not_started",
     "evidence": null
   },
   {
     "id": "F09",
-    "behavior": "node ../Agent-Engineering/scripts/agent-lint.mjs . exits 0 (SPEC §4.9).",
-    "verification": "node /c/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs . exits 0 (path resolved per DECISIONS.md 2026-08-20 ruling 1: ../Agent-Engineering does not resolve from this worktree)",
+    "behavior": "node ../Agent-Engineering/scripts/agent-lint.mjs . exits 0 (SPEC §4.9). Path resolved per DECISIONS.md 2026-08-20 ruling 1: ../Agent-Engineering does not resolve from this worktree.",
+    "verification": "node /c/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .",
     "state": "not_started",
     "evidence": null
   },
@@ -71,8 +71,8 @@
   },
   {
     "id": "F11",
-    "behavior": "A DESIGN.md written to this design passes the agent-lint design checks unchanged — no Agent-Engineering modification of any kind (SPEC §4.11, §6, §7).",
-    "verification": "node /c/Briar/repos/mine/Agent-Engineering/scripts/design-md-gen.mjs work/design-skills-at-scale/proving-run/DESIGN.md --target cssvars exits 0 && node /c/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs . exits 0 (PLAN step 10 acceptance, path resolved per DECISIONS.md ruling 1), plus git -C /c/Briar/repos/mine/Agent-Engineering status --porcelain is empty",
+    "behavior": "A DESIGN.md written to this design passes the agent-lint design checks unchanged — no Agent-Engineering modification of any kind (SPEC §4.11, §6, §7). PLAN step 10 acceptance, path resolved per DECISIONS.md ruling 1.",
+    "verification": "node /c/Briar/repos/mine/Agent-Engineering/scripts/design-md-gen.mjs work/design-skills-at-scale/proving-run/DESIGN.md --target cssvars && node /c/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs . && [ -z \"$(git -C /c/Briar/repos/mine/Agent-Engineering status --porcelain)\" ]",
     "state": "not_started",
     "evidence": null
   }
