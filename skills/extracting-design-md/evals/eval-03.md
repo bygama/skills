@@ -12,7 +12,7 @@ drift report; the owner asks to wrap up.
 ## Expected behavior
 
 - [ ] The produced DESIGN.md passes `design-md-gen` (both parse and
-      generation) and context-lint's design checks before completion is
+      generation) and `agent-lint`'s design checks before completion is
       claimed.
 - [ ] Zero application code files were modified — the only writes are
       DESIGN.md, its generated design.tokens.css, and optionally a

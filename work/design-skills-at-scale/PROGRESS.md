@@ -2475,6 +2475,72 @@ the rule that a role with no election gets no frontmatter token at all); `eval-0
 both the missing `[provisional]` marker and the flat per-surface addressing. `eval-03.md` and
 `eval-04.md` untouched, under a withdrawn ruling and a deferred one respectively.
 
+### Step 9 — `[batch]` sweep + README refresh, closed without a per-step reviewer, per the owner instruction
+
+Confirmed before touching anything: no `DONE` report existed yet for step 9 in this file.
+
+Steps 7 and 8 had already rewritten both `SKILL.md` files clean of stale references, so the
+sweep's real scope, per `DECISIONS.md`'s step-9 ruling (F08 narrowed to the two skill
+directories, plus a positive check that `tracing-root-causes`'s attribution survives), was one
+line:
+
+- `skills/extracting-design-md/evals/eval-03.md:15` — `context-lint's design checks` →
+  `` `agent-lint`'s design checks ``, matching the vocabulary both rewritten `SKILL.md` files
+  already use (`designing-consistently/SKILL.md:182`, `extracting-design-md/SKILL.md:213`: "run
+  `design-md-gen` ... and `agent-lint`"). The box's meaning is unchanged — it still tests that
+  the produced DESIGN.md passes the generator and the design checks before completion is
+  claimed — and carries no machine-anchored path.
+
+`README.md:68`'s attribution line ("the base is owner-original (Context-Engineering salvage)")
+and all of `skills/tracing-root-causes/` were read and left untouched, per the ruling.
+
+**README skill-row refresh**, matched to each skill's new frontmatter `description`, same voice
+and length as the untouched rows:
+
+- `designing-consistently` — before: "Keeps UI work consistent with an app's DESIGN.md: read
+  before building, consume tokens, record decisions as a gated step" — after: "Keeps UI work
+  consistent with the design system an app actually has: discovers it when no DESIGN.md exists,
+  reads a bounded slice of the decision log at any scale, repairs the record rather than only
+  appending".
+- `extracting-design-md` — before: "Reverse-engineers a DESIGN.md from an existing project:
+  evidenced drift report, collapsed tokens, backfilled decisions, migration plan with a
+  convergence metric" — after: "Reverse-engineers a DESIGN.md from an existing project: elects
+  tokens from owner-designated reference surfaces over frequency, ships unconfirmed output as
+  `[provisional]`, writes decisions per module under a Global tier".
+
+`git status --short` after the edits showed exactly two paths changed — `README.md` and
+`skills/extracting-design-md/evals/eval-03.md` — matching this step's scope; `SPEC.md`,
+`PLAN.md`, `feature_list.json`, both `SKILL.md` files, every other eval, and the Pegasuz
+evidence repo were not touched.
+
+**F08 verification (both halves, per the step-9 ruling in `DECISIONS.md`):**
+
+```
+$ ! git grep -n 'Context-Engineering\|context-lint' -- skills/designing-consistently skills/extracting-design-md && git grep -q 'Context-Engineering' -- skills/tracing-root-causes && echo "F08 VERIFICATION: PASS"
+F08 VERIFICATION: PASS
+```
+
+The first half found zero stale references in either skill directory; the second half confirms
+`tracing-root-causes`'s Context-Engineering provenance citation is still present — an
+over-reaching sweep would fail this row now, and did not.
+
+**Lint:**
+
+```
+$ node /c/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .
+agent-lint C:\Users\mateo\orca\workspaces\skills\design-skills-at-scale
+  LOW    AGENTS.md:15  ../Agent-Engineering/scripts/agent-lint.mjs escapes the repo — context-dependent, true only where that path exists outside it (a sibling checkout, CI)  [cmd-drift]
+0 high, 0 medium, 1 low — PASS
+EXIT: 0
+```
+
+Exit 0, exactly the one expected `LOW` on `AGENTS.md:15` (the sibling-checkout ruling from step
+1), no new findings.
+
+No per-step reviewer ran, per the owner's 2026-08-20 instruction dropping that rung for steps
+6-10; step 11's `work-verify` and the parent's cross-model reviewer remain the closing gates.
+Staged only the two changed paths.
+
 ## In progress
 
 ## Tried and failed
