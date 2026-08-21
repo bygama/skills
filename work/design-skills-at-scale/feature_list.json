@@ -1,8 +1,8 @@
 [
   {
     "id": "F01",
-    "behavior": "designing-consistently step 1 discovers the standing system from code, owner context files and prose docs, and does not propose instantiating a DESIGN.md while a system is discoverable (SPEC §4.1, §3.5 step 1). Encoded by the discovery-without-DESIGN.md eval (expected skills/designing-consistently/evals/eval-04.md, PLAN step 5).",
-    "verification": "test -f skills/designing-consistently/evals/eval-04.md && grep -q 'Discover the standing system' skills/designing-consistently/SKILL.md && ! grep -qE '^\\*\\*1\\. .*[Ii]nstantiat' skills/designing-consistently/SKILL.md",
+    "behavior": "designing-consistently step 1 discovers the standing system from code, owner context files and prose docs, and does not propose instantiating a DESIGN.md while a system is discoverable (SPEC §4.1, §3.5 step 1). Encoded by the discovery-without-DESIGN.md eval (expected skills/designing-consistently/evals/eval-04.md, PLAN step 5). Verification strengthened at step 7 (ruling in DECISIONS.md): it now checks that step 1's heading is discovery-shaped, that all three discovered source classes are named (reference surfaces, context files, prose docs), that instantiating is the last option, and that step 1 is not an instantiate step — replacing a grep for one exact sentence that a correct rewrite failed and an incorrect one could have passed.",
+    "verification": "test -f skills/designing-consistently/evals/eval-04.md && grep -qE '^\\*\\*1\\. Discover' skills/designing-consistently/SKILL.md && ! grep -qE '^\\*\\*1\\. .*[Ii]nstantiat' skills/designing-consistently/SKILL.md && grep -q 'reference surface' skills/designing-consistently/SKILL.md && grep -qi 'context file' skills/designing-consistently/SKILL.md && grep -qi 'prose doc' skills/designing-consistently/SKILL.md && grep -qi 'last option' skills/designing-consistently/SKILL.md",
     "state": "not_started",
     "evidence": null
   },
@@ -15,8 +15,8 @@
   },
   {
     "id": "F03",
-    "behavior": "designing-consistently reads a bounded slice (### Global + touched module + siblings), never the whole Decisions section (SPEC §4.3, §3.5 step 2). Encoded by the bounded-slice-at-157-surfaces eval (expected skills/designing-consistently/evals/eval-05.md, PLAN step 5).",
-    "verification": "test -f skills/designing-consistently/evals/eval-05.md && grep -qE 'Global.*module|module.*Global' skills/designing-consistently/SKILL.md && grep -q 'sibling' skills/designing-consistently/SKILL.md",
+    "behavior": "designing-consistently reads a bounded slice (### Global + touched module + siblings), never the whole Decisions section (SPEC §4.3, §3.5 step 2). Encoded by the bounded-slice-at-157-surfaces eval (expected skills/designing-consistently/evals/eval-05.md, PLAN step 5). Verification strengthened at step 7 (ruling in DECISIONS.md): it now checks that all three slice components are named (`### Global`, the `#### <route> — <page>` module addressing, siblings) and that reading the whole `## Decisions` section is explicitly refused — replacing a two-words-on-one-line regex that a correct rewrite failed.",
+    "verification": "test -f skills/designing-consistently/evals/eval-05.md && grep -q '### Global' skills/designing-consistently/SKILL.md && grep -q '#### <route> — <page>' skills/designing-consistently/SKILL.md && grep -qi 'sibling' skills/designing-consistently/SKILL.md && grep -qi 'whole `## Decisions` section' skills/designing-consistently/SKILL.md",
     "state": "not_started",
     "evidence": null
   },
