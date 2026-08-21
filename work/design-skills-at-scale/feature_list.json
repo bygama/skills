@@ -50,8 +50,8 @@
   },
   {
     "id": "F08",
-    "behavior": "Zero stale Context-Engineering / context-lint references remain in either skill (SPEC §4.8, §1 defect 4). PLAN step 9 acceptance, verbatim.",
-    "verification": "! git grep -n 'Context-Engineering\\|context-lint' -- skills/designing-consistently skills/extracting-design-md README.md",
+    "behavior": "Zero stale Context-Engineering / context-lint references remain in either skill (SPEC §4.8, §1 defect 4), while the historical-provenance citation in skills/tracing-root-causes survives the sweep untouched. Verification narrowed at step 9 (ruling in DECISIONS.md): SPEC §4.8 says \"in either skill\", and the PLAN's grep additionally covered README.md — but README's line 68 is an ATTRIBUTION statement (\"the base is owner-original (Context-Engineering salvage)\") about tracing-root-causes, the same provenance class the PLAN's own constraints block protects at skills/tracing-root-causes/SKILL.md:9. The row is also STRENGTHENED with a positive check that the provenance citation still exists, so an over-reaching sweep fails this row rather than passing it. README's two skill rows are refreshed at step 9 and verified by reading them, not by this grep.",
+    "verification": "! git grep -n 'Context-Engineering\\|context-lint' -- skills/designing-consistently skills/extracting-design-md && git grep -q 'Context-Engineering' -- skills/tracing-root-causes",
     "state": "not_started",
     "evidence": null
   },
