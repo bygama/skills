@@ -71,8 +71,8 @@
   },
   {
     "id": "F11",
-    "behavior": "A DESIGN.md written to this design passes the agent-lint design checks unchanged — no Agent-Engineering modification of any kind (SPEC §4.11, §6, §7). PLAN step 10 acceptance, path resolved per DECISIONS.md ruling 1.",
-    "verification": "node /c/Briar/repos/mine/Agent-Engineering/scripts/design-md-gen.mjs work/design-skills-at-scale/proving-run/DESIGN.md --target cssvars && node /c/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs . && [ -z \"$(git -C /c/Briar/repos/mine/Agent-Engineering status --porcelain)\" ]",
+    "behavior": "A DESIGN.md written to this design passes the agent-lint design checks unchanged — no Agent-Engineering modification of any kind (SPEC §4.11, §6, §7). The no-modification clause was narrowed at step 10 (ruling in DECISIONS.md) from \"the whole Agent-Engineering repo is pristine\" to \"no tracked file is modified or staged, and nothing is dirty under scripts/reference/templates/skills/global\" — because the whole-repo form failed on an untracked `work/mat-110-111-parent/` lane folder belonging to a DIFFERENT worker, which is neither this lane's doing nor any of the changes SPEC §7 forbids. Verified in both directions before adoption: it passes at HEAD, and appending one comment line to design-md-gen.mjs makes it FAIL, so it still catches exactly what §7 protects.",
+    "verification": "node /c/Briar/repos/mine/Agent-Engineering/scripts/design-md-gen.mjs work/design-skills-at-scale/proving-run/DESIGN.md --target cssvars && node /c/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs . && git -C /c/Briar/repos/mine/Agent-Engineering diff --quiet && git -C /c/Briar/repos/mine/Agent-Engineering diff --cached --quiet && test -z \"$(git -C /c/Briar/repos/mine/Agent-Engineering status --porcelain -- scripts reference templates skills global)\"",
     "state": "not_started",
     "evidence": null
   }
