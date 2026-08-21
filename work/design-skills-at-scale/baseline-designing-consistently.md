@@ -7,10 +7,12 @@
 >
 > - **What was run:** `designing-consistently` exactly as it stands today, unmodified.
 > - **Which copy:** the copy installed at the user's global skills folder
->   (`~/.claude/skills/designing-consistently/SKILL.md`), verified byte-identical to this
->   worktree's `skills/designing-consistently/SKILL.md` before the run — per the DECISIONS.md
->   ruling that the cold baseline must be taken against the global install, since the installer
->   junction-links the global folder to the MAIN checkout, not to this worktree.
+>   (`~/.claude/skills/designing-consistently/SKILL.md`) — per the DECISIONS.md ruling that the
+>   cold baseline must be taken against the global install, since the installer junction-links
+>   the global folder to the MAIN checkout, not to this worktree. The controller verified this
+>   copy byte-identical to this worktree's `skills/designing-consistently/SKILL.md` before
+>   dispatching the cold runner; the implementer transcribing this file independently
+>   re-verified the same byte-identity at transcription time, after the run.
 > - **Against what:** `<PEGASUZ>/Pegasuz-Core/frontend-admin/admin` (the evidence repo named in
 >   DECISIONS.md's evidence-repo ruling), read-only for the whole run.
 > - **The task the runner was given, quoted:** "Agregá a la vista de Stock un panel de
@@ -22,14 +24,20 @@
 >   wherever the skill called for a write the runner reported what it would have written instead.
 >   This constraint affects **Step 3's** "nothing was written to disk, here is the diff I would
 >   have committed instead" and **Step 5's** screenshot action ("I did not attempt `npm run dev`
->   or `npm run build` … running it would edit the repo, which the task ruled out"). It does
->   **not** affect Steps 1, 2, or 4's core findings: the absence of any `DESIGN.md` anywhere in
->   the repo, the absence of a `## Decisions` section to read from, and the absence of
->   `design.tokens.css` / `scripts/design-md-gen.mjs` / a `context-lint` script are all facts
->   about what the repo currently contains — true regardless of whether the checkout was
->   writable, and would read identically in a writable clone. Do not read those three steps'
->   failures as artifacts of the fence; they are the skill meeting a real, permanent absence in
->   this codebase.
+>   or `npm run build` … running it would edit the repo, which the task ruled out"). The
+>   *absence facts* in Steps 1, 2, and 4 are fence-independent: no `DESIGN.md` anywhere in the
+>   repo, no `## Decisions` section to read from, no `design.tokens.css` /
+>   `scripts/design-md-gen.mjs` / a `context-lint` script — these are facts about what the repo
+>   currently contains, true regardless of whether the checkout was writable, and would read
+>   identically in a writable clone. But Step 1 also reports a second, distinct failure that the
+>   read-only fence DOES touch: the runner could not carry out the skill's own fallback ("offer
+>   to instantiate… from Context-Engineering `templates/repo/DESIGN.md.template`"), and gives two
+>   causes for that in its own words — the template source being outside its scope fence, "**and
+>   even if it weren't, the repo is read-only so I could not create the file regardless**." That
+>   second clause is a read-only-caused failure sitting inside Step 1, entangled with the
+>   fence-independent absence facts rather than separate from them. Whether and how that
+>   entanglement bears on SPEC §5's first recorded prediction is left to PLAN step 4's
+>   reconciliation, not decided here.
 
 ## Step 1
 
@@ -194,3 +202,11 @@ Net result: all three prescribed verification actions were inapplicable or unrun
    is 82,323 bytes; alongside it `admin-ux-audit.md` (29,010), `admin-responsive-report.md`
    (21,881), `round-1-redesign-plan.md` (26,189), `round-2-backlog.md` (13,904), plus `round-1/`
    and `round-2/` directories. Verified by `ls -la` on the admin's `docs/`.
+
+4. **The skill's cited template source — controller-verified.** `designing-consistently` step 1
+   points at "Context-Engineering `templates/repo/DESIGN.md.template`". A search of the
+   machine's work-repos folder for any directory named `Context-Engineering`, at depth 2,
+   returned nothing; `<work-repos>/Context-Engineering`, `<work-repos>/mine/Context-Engineering`
+   and `<work-repos>/work/Context-Engineering` all fail to resolve. The equivalent asset exists
+   under a different repo and name: `Agent-Engineering/templates/repo/DESIGN.md.template`
+   (789 bytes).
