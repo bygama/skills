@@ -174,6 +174,64 @@
   `work/design-skills-at-scale/DECISIONS.md`, `work/design-skills-at-scale/PROGRESS.md`
   (the correction to the round-1 entry).
 
+- 2026-08-20 — Step 2 (cold baseline of `designing-consistently`, transcription only). Per the
+  controller ruling in `DECISIONS.md`, the cold run itself was executed by a separate cold-runner
+  agent given only the current `designing-consistently` workflow and the read-only admin repo,
+  told nothing of this lane, this SPEC, or SPEC §5's three recorded predictions — the runner's
+  report was transcribed into `work/design-skills-at-scale/baseline-designing-consistently.md`,
+  not re-derived. My own work this step was transcription and framing only: I did not run
+  `designing-consistently` myself, did not re-derive any finding, and did not correct, condense,
+  reorder, or reword the runner's account.
+
+  Copied the runner's five `## Step N` sections and its `## What I would have committed` section
+  verbatim (byte-for-byte) into the baseline file, including one stray CJK character mid-word in
+  Step 1's prose ("running至 at least line 1597") — kept as-is per instruction, with a bracketed
+  editorial note beside it rather than silently fixed.
+
+  Added a front-matter-style preamble above `## Step 1`, clearly marked as the lane's framing and
+  not the runner's words, stating: what was run (`designing-consistently` as it stands today,
+  unmodified); which copy (the user's global skills folder install, verified byte-identical to
+  this worktree's `skills/designing-consistently/SKILL.md` via `diff` before writing this file —
+  re-verified, not just cited); against what (`<PEGASUZ>/Pegasuz-Core/frontend-admin/admin`,
+  read-only); the task the runner was given, quoted verbatim in Spanish; the isolation the runner
+  ran under; and — the piece flagged as most important — which observations the read-only
+  constraint affects and which it does not. Recorded that the constraint shaped only Step 3 (the
+  component/view diff reported as "would have committed" instead of written) and Step 5's
+  screenshot action (`npm run dev`/`build` withheld because it would touch `dist/`), and did
+  **not** cause Steps 1/2/4's core findings — the repo's total absence of any `DESIGN.md`, of a
+  `## Decisions` section, and of `design.tokens.css`/`design-md-gen.mjs`/a `context-lint` script
+  are facts about repo content, true in a writable clone too.
+
+  Appended `## Controller-verified addenda` below the transcript, containing only the three facts
+  supplied by the controller (the `Documentation/` pointer being monorepo-root-relative while the
+  admin has no local `Documentation/`; zero writes confirmed via `git status --short` before/after
+  and HEAD unchanged at `00ddbcbaf`; the prose docs' sizes under the admin's `docs/`), each
+  labelled as controller-verified and kept separate from the runner's words. Added no
+  interpretation of what the transcript means — that is PLAN step 4's job.
+
+  Did not touch `skills/`, `SPEC.md`, or `PLAN.md`. Made zero writes to the Pegasuz checkout.
+
+  Verified before recording: `diff ~/.claude/skills/designing-consistently/SKILL.md
+  skills/designing-consistently/SKILL.md` exits 0 (byte-identical, confirming the DECISIONS.md
+  ruling this step's preamble cites still holds at transcription time).
+
+  Acceptance: `test $(grep -c '^## Step ' work/design-skills-at-scale/baseline-designing-consistently.md) -eq 5`
+
+  ```
+  ACCEPT PASS
+  ```
+
+  Re-ran the gate: `node /c/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .` still
+  exits 0:
+
+  ```
+  agent-lint C:\Users\mateo\orca\workspaces\skills\design-skills-at-scale
+    LOW    AGENTS.md:15  ../Agent-Engineering/scripts/agent-lint.mjs escapes the repo — context-dependent, true only where that path exists outside it (a sibling checkout, CI)  [cmd-drift]
+  0 high, 0 medium, 1 low — PASS
+  ```
+
+  Files changed: `work/design-skills-at-scale/baseline-designing-consistently.md` (new).
+
 ## Reviews
 
 <!-- Verbatim verdict text from every in-session review seat: the
