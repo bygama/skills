@@ -61,6 +61,12 @@
   - `F07`, `F08`, `F09`, `F11` left untouched per the controller's scope
     (F07's content-judgment clause explicitly deferred to work-verify).
 
+  **Correction (round 2):** the line above was wrong. Only F07 was actually
+  deferred, and only its content-judgment clause — not its pasteability.
+  F08, F09 and F11 carried the identical prose-spliced-into-command defect
+  as F01/F02/F03/F05/F06 and were left broken by mistake, uncalled-out.
+  See the round-2 entry below for the fix.
+
   Reshaped `DECISIONS.md`'s first two entries into the
   `- YYYY-MM-DD — <choice> — <why>` shape the file's own header comment and
   `Agent-Engineering/templates/repo/work/DECISIONS.md.template:4` specify,
@@ -103,6 +109,70 @@
 
   Files changed: `work/design-skills-at-scale/feature_list.json`,
   `work/design-skills-at-scale/DECISIONS.md`.
+
+- 2026-08-20 — Step 1 fix round 2 (review findings). Round 1 fixed the
+  interleaved-prose defect in six rows (F01-F06, F10) but left F07, F08,
+  F09 and F11 carrying the identical defect, and mis-reported them as
+  intentionally untouched — see the correction inserted above. Per the
+  controller's rulings, fixed all four this round:
+  - **F07**: dropped the trailing `, and … exercises the
+    undeclared-contradiction-is-drift case.` clause from `verification`
+    (it was prose after a comma, not part of a runnable command) and moved
+    it into `behavior`, flagged there as a content judgment for
+    work-verify's triage — this resolves the original Minor (F07's
+    judgment-call note) as a side effect, per Ruling A, rather than
+    conflicting with it. `verification` is now the bare
+    `grep -q 'exception to Global' skills/designing-consistently/SKILL.md`.
+  - **F08**: moved `(PLAN step 9 acceptance, verbatim)` into `behavior`;
+    `verification` is now the bare `! git grep -n
+    'Context-Engineering\|context-lint' -- skills/designing-consistently
+    skills/extracting-design-md README.md`, unchanged in substance from
+    PLAN step 9's own acceptance command.
+  - **F09**: moved the `exits 0 (path resolved …)` prose into `behavior`;
+    `verification` is now the bare
+    `node /c/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .`.
+  - **F11** (worst offender, per Ruling B): moved both `exits 0` splices
+    and the PLAN-step/path-resolution parenthetical into `behavior`;
+    rewrote the "AE repo untouched" clause as a real test —
+    `[ -z "$(git -C /c/Briar/repos/mine/Agent-Engineering status
+    --porcelain)" ]` — instead of the prose `plus … is empty`.
+    `verification` is now three `&&`-chained commands whose combined exit
+    status is the row's answer:
+    `node design-md-gen.mjs … && node agent-lint.mjs . && [ -z "$(git -C
+    … status --porcelain)" ]` (paths as recorded in the file).
+
+  Recorded Ruling A (why F07 comes off deferral this round) and Ruling C
+  (the em-dash-count Minor on `DECISIONS.md:5-6`, deferred to work-verify,
+  not acted on) as dated entries in `DECISIONS.md`.
+
+  **Verified all eleven `verification` strings parse as single commands.**
+  Extracted every row's `verification` string verbatim to its own file and
+  ran `bash -n` over each of the eleven — all eleven report no syntax
+  error (F01 through F11, all OK). This is the full set, not a sample.
+
+  **Ran all eleven** against the repo as it stands today: F09 exits 0
+  (already true); F01-F08, F10, F11 all exit 1, and for a downstream
+  reason in every case, not a broken command — F01/F03 (`eval-04.md`/
+  `eval-05.md` don't exist yet), F02/F04/F06 (`SKILL.md` phrases not
+  written yet), F05/F10 (eval counts still 4/3, not 6/5), F07 (`exception
+  to Global` not written yet), F08 (stale references still present,
+  pending step 9), F11 (`design-md-gen` fails with `ENOENT` on
+  `work/design-skills-at-scale/proving-run/DESIGN.md`, which step 10
+  creates). None of these is claimed as passing now; all rows stay
+  `not_started`.
+
+  **Re-ran the gate:** `node /c/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .`
+  still exits 0:
+
+  ```
+  agent-lint C:\Users\mateo\orca\workspaces\skills\design-skills-at-scale
+    LOW    AGENTS.md:15  ../Agent-Engineering/scripts/agent-lint.mjs escapes the repo — context-dependent, true only where that path exists outside it (a sibling checkout, CI)  [cmd-drift]
+  0 high, 0 medium, 1 low — PASS
+  ```
+
+  Files changed: `work/design-skills-at-scale/feature_list.json`,
+  `work/design-skills-at-scale/DECISIONS.md`, `work/design-skills-at-scale/PROGRESS.md`
+  (the correction to the round-1 entry).
 
 ## In progress
 
