@@ -1787,6 +1787,147 @@
   Files changed: `skills/extracting-design-md/SKILL.md` (rewritten),
   `work/design-skills-at-scale/PROGRESS.md` (this entry).
 
+- 2026-08-21 — Step 10 (proving run: a DESIGN.md written to the approved shape, gated by the
+  real tools). Wrote `work/design-skills-at-scale/proving-run/DESIGN.md` (473 lines) for the
+  read-only evidence repo's admin app and generated
+  `work/design-skills-at-scale/proving-run/design.tokens.css` (155 lines) beside it. Lane-local:
+  nothing was written to the evidence repo, and nothing to Agent-Engineering.
+
+  **The content was re-elected, not copied.** `baseline-extracting-design-md.md`'s
+  `## The DESIGN.md I would have written` supplied the harvest — counts, file locations, the
+  competing scales — and none of its judgments. Every role was run again through the rewritten
+  `skills/extracting-design-md/SKILL.md`, and the three contaminations DECISIONS.md's step-4
+  rulings name are all absent from the output:
+
+  - **Card radius is no longer elected on frequency.** The baseline elected `card: '14px'` on
+    984 against roughly 751 while flagging it as a near-tie needing the owner's eyes. Here it is
+    an open question under `#### Sistema` with both counts and no frontmatter token. The
+    evidence that decides it is new to this run and is cited in the entry: the app's live radius
+    config annotates TWO different tokens as cards — `'card': '14px', // cards, paneles` and
+    `'boutique': '8px', // override v1.0 (era 16px) — cards` (`tailwind.config.js:245,248`) — so
+    the current declaration contradicts itself on this role, on top of the 8px assignment
+    carrying a written two-paragraph rationale in `docs/admin-design-system-v1.0.md`.
+  - **The modal/drawer token is gone.** The baseline shipped `sheet: '20px'` in frontmatter for
+    a role its own text says it "did **not** elect". Here that role has no token at all and an
+    open question carrying 20px at 12 uses against 12px at 68, with the same
+    both-annotated-for-the-same-role evidence (`tailwind.config.js:246,249`).
+  - **`## Decisions` is the module architecture, not prose sections.** The baseline emitted nine
+    `### <token family>` prose sections with zero dated entries. This file emits `### Global`
+    (`#### Sistema`, `#### Patrones`) then five modules and thirteen `#### <route> — <page>`
+    blocks, with 30 dated entries, 0 undated.
+
+  **What the same evidence base did elect, and why that is not paralysis.** Control radius
+  (`ctl: '10px'`) IS elected `[provisional]` — 1832 against 340 — because unlike card and sheet
+  the live config names exactly one token for that role and annotates the older 8px rule as
+  overridden, so the older document is superseded rather than competing. The distinction between
+  the control case and the card case is the whole point of the rewritten step 4, and it is drawn
+  on evidence, not on which count is bigger.
+
+  **Nothing ships confirmed.** No reference surface is designated for this app, so per the
+  parent's binding ruling the file is entirely provisional: 30 entries = 21 `[provisional]` +
+  9 open questions, 0 confirmed. The first `#### Sistema` entry records the reference-surface
+  question itself, including that the only surfaces anyone has pointed at
+  (`/admin/shop-products`, `/admin/shop-stock`) were named second-hand in SPEC §2's owner
+  statement — hearsay names a candidate, not a reference.
+
+  **Roles with no election have no token.** Six roles are open questions with nothing in
+  frontmatter: card radius, modal/drawer radius, the redesign line's type scale, the "fast"
+  motion duration, the spacing scale, control height. Two more findings recorded as open
+  questions: two declared-and-dead radius scales, and the app-wide detail-header contradiction.
+  Verified rather than assumed before writing them: `var(--space-` , `--radius-`, `nl-t-`,
+  `var(--control-height)`, `var(--row-height)`, `var(--sidebar-width)` and `var(--header-height)`
+  each return **0** consumers outside their own definition files, and 4 of 15 `*DetailView.vue`
+  files use the shared header (re-run here, matching the baseline exactly).
+
+  **Module names come from the app's own declared navigation source.** `src/data/navConfig.js`
+  group labels supplied `Tienda`, `Compras`, `Sucursales`, `Inmobiliaria`, `Servicio técnico`;
+  every `#### <route> — <page>` heading pairs a real router path with that route's own label or
+  `meta.title`, both read from `src/router/index.js`.
+
+  **The precedence syntax is exercised on real, declared exceptions.** Four
+  `exception to Global/Sistema` entries, none invented: three are the redesign-line views
+  (`/admin/shop-stock`, `/admin/shop-products`, `/admin/store-settings`), whose token layer
+  declares the precedence in its own header — "si `tokens.css` (v2, doc 47 §32) contradice a
+  este archivo, manda ESTE" — and one is `/servicio`, whose module ships a scoped token set
+  under its own root class. `[provisional]` sits immediately after the date in every entry,
+  before the `exception to` clause, so the lint's `- YYYY-MM-DD — ` prefix is untouched.
+
+  **Heading shape.** `### Global` first, exactly two sub-blocks, then `### <module>` /
+  `#### <route> — <page>`, matching the block both skills carry byte-for-byte; the route
+  headings use U+2014 (`cat -A` shows `M-bM-^@M-^T`), not a hyphen.
+
+  Acceptance 1 — `node /c/Briar/repos/mine/Agent-Engineering/scripts/design-md-gen.mjs work/design-skills-at-scale/proving-run/DESIGN.md --target cssvars`
+  (path resolved per `DECISIONS.md` ruling 1):
+
+  ```
+  wrote work\design-skills-at-scale\proving-run\design.tokens.css (cssvars)
+  gen exit: 0
+  ```
+
+  Acceptance 2 — `node /c/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .`:
+
+  ```
+  agent-lint C:\Users\mateo\orca\workspaces\skills\design-skills-at-scale
+    LOW    AGENTS.md:15  ../Agent-Engineering/scripts/agent-lint.mjs escapes the repo — context-dependent, true only where that path exists outside it (a sibling checkout, CI)  [cmd-drift]
+  0 high, 0 medium, 1 low — PASS
+  lint exit: 0
+  ```
+
+  Only the pre-existing, expected LOW `cmd-drift` finding. The DESIGN.md and its generated CSS
+  add no finding of any severity.
+
+  **SPEC §4 requirement 11 proved, and proved non-vacuously.** A pass can also mean the checks
+  never ran, so three controls were run on a copy outside the repo:
+
+  ```
+  --- control A: unmodified copy ---
+  0 high, 0 medium, 0 low — PASS
+  --- control B: one token value changed in the generated CSS ---
+    HIGH   design.tokens.css  design.tokens.css differs from a fresh generation — regenerate  [design-drift]
+  1 high, 0 medium, 0 low — FAIL
+  --- control C: [provisional] moved BEFORE the date ---
+    MEDIUM DESIGN.md:291  Decisions entry without a leading YYYY-MM-DD date  [design-decisions]
+  0 high, 1 medium, 0 low — FAIL
+  ```
+
+  A confirms the file stands alone with zero findings of any severity. B confirms the
+  regeneration gate is live on this file. C is the direct proof of SPEC §3.1's design choice:
+  moving `[provisional]` in front of the date breaks the lint, and keeping it inside the entry
+  text after the date is what leaves the prefix untouched.
+
+  Parse accounting, via the generator's own `parseDesignMd`: 0 parse errors; `##` sections
+  `Overview | Colors | Typography | Elevation & Depth | Shapes | Components | Do's and Don'ts |
+  Decisions` (spec order, no duplicates); 30 Decisions entries collected, 0 undated, 21
+  `[provisional]`, 9 open questions, 4 `exception to Global/` — confirming SPEC §6: the module
+  architecture and the `### Global` tier are invisible to the generator, which collects entries
+  by their `- ` prefix and never inspects heading depth. Also verified in the generated CSS:
+  the `{colors.surface}` and `{colors.tenant-accent}` references resolved
+  (`--color-surface-elevated: #FFFFFF`, `--color-focus-ring: #F85810`), the two `modes:` entries
+  emitted under their explicit `[data-tenant]` selectors, and no `[object Object]` or unresolved
+  `{…}` anywhere in the output.
+
+  **Zero writes to the evidence repo — verified before and after.**
+  `git -C /c/Briar/repos/work/Pegasuz status --short` printed **nothing** (zero lines) both
+  times, and `HEAD` is `00ddbcbaf`, the same commit the step-3 baseline's controller addendum 3
+  recorded.
+
+  **Zero changes to Agent-Engineering — verified before and after.**
+  `git -C /c/Briar/repos/mine/Agent-Engineering status --porcelain` printed the same single line
+  both times, `?? work/mat-110-111-parent/` — an untracked lane folder that already existed
+  before this step began and that this step did not create or touch. It is reported here rather
+  than as "empty" because it is not: the accurate claim is that the output was **identical
+  before and after**, and that `git -C … diff HEAD --stat` prints nothing, so no tracked file in
+  that repo was modified. `HEAD` there is `bc194f2`. No generator, lint, reference or template
+  was edited.
+
+  No reviewer ran on this step (the owner's dated instruction dropping the per-step reviewer for
+  steps 6-10); the controls above are this step's own verification, and step 11's work-verify is
+  the next thing that checks it.
+
+  Files changed: `work/design-skills-at-scale/proving-run/DESIGN.md` (new),
+  `work/design-skills-at-scale/proving-run/design.tokens.css` (new, generated),
+  `work/design-skills-at-scale/PROGRESS.md` (this entry).
+
 ## Reviews
 
 <!-- Verbatim verdict text from every in-session review seat: the
