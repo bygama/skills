@@ -3,77 +3,77 @@
     "id": "F01",
     "behavior": "designing-consistently step 1 discovers the standing system from code, owner context files and prose docs, and does not propose instantiating a DESIGN.md while a system is discoverable (SPEC §4.1, §3.5 step 1). Encoded by the discovery-without-DESIGN.md eval (expected skills/designing-consistently/evals/eval-04.md, PLAN step 5). Verification strengthened at step 7 (ruling in DECISIONS.md): it now checks that step 1's heading is discovery-shaped, that all three discovered source classes are named (reference surfaces, context files, prose docs), that instantiating is the last option, and that step 1 is not an instantiate step — replacing a grep for one exact sentence that a correct rewrite failed and an incorrect one could have passed.",
     "verification": "test -f skills/designing-consistently/evals/eval-04.md && grep -qE '^\\*\\*1\\. Discover' skills/designing-consistently/SKILL.md && ! grep -qE '^\\*\\*1\\. .*[Ii]nstantiat' skills/designing-consistently/SKILL.md && grep -q 'reference surface' skills/designing-consistently/SKILL.md && grep -qi 'context file' skills/designing-consistently/SKILL.md && grep -qi 'prose doc' skills/designing-consistently/SKILL.md && grep -qi 'last option' skills/designing-consistently/SKILL.md",
-    "state": "not_started",
-    "evidence": null
+    "state": "passing",
+    "evidence": "2026-08-21: verification command exited 0 in the work-verify session at HEAD ee6d5ac, and again independently in the fresh-context lane review, which ran all eleven itself and recorded exit 0 for each"
   },
   {
     "id": "F02",
     "behavior": "Both skills apply the source-trust hierarchy of SPEC §3.2 (code at reference surfaces confirms; owner context files and prose docs are [provisional]; frequency is tie-break only) — nothing discovered is emitted confirmed (SPEC §4.2). Cross-checked against the evals from PLAN steps 5-6 that encode the hierarchy (designing-consistently expected eval-04.md/eval-05.md; extracting-design-md expected eval-05.md/eval-06.md).",
     "verification": "grep -q 'provisional' skills/designing-consistently/SKILL.md && grep -q 'provisional' skills/extracting-design-md/SKILL.md",
-    "state": "not_started",
-    "evidence": null
+    "state": "passing",
+    "evidence": "2026-08-21: verification command exited 0 in the work-verify session at HEAD ee6d5ac, and again independently in the fresh-context lane review, which ran all eleven itself and recorded exit 0 for each"
   },
   {
     "id": "F03",
     "behavior": "designing-consistently reads a bounded slice (### Global + touched module + siblings), never the whole Decisions section (SPEC §4.3, §3.5 step 2). Encoded by the bounded-slice-at-157-surfaces eval (expected skills/designing-consistently/evals/eval-05.md, PLAN step 5). Verification strengthened at step 7 (ruling in DECISIONS.md): it now checks that all three slice components are named (`### Global`, the `#### <route> — <page>` module addressing, siblings) and that reading the whole `## Decisions` section is explicitly refused — replacing a two-words-on-one-line regex that a correct rewrite failed.",
     "verification": "test -f skills/designing-consistently/evals/eval-05.md && grep -q '### Global' skills/designing-consistently/SKILL.md && grep -q '#### <route> — <page>' skills/designing-consistently/SKILL.md && grep -qi 'sibling' skills/designing-consistently/SKILL.md && grep -qi 'whole `## Decisions` section' skills/designing-consistently/SKILL.md",
-    "state": "not_started",
-    "evidence": null
+    "state": "passing",
+    "evidence": "2026-08-21: verification command exited 0 in the work-verify session at HEAD ee6d5ac, and again independently in the fresh-context lane review, which ran all eleven itself and recorded exit 0 for each"
   },
   {
     "id": "F04",
     "behavior": "designing-consistently step 4 gate promotes or demotes every provisional entry the work touched, and escalates to ### Global on the two-or-more-module trigger (SPEC §4.4, §3.5 step 4). eval-01.md is rewritten for this gate per PLAN step 5; no earlier copy of it is archived in the lane, so this row proves the behavior through the skill text alone.",
     "verification": "grep -qi 'promote' skills/designing-consistently/SKILL.md && grep -qi 'demote' skills/designing-consistently/SKILL.md && grep -qi 'escalat' skills/designing-consistently/SKILL.md",
-    "state": "not_started",
-    "evidence": null
+    "state": "passing",
+    "evidence": "2026-08-21: verification command exited 0 in the work-verify session at HEAD ee6d5ac, and again independently in the fresh-context lane review, which ran all eleven itself and recorded exit 0 for each"
   },
   {
     "id": "F05",
     "behavior": "extracting-design-md elects tokens from reference surfaces; frequency appears only as a tie-break; every unconfirmed token ships [provisional] (SPEC §4.5, §3.6). Encoded by PLAN step 6 (eval-01.md rewritten + 2 new evals, 6 total).",
     "verification": "test $(ls skills/extracting-design-md/evals/*.md | wc -l) -eq 6 && grep -qi 'reference surface' skills/extracting-design-md/SKILL.md && grep -qi 'tie-break' skills/extracting-design-md/SKILL.md && grep -q '\\[provisional\\]' skills/extracting-design-md/SKILL.md",
-    "state": "not_started",
-    "evidence": null
+    "state": "passing",
+    "evidence": "2026-08-21: verification command exited 0 in the work-verify session at HEAD ee6d5ac, and again independently in the fresh-context lane review, which ran all eleven itself and recorded exit 0 for each"
   },
   {
     "id": "F06",
     "behavior": "Both skills emit and read the ### <module> / #### <route> — <page> architecture with ### Global first (SPEC §4.6, §3.3-3.4). Cross-check against the heading shape actually written in work/design-skills-at-scale/proving-run/DESIGN.md (PLAN step 10) at work-verify.",
     "verification": "grep -q '### Global' skills/designing-consistently/SKILL.md && grep -q '### Global' skills/extracting-design-md/SKILL.md && grep -qE '#### .* — ' skills/designing-consistently/SKILL.md && grep -qE '#### .* — ' skills/extracting-design-md/SKILL.md",
-    "state": "not_started",
-    "evidence": null
+    "state": "passing",
+    "evidence": "2026-08-21: verification command exited 0 in the work-verify session at HEAD ee6d5ac, and again independently in the fresh-context lane review, which ran all eleven itself and recorded exit 0 for each"
   },
   {
     "id": "F07",
     "behavior": "A module entry contradicting a global is treated as drift unless it declares 'exception to Global/<block>' (SPEC §4.7, §3.4 precedence rule). skills/designing-consistently/evals/eval-01.md (repair gate, PLAN step 5) is expected to exercise the undeclared-contradiction-is-drift case, but whether it actually does so is a content judgment for work-verify's triage, not something the command below can check.",
     "verification": "grep -q 'exception to Global' skills/designing-consistently/SKILL.md",
-    "state": "not_started",
-    "evidence": null
+    "state": "passing",
+    "evidence": "2026-08-21: verification command exited 0 in the work-verify session at HEAD ee6d5ac, and again independently in the fresh-context lane review, which ran all eleven itself and recorded exit 0 for each"
   },
   {
     "id": "F08",
     "behavior": "Zero stale Context-Engineering / context-lint references remain in either skill (SPEC §4.8, §1 defect 4), while the historical-provenance citation in skills/tracing-root-causes survives the sweep untouched. Verification narrowed at step 9 (ruling in DECISIONS.md): SPEC §4.8 says \"in either skill\", and the PLAN's grep additionally covered README.md — but README's line 68 is an ATTRIBUTION statement (\"the base is owner-original (Context-Engineering salvage)\") about tracing-root-causes, the same provenance class the PLAN's own constraints block protects at skills/tracing-root-causes/SKILL.md:9. The row is also STRENGTHENED with a positive check that the provenance citation still exists, so an over-reaching sweep fails this row rather than passing it. README's two skill rows are refreshed at step 9 and verified by reading them, not by this grep.",
     "verification": "! git grep -n 'Context-Engineering\\|context-lint' -- skills/designing-consistently skills/extracting-design-md && git grep -q 'Context-Engineering' -- skills/tracing-root-causes",
-    "state": "not_started",
-    "evidence": null
+    "state": "passing",
+    "evidence": "2026-08-21: verification command exited 0 in the work-verify session at HEAD ee6d5ac, and again independently in the fresh-context lane review, which ran all eleven itself and recorded exit 0 for each"
   },
   {
     "id": "F09",
     "behavior": "node ../Agent-Engineering/scripts/agent-lint.mjs . exits 0 (SPEC §4.9). Path resolved per DECISIONS.md 2026-08-20 ruling 1: ../Agent-Engineering does not resolve from this worktree.",
     "verification": "node /c/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs .",
-    "state": "not_started",
-    "evidence": null
+    "state": "passing",
+    "evidence": "2026-08-21: verification command exited 0 in the work-verify session at HEAD ee6d5ac, and again independently in the fresh-context lane review, which ran all eleven itself and recorded exit 0 for each"
   },
   {
     "id": "F10",
     "behavior": "Each skill ships at least 3 evals, and the evals change before the skill content, per the repo hard constraint (SPEC §4.10). Eval counts are PLAN steps 5-6's own acceptance (5 and 6). Ordering is proved by asserting the COMPLETE eval set already existed in the tree at the commit that last rewrote each SKILL.md — replacing an ancestor test (\"last commit touching evals/ precedes last commit touching SKILL.md\") that gave a FALSE FAILURE: PLAN step 9's mechanical sweep legitimately touched one eval AFTER step 8's rewrite, repointing a stale `context-lint` name to `agent-lint` with no behaviour change, and the ancestor test cannot tell a tooling repoint from a behaviour change. Verified in both directions (ruling in DECISIONS.md): it passes at HEAD, where both rewrite commits already carried the full 5 and 6; and at PLAN step 5's commit `2543242` the extracting-design-md set still held only 4, so a rewrite landing there would fail the `-eq 6` clause.",
     "verification": "test $(ls skills/designing-consistently/evals/*.md | wc -l) -eq 5 && test $(ls skills/extracting-design-md/evals/*.md | wc -l) -eq 6 && test $(git ls-tree --name-only \"$(git log --format=%H -1 -- skills/designing-consistently/SKILL.md)\" skills/designing-consistently/evals/ | grep -c \"\\.md$\") -eq 5 && test $(git ls-tree --name-only \"$(git log --format=%H -1 -- skills/extracting-design-md/SKILL.md)\" skills/extracting-design-md/evals/ | grep -c \"\\.md$\") -eq 6",
-    "state": "not_started",
-    "evidence": null
+    "state": "passing",
+    "evidence": "2026-08-21: verification command exited 0 in the work-verify session at HEAD ee6d5ac, and again independently in the fresh-context lane review, which ran all eleven itself and recorded exit 0 for each"
   },
   {
     "id": "F11",
     "behavior": "A DESIGN.md written to this design passes the agent-lint design checks unchanged — no Agent-Engineering modification of any kind (SPEC §4.11, §6, §7). The no-modification clause was narrowed at step 10 (ruling in DECISIONS.md) from \"the whole Agent-Engineering repo is pristine\" to \"no tracked file is modified or staged, and nothing is dirty under scripts/reference/templates/skills/global\" — because the whole-repo form failed on an untracked `work/mat-110-111-parent/` lane folder belonging to a DIFFERENT worker, which is neither this lane's doing nor any of the changes SPEC §7 forbids. Verified in both directions before adoption: it passes at HEAD, and appending one comment line to design-md-gen.mjs makes it FAIL, so it still catches exactly what §7 protects.",
     "verification": "node /c/Briar/repos/mine/Agent-Engineering/scripts/design-md-gen.mjs work/design-skills-at-scale/proving-run/DESIGN.md --target cssvars && node /c/Briar/repos/mine/Agent-Engineering/scripts/agent-lint.mjs . && git -C /c/Briar/repos/mine/Agent-Engineering diff --quiet && git -C /c/Briar/repos/mine/Agent-Engineering diff --cached --quiet && test -z \"$(git -C /c/Briar/repos/mine/Agent-Engineering status --porcelain -- scripts reference templates skills global)\"",
-    "state": "not_started",
-    "evidence": null
+    "state": "passing",
+    "evidence": "2026-08-21: verification command exited 0 in the work-verify session at HEAD ee6d5ac, and again independently in the fresh-context lane review, which ran all eleven itself and recorded exit 0 for each"
   }
 ]
