@@ -65,7 +65,7 @@ file. `promote`, `demote`, `provisional`, `escalat` and `Global` occur
 zero times in `SKILL.md`, so there is no status to promote or demote, no
 scope to escalate, and no global tier to escalate into.
 
-`baseline-designing-consistently.md` `## Step 4` is the direct
+[`baseline-designing-consistently.md`](https://github.com/bygama/skills/blob/966b264db7ca7fc4e41eacdbedb473a44f9dd4f3/work/design-skills-at-scale/baseline-designing-consistently.md) `## Step 4` is the direct
 observation: the run's would-be record is three flat one-line additions
 under a single `### <surface>` heading, and no existing entry is
 revisited, re-dated or re-scoped anywhere in the run. Box 2 also fails in

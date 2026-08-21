@@ -57,7 +57,7 @@ available mid-run.
 
 ## Why this is RED today
 
-**Box 1 fails.** `baseline-designing-consistently.md` `## Step 1` records
+**Box 1 fails.** [`baseline-designing-consistently.md`](https://github.com/bygama/skills/blob/966b264db7ca7fc4e41eacdbedb473a44f9dd4f3/work/design-skills-at-scale/baseline-designing-consistently.md) `## Step 1` records
 six searches for a DESIGN.md-shaped file, zero hits, and a dead end — no
 inventory, no ranking, nothing carried forward, and the skill's own
 fallback unreachable. The standing system in that run (the token line the

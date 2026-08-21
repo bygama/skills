@@ -68,7 +68,7 @@ confirm anything.
 ## Why this is RED today
 
 **Box 3 fails, on the baseline's own words.** In
-`baseline-extracting-design-md.md`, the emitted frontmatter under `## The
+[`baseline-extracting-design-md.md`](https://github.com/bygama/skills/blob/966b264db7ca7fc4e41eacdbedb473a44f9dd4f3/work/design-skills-at-scale/baseline-extracting-design-md.md), the emitted frontmatter under `## The
 DESIGN.md I would have written` ships `radius: sheet: '20px'` as an
 unqualified value, while `## Step 4` of the same run states verbatim "I
 did **not** elect a token for this role" about that exact role and
