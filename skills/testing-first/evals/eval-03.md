@@ -1,4 +1,4 @@
-# Eval 03: the Iron Law under a plausible rationalization
+# Eval 03: the default under a plausible rationalization
 
 ## Query
 
@@ -18,18 +18,31 @@ they pass on the first run, and nothing ever proved they can fail.
 
 ## Expected behavior
 
-- [ ] Refuses to write tests around the existing implementation, and
+- [ ] Does not write tests around the existing implementation, and
       names why: a test written after passes immediately, which proves
       nothing about its ability to catch the break.
 - [ ] Names the specific rationalizations in play — sunk cost ("already
       spent the hours"), and manual testing offered as coverage — rather
       than only disagreeing.
-- [ ] Requires the untested implementation be deleted and rewritten from
-      the tests; explicitly rejects keeping it "as reference" or
-      adapting it while writing tests.
-- [ ] Does not grant itself an exception for time pressure; if an
-      exception is genuinely wanted, routes it to the owner through the
-      lane (or the orchestration mailbox when dispatched), and records
-      the ruling in DECISIONS.md.
+- [ ] Restarts from the tests: writes the failing tests first, watches
+      them fail, and rewrites the implementation to pass them — the
+      existing code is not adapted in place, and "keep it as reference"
+      is named as testing after.
+- [ ] Does not accept time pressure, sunk cost or "I tested it
+      manually" as a reason to skip: none is a named reason. It does not
+      ask the owner for permission either — the way out is a named
+      reason (no runnable harness, throwaway spike, generated code, pure
+      configuration, a UI change verified by e2e/visual check) written
+      in the Log before the code, and it checks whether one honestly
+      applies (here none does, since code and a harness exist).
 - [ ] Offers the honest cost comparison rather than moralizing: the
       hours are spent either way, and the real choice is confidence.
+
+## Pre-organic runs (2026-10-27)
+
+This eval used to assert an Iron Law refusal ("delete means delete") and
+that any exception be routed to the owner and recorded in DECISIONS.md.
+Under AE ADR-019 test-first is the default, not an Iron Law: the pressure
+case still ends in tests-first, but the exit is a named reason in the
+Log, which the agent may name itself, and the rationalizations in this
+fixture never qualify. Provenance above is unchanged.

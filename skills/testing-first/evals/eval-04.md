@@ -43,3 +43,10 @@ that guards behavior from one that cannot fail.
       normalization cache the builder depends on.
 - [ ] Names the test's vague name as a defect, and runs the mutation
       check over the result.
+
+## Pre-organic runs (2026-10-27)
+
+Unchanged by ADR-019: no box here references PROGRESS.md, the Iron Law
+or owner-only exceptions. Re-read against the reworked skill on
+2026-10-27 as a regression guard; the mutation-check finding now lands
+in the lane's Log when a lane exists.
