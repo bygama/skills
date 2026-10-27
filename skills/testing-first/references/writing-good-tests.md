@@ -179,7 +179,8 @@ least one test should fail for each realistic mutation:
 
 A mutation nothing catches marks that behavior as unprotected — or the
 test as tautological. Either way it is a finding, and a finding belongs
-in the lane's PROGRESS.md where `work-verify` will read it.
+in the lane's Log (`work/<slug>/LANE.md`; a v1 lane: PROGRESS.md) where
+`work-verify` will read it.
 
 Ship the tests the behavior needs and only those: trivial code and human
 prose earn none, and a test written to satisfy process is maintained
