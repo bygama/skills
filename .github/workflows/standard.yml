@@ -12,9 +12,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           path: repo
+      # AE moved to pegasuzhq and is private; this repo's own token cannot read another org's
+      # private repo, so a fine-grained token with Contents: read on that one repo does.
       - uses: actions/checkout@v4
         with:
-          repository: bygama/Agent-Engineering
+          repository: pegasuzhq/Agent-Engineering
+          token: ${{ secrets.AE_READ_TOKEN }}
           path: Agent-Engineering
       - uses: actions/setup-node@v4
         with:
