@@ -18,9 +18,10 @@ lists, per the Claude 5-era shift the standard is built on.
 | Skill | What it does |
 |---|---|
 | [`tracing-root-causes/`](skills/tracing-root-causes/) | Owns debugging end to end: reproduce, isolate, competing hypotheses, evidence ranked by strength, active disconfirmation, fix at the source |
-| [`designing-consistently/`](skills/designing-consistently/) | Keeps UI work consistent with the design system an app actually has: discovers it when no DESIGN.md exists, reads a bounded slice of the decision log at any scale, repairs the record rather than only appending |
-| [`extracting-design-md/`](skills/extracting-design-md/) | Reverse-engineers a DESIGN.md from an existing project: elects tokens from owner-designated reference surfaces over frequency, ships unconfirmed output as `[provisional]`, writes decisions per module under a Global tier |
 | [`testing-first/`](skills/testing-first/) | Test-first implementation by default: RED-GREEN-REFACTOR with both beats watched, one RED per requested rule, old behaviour proven against `HEAD`, a named reason to skip, evidence into the lane's Log, completion handed to `work-verify` |
+
+The two UI skills that lived here, `designing-consistently` and `extracting-design-md`, were merged into
+`keeping-ui-consistent` in [pegasuzhq/skills](https://github.com/pegasuzhq/skills) on 2026-11-06 (ENG-3002).
 
 ## Authoring method
 
