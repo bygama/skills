@@ -12,8 +12,10 @@ Tiers: S direct+verify · M lane+plan · L four files+feature list · XL fan-out
 
 ## Commands
 
-- `node ../Agent-Engineering/scripts/agent-lint.mjs .` — mechanical
-  compliance check (needs the Agent-Engineering repo cloned alongside)
+- `node <AE>/scripts/agent-lint.mjs .` — mechanical compliance check, `<AE>` a clone of
+  pegasuzhq/Agent-Engineering (on the workstation `../../pegasuz/agent-engineering`). It is the
+  gate, run locally before every PR with its last line in the PR body: there is no CI here, since
+  this repo's token cannot read that private repo (Mateo, 2026-11-06).
 
 ## Gotchas
 
